@@ -10,17 +10,17 @@ import logo from "../assets/logo.png";
 import { userQuery } from "../utils/data";
 
 const Home = () => {
-  const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [user, setUser] = useState();
-  const scrollRef = useRef(null);
+  const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar
+  const [user, setUser] = useState(); // User data
+  const scrollRef = useRef(null); // Scroll to top
 
   const userInfo =
     localStorage.getItem("user") !== "undefined"
       ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
+      : localStorage.clear(); // Get user info from local storage
 
   useEffect(() => {
-    const query = userQuery(userInfo?.uid);
+    const query = userQuery(userInfo?.uid); // Get user data from sanity
 
     client.fetch(query).then((data) => {
       setUser(data[0]);
@@ -28,7 +28,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    scrollRef.current.scrollTo(0, 0);
+    scrollRef.current.scrollTo(0, 0); // Scroll to top when page load
   });
 
   return (
