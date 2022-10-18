@@ -25,4 +25,10 @@ Application similar to pininterest, where users can upload photos, save favourit
   - Redirecting to the homepage once logged in
 - Sidebar
   - Creating sidebar component wrt different screen sizes
-  -
+  - In-depth Tailwind Classes
+  - Link vs NavLink
+  - User attributes naming convention mistake
+  - Writing React Proptypes
+- Pins
+  - Different components created - Pins, search, Navbar, Feed , PinDetails
+  - 

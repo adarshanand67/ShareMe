@@ -13,9 +13,9 @@ const isActiveStyle =
 
 const Sidebar = ({ user, closeToggle }) => {
   // console.log(user);
-  console.log(user?._id);
-  console.log(user?.userName);
-  console.log(user?.image);
+  // console.log(user?._id);
+  // console.log(user?.userName);
+  // console.log(user?.image);
 
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
