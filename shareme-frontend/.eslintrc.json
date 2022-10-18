@@ -1,0 +1,13 @@
+// Remove no-unused-vars warning
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+    "no-unused-vars": "off",
+    "react/prop-types": "off"
+  }
+}

@@ -10,19 +10,22 @@ import logo from "../assets/logo.png";
 import { userQuery } from "../utils/data";
 
 const Home = () => {
-  const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar
-  const [user, setUser] = useState(); // User data
+  const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
+  const [user, setUser] = useState(); // User data initially null
   const scrollRef = useRef(null); // Scroll to top
 
   const userInfo =
     localStorage.getItem("user") !== "undefined"
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear(); // Get user info from local storage
+  // console.log(userInfo);
+  // console.log(userInfo.photoURL);
 
   useEffect(() => {
     const query = userQuery(userInfo?.uid); // Get user data from sanity
 
     client.fetch(query).then((data) => {
+      // console.log(data);
       setUser(data[0]);
     });
   }, []);
@@ -34,21 +37,22 @@ const Home = () => {
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
-        <Sidebar user={user && user} />
+        <Sidebar user={user && user} closeToggle= {setToggleSidebar} />
+        {/* If user is logged in then show sidebar */}
       </div>
       <div className="flex md:hidden flex-row">
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu
             fontSize={40}
             className="cursor-pointer"
-            onClick={() => setToggleSidebar(true)}
+            onClick={() => setToggleSidebar(true)} // Toggle sidebar on
           />
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
-          <Link to={`user-profile/${user?._id}`}>
+          <Link to={`user-profile/${user?.uid}`}>
             <img
-              src={user?.image}
+              src={userInfo?.photoURL}
               alt="user-pic"
               className="w-9 h-9 rounded-full "
             />

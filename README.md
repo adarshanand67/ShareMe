@@ -13,14 +13,16 @@ Application similar to pininterest, where users can upload photos, save favourit
 
 ### Frontend using React + Tailwind CSS
 
-- Setup the project using create-react-app from Tailwind Website 
-- Customize the tailwind.config.js to
-- Add lots of packages (React Icons, React Google Login, ...)
-- Working on Login page
+- Setup the project using create-react-app from Tailwind Website
+- Customize the tailwind.config.js
+- Adding rules to .eslint.json
+- Add lots of packages (React Icons, React Google Login, uuid , ...)
+- Login page
   - Tailwind CSS Customizations
   - Adding video with dark overlay + controls
-  - Integrating Google login and getting (name,email,picture) from the response
-  - Adding all the users to sanity collection
+  - Integrating Google login and getting (name,email,picture) from the response using firebase
+  - Adding new users to sanity database
   - Redirecting to the homepage once logged in
+- Sidebar
+  - Creating sidebar component wrt different screen sizes
   -
-

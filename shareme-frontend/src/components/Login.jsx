@@ -29,38 +29,34 @@ const Login = () => {
   const navigate = useNavigate();
 
   const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        //! Important data
-        console.log(result);
-        const name = result.user.displayName;
-        const email = result.user.email;
-        const photo = result.user.photoURL;
-        const uid = result.user.uid;
+    signInWithPopup(auth, provider).then((result) => {
+      //! Important data
+      console.log(result);
+      const name = result.user.displayName;
+      const googleId = result.user.email;
+      const imageUrl = result.user.photoURL;
+      // const googleId = result.user.uid;
 
-        const user = {
-          name,
-          email,
-          photo,
-        };
-        localStorage.setItem("user", JSON.stringify(result.user));
+      const user = {
+        name,
+        googleId,
+        imageUrl,
+      };
+      localStorage.setItem("user", JSON.stringify(result.user));
 
-        // Creating a new sanity user
-        const doc = {
-          _id: uid,
-          _type: "user",
-          userName: name,
-          image: photo,
-        };
+      // Creating a new sanity user
+      const doc = {
+        _id: googleId,
+        _type: "user",
+        userName: name,
+        image: imageUrl,
+      };
 
-        // Connect to sanity if account not exist before
-        client.createIfNotExists(doc).then(() => {
-          navigate("/", { replace: true }); // Navigate to home page
-        });
-      })
-      .catch((error) => {
-        console.log(error);
+      // Connect to sanity if account not exist before
+      client.createIfNotExists(doc).then(() => {
+        navigate("/", { replace: true }); // Navigate to home page
       });
+    });
   };
 
   return (
