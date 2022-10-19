@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
@@ -26,16 +26,16 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Navigate to a new page
+  const [authenticated, setAuthenticated] = useState(false); // If user is authenticated
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
-      //! Important data
       console.log(result);
       const name = result.user.displayName;
-      const googleId = result.user.email;
+      const email = result.user.email;
       const imageUrl = result.user.photoURL;
-      // const googleId = result.user.uid;
+      const googleId = result.user.uid;
 
       const user = {
         name,
@@ -52,9 +52,10 @@ const Login = () => {
         image: imageUrl,
       };
 
-      // Connect to sanity if account not exist before
+      // Check if user already exists
       client.createIfNotExists(doc).then(() => {
-        navigate("/", { replace: true }); // Navigate to home page
+        setAuthenticated(true);
+        navigate("/", { replace: true }); // Navigate to home page replacing the current page
       });
     });
   };
