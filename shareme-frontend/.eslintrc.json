@@ -7,7 +7,11 @@
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": "off",
     "no-unused-vars": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    "eslint-disable-next-line": "off"
   }
 }

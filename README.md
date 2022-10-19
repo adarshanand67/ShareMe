@@ -33,4 +33,9 @@ Application similar to pininterest, where users can upload photos, save favourit
   - Different components created - Pins, search, Navbar, Feed , PinDetails
   - Creating Navbar with search
   - Creating Feed using React Masonry grid Layout
-  - 
+  - Crearing pins container to show all the pins
+  - Creating Query from sanity to get pins  of one category
+- Pin
+  - Getting image , title, description, tags, likes, comments, postedBy from sanity
+  - Displaying all on a single pin
+  - Attaching utils to the pin (delete, saved , url etc)
