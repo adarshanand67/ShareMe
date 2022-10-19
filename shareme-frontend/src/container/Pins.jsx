@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navbar, Feed, PinDetails, CreatePin, Search } from "../components";
 
 const Pins = ({ user }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(""); //Getting search term
 
   return (
     <div className="px-2 md:px-5">

@@ -12,7 +12,6 @@ const Pin = ({ pin }) => {
   const { postedBy, image, _id, destination } = pin; // Destructure props
 
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
-  const [savingPost, setSavingPost] = useState(false); // If post is being saved
 
   const navigate = useNavigate(); // Navigate to a new page
 
@@ -36,28 +35,31 @@ const Pin = ({ pin }) => {
 
   const savePin = (id) => {
     if (alreadySaved?.length === 0) {
-      setSavingPost(true);
+      // If pin is not already saved
 
       client
-        .patch(id)
-        .setIfMissing({ save: [] })
+        .patch(id) // Patch the pin
+        .setIfMissing({ save: [] }) // Set save array if not present
         .insert("after", "save[-1]", [
+          // Insert the user data in the save array
           {
-            _key: uuidv4(),
-            userId: user?.googleId,
+            _key: uuidv4(), // Generate a unique key
+            userId: user?.googleId, // User id
             postedBy: {
+              // User data
               _type: "postedBy",
               _ref: user?.googleId,
             },
           },
         ])
-        .commit()
+        .commit() // Commit the changes
         .then(() => {
-          window.location.reload();
-          setSavingPost(false);
+          // After commit
+          window.location.reload(); // Reload the page
         });
     }
   };
+  console.log(user);
 
   return (
     <div className="m-2">
@@ -112,10 +114,11 @@ const Pin = ({ pin }) => {
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                 >
-                  {pin?.save?.length} {savingPost ? "Saving" : "Save"}
+                  {pin?.save?.length}
                 </button>
               )}
             </div>
+            {/* Destination url */}
             <div className=" flex justify-between items-center gap-2 w-full">
               {destination?.slice(8).length > 0 ? (
                 <a
@@ -124,17 +127,19 @@ const Pin = ({ pin }) => {
                   className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
                   rel="noreferrer"
                 >
-                  {" "}
                   <BsFillArrowUpRightCircleFill />
-                  {destination?.slice(8, 17)}...
+                  {destination.length > 20
+                    ? destination?.slice(8, 20) + "..."
+                    : destination?.slice(8)}
                 </a>
               ) : undefined}
-              {postedBy?._id === user?.googleId && (
+              {/* Delete Button */}
+              {postedBy?._id === user?.uid && (
                 <button
                   type="button"
                   onClick={(e) => {
-                    e.stopPropagation();
-                    deletePin(_id);
+                    e.stopPropagation(); // Stop the event from bubbling up the DOM tree
+                    deletePin(_id); // Delete pin
                   }}
                   className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
                 >
@@ -145,6 +150,7 @@ const Pin = ({ pin }) => {
           </div>
         )}
       </div>
+      {/* Show the user who posted it */}
       <Link
         to={`/user-profile/${postedBy?._id}`}
         className="flex gap-2 mt-2 items-center"
@@ -154,7 +160,7 @@ const Pin = ({ pin }) => {
           src={postedBy?.image}
           alt="user-profile"
         />
-        <p className="font-semibold capitalize">{postedBy?.userName}</p>
+        <p className="capitalize font-thin text-sm">{postedBy?.userName}</p>
       </Link>
     </div>
   );
