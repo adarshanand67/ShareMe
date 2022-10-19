@@ -128,8 +128,8 @@ const Pin = ({ pin }) => {
                   rel="noreferrer"
                 >
                   <BsFillArrowUpRightCircleFill />
-                  {destination.length > 20
-                    ? destination?.slice(8, 20) + "..."
+                  {destination?.length > 15
+                    ? destination?.slice(8, 15) + "..."
                     : destination?.slice(8)}
                 </a>
               ) : undefined}
