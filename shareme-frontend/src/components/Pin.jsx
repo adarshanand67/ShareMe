@@ -59,7 +59,7 @@ const Pin = ({ pin }) => {
         });
     }
   };
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="m-2">

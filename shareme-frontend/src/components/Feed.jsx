@@ -9,10 +9,10 @@ import Spinner from "./Spinner.jsx";
 const Feed = () => {
   const [loading, setLoading] = useState(false);
   const [pins, setPins] = useState([]);
-  const { categoryID } = useParams(); // take categoryID from URL
+  const categoryID = useParams().categoryId.toLocaleUpperCase();
   useEffect(() => {
-    if (categoryID) {
-      // Get all the pins of the category
+    // Get all the pins of the category
+    if (categoryID?.length > 0) {
       setLoading(true);
       const query = searchQuery(categoryID); // get query for categoryID
       client
@@ -33,13 +33,31 @@ const Feed = () => {
       });
     }
   }, [categoryID]); // Whenever category ID Changes fetch data for that category
-  console.log(pins);
+  // console.log(pins);
+
   if (loading) {
-    // return
-    return <Spinner message="We are adding new Ideas to your feed" />;
-  } else {
-    return <div className="">{pins && <MasonryLayout pins={pins} />}</div>;
+    return <Spinner message="Loading your beautiful page!" />;
   }
+
+  if (!pins?.length) {
+    return (
+      <div>
+        <h1 className="text-3xl text-center text-red-500">
+          Category : <span className="text-black"> {categoryID}</span>
+        </h1>
+        <p className="text-2xl m-5 text-center">No pins found</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="text-center justify-center">
+      <h1 className="text-3xl text-center text-red-500">
+        Category : <span className="text-black"> {categoryID}</span>
+      </h1>
+      {pins && <MasonryLayout pins={pins} />}
+    </div>
+  );
 };
 
 export default Feed;

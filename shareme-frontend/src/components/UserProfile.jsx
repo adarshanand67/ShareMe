@@ -40,7 +40,7 @@ const UserProfile = () => {
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear();
 
-  console.log(User);
+  // console.log(User);
 
   useEffect(() => {
     const query = userQuery(userId); // fetch
@@ -145,6 +145,7 @@ const UserProfile = () => {
             )}
           </div>
         </div>
+        {/* Created Pins */}
         <div className="text-center mb-7">
           <button
             type="button"
@@ -158,6 +159,7 @@ const UserProfile = () => {
           >
             Created
           </button>
+          {/* Saved Pins */}
           <button
             type="button"
             onClick={(e) => {
@@ -172,10 +174,12 @@ const UserProfile = () => {
           </button>
         </div>
 
+        {/* Render the Masonry Layout of all my pins */}
         <div className="px-2">
           <MasonryLayout pins={pins} />
         </div>
 
+        {/* Checker for no pins */}
         {pins?.length === 0 && (
           <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
             No Pins Found!
