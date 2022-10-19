@@ -31,4 +31,6 @@ Application similar to pininterest, where users can upload photos, save favourit
   - Writing React Proptypes
 - Pins
   - Different components created - Pins, search, Navbar, Feed , PinDetails
+  - Creating Navbar with search
+  - Creating Feed using React Masonry grid Layout
   - 
