@@ -9,7 +9,9 @@ import Spinner from "./Spinner.jsx";
 const Feed = () => {
   const [loading, setLoading] = useState(false);
   const [pins, setPins] = useState([]);
-  const categoryID = useParams().categoryId.toLocaleUpperCase();
+  const categoryID = useParams().categoryId?.toLocaleUpperCase();
+
+  console.log(categoryID);
   useEffect(() => {
     // Get all the pins of the category
     if (categoryID?.length > 0) {
@@ -49,15 +51,16 @@ const Feed = () => {
       </div>
     );
   }
-
-  return (
-    <div className="text-center justify-center">
-      <h1 className="text-3xl text-center text-red-500">
-        Category : <span className="text-black"> {categoryID}</span>
-      </h1>
-      {pins && <MasonryLayout pins={pins} />}
-    </div>
-  );
+  if (categoryID == undefined) {
+    return (
+      <div className="text-center justify-center">
+        <h1 className="text-3xl text-center text-red-500">
+          Category : <span className="text-black"> {categoryID}</span>
+        </h1>
+        {pins && <MasonryLayout pins={pins} />}
+      </div>
+    );
+  }
 };
 
 export default Feed;
