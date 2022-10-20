@@ -21,7 +21,7 @@ const Pin = ({ pin }) => {
 
   // Fetch user data
   const user = fetchUser();
-  console.log("🚀 ~ file: Pin.jsx ~ line 24 ~ Pin ~ user", user)
+  console.log("🚀 ~ file: Pin.jsx ~ line 24 ~ Pin ~ user", user);
 
   // console.log(user);
   // Delete pin of the own user only (not others)
@@ -109,7 +109,7 @@ const Pin = ({ pin }) => {
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                 >
-                  {pin?.save?.length} Saved
+                  Saved
                 </button>
               ) : (
                 <button

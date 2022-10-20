@@ -39,9 +39,10 @@ Application similar to pininterest, where users can upload photos, save favourit
   - Getting image , title, description, tags, likes, comments, postedBy from sanity
   - Displaying all on a single pin
   - Attaching utils to the pin (delete, saved , url etc)
+-
 
 ## Problems :-
 
-- Saved pins not showing up
-- Seach not working
-- Polish CSS
+- Change icons of Saving Pins
+- Handle empty url
+- Finish video
