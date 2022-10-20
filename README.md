@@ -1,6 +1,11 @@
 # ShareMe 😄
+	
+![image](https://user-images.githubusercontent.com/73928744/197052725-386f3b1c-47fa-48c3-b1d9-9021922a6ad7.png)
 
-Application similar to pininterest, where users can upload photos, save favourite photos and comment on the posts. Homepage is the pinboard where all the posts are displayed. Users can also search for posts by tags. Users can also follow other users and see their posts on their profile page. Users can also like and comment on the posts.
+
+## Introduction
+Using React, Tailwind & Sanity I build a Full Stack Social Media Application - from start to finish.
+Application is similar to pininterest, where users can upload photos, save favourite photos and comment on the posts. Homepage is the pinboard where all the posts are displayed. Users can also search for posts by tags. Users can also follow other users and see their posts on their profile page. Users can also like and comment on the posts.
 
 ## Flow of the application
 
