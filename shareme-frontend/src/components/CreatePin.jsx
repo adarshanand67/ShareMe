@@ -220,7 +220,6 @@ const CreatePin = ({ user }) => {
                 Save Pin
               </button>
             </div>
-            {/* End of Save Pin Button */}
           </div>
         </div>
       </div>

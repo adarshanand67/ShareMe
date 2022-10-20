@@ -26,6 +26,17 @@ const activeBtnStyles =
 const notActiveBtnStyles =
   "bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-non";
 
+function generateRandomImage() {
+  var randomImage = new Array();
+  randomImage[0] = img1;
+  randomImage[1] = img2;
+  randomImage[2] = img3;
+  randomImage[3] = img4;
+  var random = Math.floor(Math.random() * randomImage.length);
+  return randomImage[random];
+}
+const randomImage = generateRandomImage();
+
 const UserProfile = () => {
   const [user, setUser] = useState();
   const [pins, setPins] = useState();
@@ -73,16 +84,6 @@ const UserProfile = () => {
 
   if (!user) return <Spinner message="Loading profile" />;
 
-  function generateRandomImage() {
-    var randomImage = new Array();
-    randomImage[0] = img1;
-    randomImage[1] = img2;
-    randomImage[2] = img3;
-    randomImage[3] = img4;
-    var random = Math.floor(Math.random() * randomImage.length);
-    return randomImage[random];
-  }
-
   function FirebaseLogout() {
     const auth = getAuth(); // Get current state of auth object
 
@@ -104,7 +105,7 @@ const UserProfile = () => {
             <img
               // className="w-full h-15 object-cover"
               className="w-full h-40 2xl:h-50 shadow-lg object-cover"
-              src={generateRandomImage()}
+              src={randomImage}
               alt="user-pic"
             />
             <img

@@ -11,7 +11,7 @@ const Feed = () => {
   const [pins, setPins] = useState([]);
   const categoryID = useParams().categoryId?.toLocaleUpperCase();
 
-  console.log(categoryID);
+  // console.log(categoryID);
   useEffect(() => {
     // Get all the pins of the category
     if (categoryID?.length > 0) {
@@ -54,9 +54,6 @@ const Feed = () => {
   if (categoryID == undefined) {
     return (
       <div className="text-center justify-center">
-        <h1 className="text-3xl text-center text-red-500">
-          Category : <span className="text-black"> {categoryID}</span>
-        </h1>
         {pins && <MasonryLayout pins={pins} />}
       </div>
     );

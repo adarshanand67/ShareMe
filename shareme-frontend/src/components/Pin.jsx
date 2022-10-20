@@ -10,6 +10,10 @@ import { fetchUser } from "../utils/fetchUser";
 
 const Pin = ({ pin }) => {
   const { postedBy, image, _id, destination } = pin; // Destructure props
+  console.log(pin);
+  // console.log("🚀 ~ file: Pin.jsx ~ line 13 ~ Pin ~ postedBy, image, _id, destination", postedBy, image, _id, destination)
+  // console.log("🚀 ~ file: Pin.jsx ~ line 13 ~ Pin ~ pin", pin)
+  const [savingPost, setSavingPost] = useState(false);
 
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
 
@@ -17,45 +21,46 @@ const Pin = ({ pin }) => {
 
   // Fetch user data
   const user = fetchUser();
+  console.log("🚀 ~ file: Pin.jsx ~ line 24 ~ Pin ~ user", user)
 
+  // console.log(user);
   // Delete pin of the own user only (not others)
   const deletePin = (id) => {
     client.delete(id).then(() => {
       window.location.reload();
+      setSavingPost(false);
     });
   };
 
   // Get already saved pins by user
-  let alreadySaved = pin?.save?.filter(
-    (item) => item?.postedBy?._id === user?.googleId
-  );
+  let alreadySaved = pin?.save?.filter((item) => item?.user?._id === user?._id);
 
-  // Length of already saved pins
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
+  console.log(alreadySaved);
+
+  console.log(user?.uid);
   const savePin = (id) => {
     if (alreadySaved?.length === 0) {
-      // If pin is not already saved
+      setSavingPost(true);
 
       client
-        .patch(id) // Patch the pin
-        .setIfMissing({ save: [] }) // Set save array if not present
+        .patch(id)
+        .setIfMissing({ save: [] })
         .insert("after", "save[-1]", [
-          // Insert the user data in the save array
           {
-            _key: uuidv4(), // Generate a unique key
-            userId: user?.googleId, // User id
+            _key: uuidv4(),
+            userId: user?.uid,
             postedBy: {
-              // User data
               _type: "postedBy",
-              _ref: user?.googleId,
+              _ref: user?.uid,
             },
           },
         ])
-        .commit() // Commit the changes
+        .commit()
         .then(() => {
-          // After commit
-          window.location.reload(); // Reload the page
+          window.location.reload();
+          setSavingPost(false);
         });
     }
   };
@@ -72,7 +77,7 @@ const Pin = ({ pin }) => {
         {/* Pin image */}
         {image && (
           <img
-            className="rounded-lg w-full "
+            className="rounded-xl w-full "
             src={urlFor(image).width(250).url()}
             alt="user-post"
           />
@@ -97,6 +102,7 @@ const Pin = ({ pin }) => {
                   <MdDownloadForOffline />
                 </a>
               </div>
+              {/* TODO - Fix the saved up posts */}
               {/* Already saved posts */}
               {alreadySaved?.length !== 0 ? (
                 <button
@@ -114,7 +120,7 @@ const Pin = ({ pin }) => {
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                 >
-                  {pin?.save?.length}
+                  {pin?.save?.length} {savingPost ? "Saving" : "Save"}
                 </button>
               )}
             </div>
