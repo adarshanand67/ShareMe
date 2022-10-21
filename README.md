@@ -77,7 +77,7 @@ What did you learn while building this project? What challenges did you face and
 
 - Learnt ...
 
-## Current Problems to solve :- 🔧
+## Current Problems :- 🔧
 
 - [ ] Change icons of Saving Pins
 - [ ] Handle empty url
@@ -85,19 +85,23 @@ What did you learn while building this project? What challenges did you face and
 - [ ] Handle empty url of images
 - [ ] CI/CD Deployment (Proper)
 - [ ] Change icons of Saving Pins
+- [ ] Category search not working
+- [ ] Sanity.io is slow
 
 ## Future Improvements TODO :- 🔧
 
 ### Easy Changes
 
+- [x] Improve github readme
 - [ ] Write the entire flow of the application
-- [ ] Improve github readme
 - [ ] Add Github, Facebook, Twitter login options
 - [ ] Create a beautiful login page like Pini
 - [ ] Light/Dark Mode Addition
 - [ ] Showing confetti on login, creating a pin
 - [ ] Contact us section
+- [ ] Confirmations popups
 - [ ] Cutomer feedback section
+- [ ] Sanitising user input in createPin
 
 ### Medium Changes
 
@@ -107,6 +111,7 @@ What did you learn while building this project? What challenges did you face and
 - [ ] Pressing enter should simulate button click
 - [ ] Smooth + Infinite Scrolling
 - [ ] Showing toasts when post saved
+- [ ] Unsaving the posts
 
 ### Advanced Changes
 
