@@ -6,22 +6,28 @@ Application similar to pininterest, where users can upload photos, save favourit
 
 ### Backend using sanity.io
 
-- Using sanity studio to create the schemas
+- Using sanity studio to create the schemas (database)
 - Creating schemas (blueprint of the content)
-  - For creating users
-  - For Pin (includes custom data types like postedBy, comments, likes)
-  - 
+  - For creating users (By userName and Image)
+  - For Creating Pins (Title,About, Destination, Category, Image, UserID, PostedBy, Save, Comments)
+  - Saving Posts
+  - Adding comments [TODO]
 
 ### Frontend using React + Tailwind CSS
 
-- Setup the project using create-react-app from Tailwind Website
+- Setup the project using create-react-app from Tailwind Website as Dev Dependencies
+  - Install Tailwind CSS(Custom UI), PostCSS(Purging Extra CSS files), Autoprefixer
 - Customize the tailwind.config.js
 - Adding rules to .eslint.json
-- Add lots of packages (React Icons, React Google Login, uuid , ...)
+- Adding Packages
+  - sanity client , sanity image url
+  - react-router-dom
+  - react-icons
+  - react-masonry-css
+  - react-spinners
 - Login page
-  - Tailwind CSS Customizations
   - Adding video with dark overlay + controls
-  - Integrating Google login and getting (name,email,picture) from the response using firebase
+  - Firebase integration for authentication
   - Adding new users to sanity database
   - Redirecting to the homepage once logged in
 - Sidebar
