@@ -1,63 +1,125 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// Icons
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
+import { useNavigate } from "react-router-dom";
+// Firebase
+import { auth } from "../firebase";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 import { client } from "../client";
-
-function FirebaseConfig() {
-  return {
-    apiKey: "AIzaSyB4xljIB6nEdaKoWehBjD_PRPnsSr7u8X8",
-    authDomain: "trim-silicon-365709.firebaseapp.com",
-    projectId: "trim-silicon-365709",
-    storageBucket: "trim-silicon-365709.appspot.com",
-    messagingSenderId: "836382567162",
-    appId: "1:836382567162:web:659f8dc265d733543bf743",
-    measurementId: "G-DFEWDCFF0V",
-  };
-}
-
-const firebaseConfig = FirebaseConfig();
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const provider = new GoogleAuthProvider();
+// Toast
+import { useToast } from "@chakra-ui/react";
 
 const Login = () => {
-  const navigate = useNavigate(); // Navigate to a new page
-  const [authenticated, setAuthenticated] = useState(false); // If user is authenticated
+  const [authenticated, setAuthenticated] = useState(false);
+  const navigate = useNavigate();
+  const toast = useToast();
 
   const signInWithGoogle = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      // console.log(result);
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const imageUrl = result.user.photoURL;
-      const googleId = result.user.uid;
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const imageUrl = result.user.photoURL;
+        const googleId = result.user.uid;
 
-      const user = {
-        name,
-        googleId,
-        imageUrl,
-      };
-      localStorage.setItem("user", JSON.stringify(result.user));
+        // 1. Store user in local storage
+        const user = {
+          name,
+          googleId,
+          imageUrl,
+        };
+        localStorage.setItem("user", JSON.stringify(result.user));
 
-      // Creating a new sanity user
-      const doc = {
-        _id: googleId,
-        _type: "user",
-        userName: name,
-        image: imageUrl,
-      };
+        // 2. Create a new sanity user
+        const doc = {
+          _id: googleId,
+          _type: "user",
+          userName: name,
+          image: imageUrl,
+        };
 
-      // Check if user already exists
-      client.createIfNotExists(doc).then(() => {
-        setAuthenticated(true);
-        navigate("/", { replace: true }); // Navigate to home page replacing the current page
+        // 3. Check if user already exists
+        client.createIfNotExists(doc).then(() => {
+          setAuthenticated(true);
+          navigate("/", { replace: true }); // Navigate to home page replacing the current page
+        });
+        toast({
+          title: "Welcome to ShareMe",
+          description: `Hi ${name}, you are now logged in!`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch((error) => {
+        toast({
+          title: "Cant sign in with github",
+          description:
+            "An account already exists with the same email address but different sign-in credentials.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
       });
-    });
+  };
+
+  const signInWithGithub = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const imageUrl = result.user.photoURL;
+        const githubId = result.user.uid;
+
+        // 1. Store user in local storage
+        const user = {
+          name,
+          githubId,
+          imageUrl,
+        };
+        localStorage.setItem("user", JSON.stringify(result.user));
+
+        // 2. Create a new sanity user
+        const doc = {
+          _id: githubId,
+          _type: "user",
+          userName: name,
+          image: imageUrl,
+        };
+
+        // 3. Check if user already exists
+        client.createIfNotExists(doc).then(() => {
+          setAuthenticated(true);
+          navigate("/", { replace: true }); // Navigate to home page replacing the current page
+        });
+        toast({
+          title: "Welcome to ShareMe",
+          description: `Hi ${name}, you are now logged in!`,
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch((error) => {
+        toast({
+          title: "Cant sign in with github",
+          description:
+            "An account already exists with the same email address but different sign-in credentials.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+      });
   };
 
   return (
@@ -78,28 +140,18 @@ const Login = () => {
             <img src={logo} width="130px" />
           </div>
 
-          <div className="shadow-2xl">
-            {/* <GoogleLogin
-              clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
-              render={(renderProps) => (
-                <button
-                  type="button"
-                  className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <FcGoogle className="mr-4" /> Sign in with google
-                </button>
-              )}
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy="single_host_origin"
-            /> */}
+          <div className="shadow-2xl flex gap-20">
             <button
               className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
               onClick={signInWithGoogle}
             >
-              <FcGoogle className="mr-4" /> Sign in with google
+              <FcGoogle className="mr-4" /> Sign in with Google
+            </button>
+            <button
+              className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
+              onClick={signInWithGithub}
+            >
+              <FaGithub className="mr-4" /> Sign in with Github
             </button>
           </div>
         </div>
