@@ -20,6 +20,7 @@ import {
 } from "../utils/data";
 import { client } from "../client";
 import MasonryLayout from "./MasonryLayout";
+import { useToast } from "@chakra-ui/react";
 
 const activeBtnStyles =
   "bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none";
@@ -44,6 +45,8 @@ const UserProfile = () => {
   const [activeBtn, setActiveBtn] = useState("created");
 
   const navigate = useNavigate();
+
+  const toast = useToast();
 
   const { userId } = useParams();
   const User =
@@ -92,10 +95,15 @@ const UserProfile = () => {
         // Sign-out successful.
         localStorage.clear();
         navigate("/login");
+        toast({
+          title: "Sorry to see you go 😢",
+          description: "You are now logged out",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+        });
       })
-      .catch((error) => {
-        // An error happened.
-      });
+      .catch((error) => {});
   }
   return (
     <div className="relative pb-2 h-full justify-center items-center">
@@ -119,22 +127,6 @@ const UserProfile = () => {
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
             {userId === User.uid && (
-              // <GoogleLogout
-              //   clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
-              //   render={(renderProps) => (
-              //     <button
-              //       type="button"
-              //       className=" bg-white p-2 rounded-full cursor-pointer outline-none shadow-md"
-              //       onClick={renderProps.onClick}
-              //       disabled={renderProps.disabled}
-              //     >
-              //       <AiOutlineLogout color="red" fontSize={21} />
-              //     </button>
-              //   )}
-              //   onLogoutSuccess={logout}
-              //   cookiePolicy="single_host_origin"
-              // />
-
               // Logic for logout redirec to login page
               <button
                 type="button"

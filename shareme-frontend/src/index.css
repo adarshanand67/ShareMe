@@ -2,11 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+
+body {
+  font-family: "Josefin Sans", cursive;
 }

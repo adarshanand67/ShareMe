@@ -25,11 +25,13 @@ Application similar to pininterest, where users can upload photos, save favourit
   - react-icons
   - react-masonry-css
   - react-spinners
+  - Chakra UI - Toast
 - Login page
   - Adding video with dark overlay + controls
-  - Firebase integration for authentication
-  - Adding new users to sanity database
+  - Firebase integration - Google + Github
+  - Adding new users to sanity database using sanity client
   - Redirecting to the homepage once logged in
+  - Adding Typed.js Animations
 - Sidebar
   - Creating sidebar component wrt different screen sizes
   - In-depth Tailwind Classes
@@ -88,11 +90,10 @@ What did you learn while building this project? What challenges did you face and
 
 - [ ] Change icons of Saving Pins
 - [ ] Handle empty url
-- [ ] Finish video
 - [ ] Handle empty url of images
 - [ ] CI/CD Deployment (Proper)
 - [ ] Change icons of Saving Pins
-- [ ] Category search not working
+- [x] Category search not working
 - [ ] Sanity.io is slow
 
 ## Future Improvements TODO :- 🔧
@@ -100,7 +101,7 @@ What did you learn while building this project? What challenges did you face and
 ### Easy Changes
 
 - [x] Improve github readme
-- [ ] Write the entire flow of the application
+- [x] Write the entire flow of the application
 - [ ] Add Github, Facebook, Twitter login options
 - [ ] Create a beautiful login page like Pini
 - [ ] Light/Dark Mode Addition
