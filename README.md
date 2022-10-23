@@ -6,10 +6,11 @@ Application similar to pininterest, where users can upload photos, save favourit
 
 ### Backend using sanity.io
 
-- Using sanity studio to create the content
+- Using sanity studio to create the schemas
 - Creating schemas (blueprint of the content)
   - For creating users
   - For Pin (includes custom data types like postedBy, comments, likes)
+  - 
 
 ### Frontend using React + Tailwind CSS
 
@@ -75,7 +76,7 @@ Start the server
 
 What did you learn while building this project? What challenges did you face and how did you overcome them?
 
-- Learnt ...
+- Learnt bla bla...
 
 ## Current Problems :- 🔧
 
@@ -112,6 +113,7 @@ What did you learn while building this project? What challenges did you face and
 - [ ] Smooth + Infinite Scrolling
 - [ ] Showing toasts when post saved
 - [ ] Unsaving the posts
+- [ ] Send email on google login
 
 ### Advanced Changes
 
