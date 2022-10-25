@@ -6,6 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { categories } from "../utils/data";
 import { client } from "../client";
 import Spinner from "./Spinner";
+import { Toast, useToast } from "@chakra-ui/react";
 
 const CreatePin = ({ user }) => {
   const [loading, setLoading] = useState(false);
@@ -20,28 +21,35 @@ const CreatePin = ({ user }) => {
   const [wrongImageType, setWrongImageType] = useState(false);
 
   const navigate = useNavigate(); // Navigate to a new page
+  const toast = useToast();
 
   const uploadImage = (e) => {
-    const selectedFile = e.target.files[0];
+    const file = e.target.files[0];
     // uploading asset to sanity
     if (
-      selectedFile.type === "image/png" ||
-      selectedFile.type === "image/svg" ||
-      selectedFile.type === "image/jpeg" ||
-      selectedFile.type === "image/jpg" ||
-      selectedFile.type === "image/gif" ||
-      selectedFile.type === "image/tiff"
+      file.type === "image/png" ||
+      file.type === "image/svg" ||
+      file.type === "image/jpeg" ||
+      file.type === "image/jpg" ||
+      file.type === "image/gif" ||
+      file.type === "image/tiff"
     ) {
       setWrongImageType(false); // If image type is correct
       setLoading(true);
       client.assets // Upload image to sanity
-        .upload("image", selectedFile, {
-          contentType: selectedFile.type,
-          filename: selectedFile.name,
+        .upload("image", file, {
+          contentType: file.type,
+          filename: file.name,
         })
         .then((document) => {
           // After upload the got document
           setImageAsset(document);
+          toast({
+            title: " Image uploaded successfully",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
           setLoading(false);
         })
         .catch((error) => {
@@ -54,7 +62,7 @@ const CreatePin = ({ user }) => {
   };
 
   const savePin = () => {
-    // Save pin if all fields given
+    // Save pin if all fields given to sanity database
     if (title && about && destination && imageAsset?._id && category) {
       const doc = {
         _type: "pin",
@@ -75,6 +83,12 @@ const CreatePin = ({ user }) => {
         },
         category,
       };
+      toast({
+        title: "Pin created successfully",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       client.create(doc).then(() => {
         navigate("/"); // Create pin and navigate to home page
       });
@@ -90,6 +104,7 @@ const CreatePin = ({ user }) => {
   return (
     <div className="flex flex-col justify-center items-center mt-5 lg:h-4/5">
       {/* When some field is empty */}
+
       {fields && (
         <p className="text-red-500 mb-5 text-xl transition-all duration-150 ease-in ">
           Please add all fields.
@@ -104,7 +119,6 @@ const CreatePin = ({ user }) => {
             {wrongImageType && <p>It&apos;s wrong file type.</p>}
             {/* Adding Image */}
             {!imageAsset ? (
-              //  {/*eslint-disable-next-line jsx-a11y/label-has-associated-control*/}
               <label htmlFor="file" className="cursor-pointer">
                 <div className="flex flex-col items-center justify-center h-full">
                   <div className="flex flex-col justify-center items-center">
@@ -115,8 +129,8 @@ const CreatePin = ({ user }) => {
                   </div>
 
                   <p className="mt-32 text-gray-400">
-                    Recommendation: Use high-quality JPG, JPEG, SVG, PNG, GIF or
-                    TIFF less than 20MB
+                    Recommendation: Use JPG, JPEG, SVG, PNG, GIF or TIFF image
+                    less than 20MB
                   </p>
                 </div>
                 <input
@@ -149,13 +163,6 @@ const CreatePin = ({ user }) => {
 
         {/* Writing Title */}
         <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)} // Set title
-            placeholder="Add your title"
-            className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
-          />
           {user && (
             <div className="flex gap-2 mt-2 mb-2 items-center bg-white rounded-lg ">
               <img
@@ -166,6 +173,14 @@ const CreatePin = ({ user }) => {
               <p className="font-bold">{user.userName}</p>
             </div>
           )}
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)} // Set title
+            placeholder="Add your title"
+            className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
+          />
+
           {/* Writing About */}
           <input
             type="text"
@@ -195,12 +210,12 @@ const CreatePin = ({ user }) => {
                 }}
                 className="outline-none w-4/5 text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
               >
-                <option value="others" className="sm:text-bg bg-white">
+                <option value="others" className="sm:text-bg bg-red-300">
                   Select Category
                 </option>
                 {categories.map((item) => (
                   <option
-                    className="text-base border-0 outline-none capitalize bg-white text-black "
+                    className="text-base border-0 outline-none capitalize bg-red-300 text-white "
                     value={item.name}
                     key={item._id}
                   >
@@ -226,5 +241,17 @@ const CreatePin = ({ user }) => {
     </div>
   );
 };
+
+// TODO - sanitizing form data react
+
+function isValidHttpUrl(string) {
+  let url;
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return url.protocol === "http:" || url.protocol === "https:";
+}
 
 export default CreatePin;
