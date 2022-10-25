@@ -6,6 +6,8 @@ import Home from "./container/Home";
 import Firebase from "./components/Firebase";
 import { fetchUser } from "./utils/fetchUser";
 
+
+
 const App = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -14,6 +16,7 @@ const App = () => {
       navigate("/login");
     }
   }, []);
+
 
   return (
     <Routes>

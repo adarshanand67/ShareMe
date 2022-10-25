@@ -14,7 +14,7 @@ const Firebase = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         //! Important data
-        console.log(result);
+        // console.log(result);
         const name = result.user.displayName;
         const email = result.user.email;
         const photo = result.user.photoURL;

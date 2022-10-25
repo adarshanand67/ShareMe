@@ -1,59 +1,79 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
-import MasonryLayout from "./MasonryLayout.jsx";
-import Spinner from "./Spinner.jsx";
+import MasonryLayout from "./MasonryLayout";
+import Spinner from "./Spinner";
 
 const Feed = () => {
+  const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
-  const [pins, setPins] = useState([]);
-  const categoryID = useParams().categoryId?.toLocaleUpperCase();
+  const { categoryId } = useParams(); // Getting category id from url
 
-  // console.log(categoryID);
+  const categoryName =
+    categoryId && categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
+  // Capitalize first letter of category
+
   useEffect(() => {
-    // Get all the pins of the category
-    if (categoryID?.length > 0) {
+    if (categoryId) {
       setLoading(true);
-      const query = searchQuery(categoryID); // get query for categoryID
+      const query = searchQuery(categoryId);
+
+      // Fetching query from sanity database
       client
         .fetch(query)
-        .then((res) => {
+        .then((data) => {
+          setPins(data);
           setLoading(false);
-          setPins(res);
         })
         .catch((err) => {
-          setLoading(false);
           console.log(err);
+          setLoading(false);
         });
     } else {
-      // Get all the pins regardless of category
-      client.fetch(feedQuery).then((res) => {
-        setPins(res);
-        setLoading(false);
-      });
+      setLoading(true);
+
+      // Fetching query from sanity database
+      client
+        .fetch(feedQuery)
+        .then((data) => {
+          setPins(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
     }
-  }, [categoryID]); // Whenever category ID Changes fetch data for that category
-  // console.log(pins);
+  }, [categoryId]); // reload when categoryId changes
+
+  const ideaName = categoryId || "new"; // if categoryId is null then use new
 
   if (loading) {
-    return <Spinner message="Loading your beautiful page!" />;
+    return <Spinner message={`Loading your ${ideaName} pins`} />;
   }
-
-  if (!pins?.length) {
+  // Home feed
+  // {
+  //   console.log(pins);
+  // }
+  if (pins?.length === 0) {
     return (
-      <div>
+      <div className="text-center justify-center">
         <h1 className="text-3xl text-center text-red-500">
-          Category : <span className="text-black"> {categoryID}</span>
+          Category : <span className="text-black"> {categoryName}</span>
         </h1>
         <p className="text-2xl m-5 text-center">No pins found</p>
       </div>
     );
-  }
-  if (categoryID == undefined) {
+  } else {
     return (
       <div className="text-center justify-center">
+        {categoryId && (
+          <h1 className="text-3xl text-center text-red-500">
+            Category : <span className="text-black"> {categoryName}</span>
+          </h1>
+        )}
         {pins && <MasonryLayout pins={pins} />}
       </div>
     );

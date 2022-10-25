@@ -28,7 +28,7 @@ const Home = () => {
       // console.log(data);
       setUser(data[0]);
     });
-  }, []);
+  }, []); // componentDidMount
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0); // Scroll to top when page load
@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
-        <Sidebar user={user && user} closeToggle= {setToggleSidebar} />
+        <Sidebar user={user && user} closeToggle={setToggleSidebar} />
         {/* If user is logged in then show sidebar */}
       </div>
       <div className="flex md:hidden flex-row">

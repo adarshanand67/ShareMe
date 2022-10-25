@@ -29,14 +29,13 @@ Application similar to pininterest, where users can upload photos, save favourit
 - Login page
   - Adding video with dark overlay + controls
   - Firebase integration - Google + Github
-  - Adding new users to sanity database using sanity client
+  - Adding newly created users on sanity page
   - Redirecting to the homepage once logged in
   - Adding Typed.js Animations
 - Sidebar
   - Creating sidebar component wrt different screen sizes
-  - In-depth Tailwind Classes
   - Link vs NavLink
-  - User attributes naming convention mistake
+  - User attributes naming convention
   - Writing React Proptypes
 - Pins
   - Different components created - Pins, search, Navbar, Feed , PinDetails
@@ -44,15 +43,34 @@ Application similar to pininterest, where users can upload photos, save favourit
   - Creating Feed using React Masonry grid Layout
   - Crearing pins container to show all the pins
   - Creating Query from sanity to get pins of one category
+- Navbar
+  - Adding search functionality
+  - Create Post button
+  - UserProfile page
+  - Props Validation
+- Feed
+  - Queries to get all the pins from sanity
+  - Conditional rendering if no pins found
+- PinDetails
+  - Layout of the pinDetails on clicking
+  - Adding comment section
+  - Providing Download button + Url of site
+- Creating Pin
+  - Utility of Creating pin
+  - Upload Image url, title, about , destination, category
+  - Create Pin Button saves all data to sanity and redirects to the homepage
 - Pin
   - Getting image , title, description, tags, likes, comments, postedBy from sanity
   - Displaying all on a single pin
   - Attaching utils to the pin (delete, saved , url etc)
--
+- UserProfile
+  - Create random background image
+  - Show all the created and save Posts
+  - Logout button
 
-## Screenshots 📷
+<!-- ## Screenshots 📷
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) -->
 
 ## Run Locally 🚀
 
@@ -88,12 +106,12 @@ What did you learn while building this project? What challenges did you face and
 
 ## Current Problems :- 🔧
 
-- [ ] Change icons of Saving Pins
-- [ ] Handle empty url
-- [ ] Handle empty url of images
+- [x] Handle empty url of images
+- [x] Categories not loading
+- [x] Category search not working
 - [ ] CI/CD Deployment (Proper)
 - [ ] Change icons of Saving Pins
-- [x] Category search not working
+- [ ] Deleting Comments by users
 - [ ] Sanity.io is slow
 
 ## Future Improvements TODO :- 🔧
@@ -102,11 +120,14 @@ What did you learn while building this project? What challenges did you face and
 
 - [x] Improve github readme
 - [x] Write the entire flow of the application
-- [ ] Add Github, Facebook, Twitter login options
-- [ ] Create a beautiful login page like Pini
+- [x] Add Github Auth
+- [x] Add Typed JS Animations
+- [x] Create customized login page
 - [ ] Light/Dark Mode Addition
-- [ ] Showing confetti on login, creating a pin
-- [ ] Contact us section
+- [x] Adding Toasts while login/logout
+- [x] Changing highlight color
+- [ ] Showing confetti animation, creating a pin
+- [ ] Contact us section in
 - [ ] Confirmations popups
 - [ ] Cutomer feedback section
 - [ ] Sanitising user input in createPin
