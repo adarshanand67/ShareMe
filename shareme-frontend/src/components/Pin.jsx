@@ -7,12 +7,11 @@ import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
+import { Button, Toast, Tooltip } from "@chakra-ui/react";
 
 const Pin = ({ pin }) => {
   const { postedBy, image, _id, destination } = pin; // Destructure props
-  console.log(pin);
-  // console.log("🚀 ~ file: Pin.jsx ~ line 13 ~ Pin ~ postedBy, image, _id, destination", postedBy, image, _id, destination)
-  // console.log("🚀 ~ file: Pin.jsx ~ line 13 ~ Pin ~ pin", pin)
+  // console.log(pin);
   const [savingPost, setSavingPost] = useState(false);
 
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
@@ -21,9 +20,7 @@ const Pin = ({ pin }) => {
 
   // Fetch user data
   const user = fetchUser();
-  console.log("🚀 ~ file: Pin.jsx ~ line 24 ~ Pin ~ user", user);
 
-  // console.log(user);
   // Delete pin of the own user only (not others)
   const deletePin = (id) => {
     client.delete(id).then(() => {
@@ -37,9 +34,9 @@ const Pin = ({ pin }) => {
 
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
-  console.log(alreadySaved);
+  // console.log(alreadySaved);
 
-  console.log(user?.uid);
+  // console.log(user?.uid);
   const savePin = (id) => {
     if (alreadySaved?.length === 0) {
       setSavingPost(true);
@@ -145,7 +142,9 @@ const Pin = ({ pin }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation(); // Stop the event from bubbling up the DOM tree
-                    deletePin(_id); // Delete pin
+                    // deletePin(_id); // Delete pin
+                    // Toast
+                    <Toast status="success" description="Pin deleted" />;
                   }}
                   className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
                 >

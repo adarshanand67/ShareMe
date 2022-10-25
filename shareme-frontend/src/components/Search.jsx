@@ -14,8 +14,9 @@ const Search = ({ searchTerm }) => {
   useEffect(() => {
     if (searchTerm !== "") {
       setLoading(true);
-      const query = searchQuery(searchTerm.toLowerCase());
+      const query = searchQuery(searchTerm.toLowerCase()); // Get query
       client.fetch(query).then((data) => {
+        // Fetch data from sanity
         setPins(data);
         setLoading(false);
       });
@@ -25,7 +26,7 @@ const Search = ({ searchTerm }) => {
         setLoading(false);
       });
     }
-  }, [searchTerm]);
+  }, [searchTerm]); // If search term changes then fetch data
 
   return (
     <div>
@@ -34,6 +35,7 @@ const Search = ({ searchTerm }) => {
       {pins?.length === 0 && searchTerm !== "" && !loading && (
         <div className="mt-10 text-center text-xl ">No Pins Found!</div>
       )}
+      {/* If no pins found */}
     </div>
   );
 };

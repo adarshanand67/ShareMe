@@ -23,9 +23,9 @@ import MasonryLayout from "./MasonryLayout";
 import { useToast } from "@chakra-ui/react";
 
 const activeBtnStyles =
-  "bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none";
+  "bg-red-500 text-white font-bold p-2 rounded-full w-30 outline-none";
 const notActiveBtnStyles =
-  "bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-non";
+  "bg-primary mr-4 text-black font-bold p-2 rounded-full w-30 outline-non";
 
 function generateRandomImage() {
   var randomImage = new Array();
@@ -79,12 +79,6 @@ const UserProfile = () => {
     }
   }, [text, userId]);
 
-  // const logout = () => {
-  //   localStorage.clear();
-
-  //   navigate("/login");
-  // };
-
   if (!user) return <Spinner message="Loading profile" />;
 
   function FirebaseLogout() {
@@ -111,7 +105,6 @@ const UserProfile = () => {
         <div className="relative flex flex-col mb-7">
           <div className="flex flex-col justify-center items-center">
             <img
-              // className="w-full h-15 object-cover"
               className="w-full h-40 2xl:h-50 shadow-lg object-cover"
               src={randomImage}
               alt="user-pic"
@@ -150,7 +143,7 @@ const UserProfile = () => {
               activeBtn === "created" ? activeBtnStyles : notActiveBtnStyles
             }`}
           >
-            Created
+            Created ({pins?.length})
           </button>
           {/* Saved Pins */}
           <button
@@ -163,7 +156,7 @@ const UserProfile = () => {
               activeBtn === "saved" ? activeBtnStyles : notActiveBtnStyles
             }`}
           >
-            Saved
+            Saved ({pins?.length})
           </button>
         </div>
 

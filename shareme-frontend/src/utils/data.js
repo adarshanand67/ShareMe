@@ -66,29 +66,28 @@ export const categories = [
   },
 ];
 
-// Get all posts of the feed
 export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
   image{
     asset->{
       url
     }
   },
-  _id,
-  destination,
-  postedBy->{
-    _id,
-    userName,
-    image
-  },
-  save[]{
-    _key,
-    postedBy->{
       _id,
-      userName,
-      image
-    },
-  },
-} `;
+      destination,
+      postedBy->{
+        _id,
+        userName,
+        image
+      },
+      save[]{
+        _key,
+        postedBy->{
+          _id,
+          userName,
+          image
+        },
+      },
+    } `;
 
 export const pinDetailQuery = (pinId) => {
   const query = `*[_type == "pin" && _id == '${pinId}']{
@@ -160,22 +159,22 @@ export const searchQuery = (searchTerm) => {
             url
           }
         },
-        _id,
-        destination,
-        postedBy->{
-          _id,
-          userName,
-          image
-        },
-        save[]{
-          _key,
-          postedBy->{
             _id,
-            userName,
-            image
-          },
-        },
-      }`;
+            destination,
+            postedBy->{
+              _id,
+              userName,
+              image
+            },
+            save[]{
+              _key,
+              postedBy->{
+                _id,
+                userName,
+                image
+              },
+            },
+          }`;
   return query;
 };
 

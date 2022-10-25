@@ -9,9 +9,21 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap");
 
-@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+* {
+  font-family: "Fuzzy Bubbles", cursive;
+}
 
-body {
-  font-family: "Josefin Sans", cursive;
+::-moz-selection {
+  background: #ed6e6e;
+  color: #fff;
+}
+::-webkit-selection {
+  background: #ed6e6e;
+  color: #fff;
+}
+::selection {
+  background: #ed6e6e;
+  color: #fff;
 }
