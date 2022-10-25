@@ -7,9 +7,9 @@ import logo from "../assets/logo.png";
 import { categories } from "../utils/data";
 
 const isNotActiveStyle =
-  "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize";
+  "flex items-center px-5 gap-3 hover:text-black transition-all duration-200 ease-in-out capitalize";
 const isActiveStyle =
-  "flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize";
+  "flex items-center px-5 gap-3 font-extrabold border-r-5 border-black  transition-all duration-200 ease-in-out capitalize";
 
 const Sidebar = ({ user, closeToggle }) => {
   // console.log(user);
@@ -22,8 +22,9 @@ const Sidebar = ({ user, closeToggle }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
+    <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-210 hide-scrollbar">
       <div className="flex flex-col">
+        {/* ShareMe Logo */}
         <Link
           to="/"
           className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
@@ -31,7 +32,8 @@ const Sidebar = ({ user, closeToggle }) => {
         >
           <img src={logo} alt="logo" className="w-full" />
         </Link>
-        <div className="flex flex-col gap-5">
+        {/* Home */}
+        <div className="flex flex-col gap-3">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -42,7 +44,8 @@ const Sidebar = ({ user, closeToggle }) => {
             <RiHomeFill />
             Home
           </NavLink>
-          <h3 className="mt-2 px-5 text-base 2xl:text-xl">
+          {/* Categories */}
+          <h3 className="mt-2 px-5 font-bold text-base 3xl:text-xl capitalize">
             Discover cateogries
           </h3>
           {categories.slice(0, categories.length - 1).map((category) => (
@@ -56,13 +59,14 @@ const Sidebar = ({ user, closeToggle }) => {
             >
               <img
                 src={category.image}
-                className="w-8 h-8 rounded-full shadow-sm"
+                className="w-8 h-8 rounded-full shadow-lg"
               />
               {category.name}
             </NavLink>
           ))}
         </div>
       </div>
+      {/* User Profile */}
       {user && (
         <Link
           to={`user-profile/${user?._id}`}
