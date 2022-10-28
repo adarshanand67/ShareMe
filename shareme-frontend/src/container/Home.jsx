@@ -7,19 +7,24 @@ import { HiMenu } from "react-icons/hi";
 import Pins from "./Pins";
 import { client } from "../client";
 import logo from "../assets/logo.png";
+import Confetti from "react-confetti";
+
 import { userQuery } from "../utils/data";
+import Confettis from "../components/Confettis";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
   const [user, setUser] = useState(); // User data initially null
+  const [showConfetti, setShowConfetti] = useState(true);
+
   const scrollRef = useRef(null); // Scroll to top
+  const width = 1920; // Setting up width
+  const height = 1080; // Setting up height
 
   const userInfo =
     localStorage.getItem("user") !== "undefined"
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear(); // Get user info from local storage
-  // console.log(userInfo);
-  // console.log(userInfo.photoURL);
 
   useEffect(() => {
     const query = userQuery(userInfo?.uid); // Get user data from sanity
@@ -28,6 +33,10 @@ const Home = () => {
       // console.log(data);
       setUser(data[0]);
     });
+  }, []); // componentDidMount
+
+  useEffect(() => {
+    <Confettis />;
   }, []); // componentDidMount
 
   useEffect(() => {

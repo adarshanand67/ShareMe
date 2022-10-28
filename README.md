@@ -109,10 +109,10 @@ What did you learn while building this project? What challenges did you face and
 - [x] Handle empty url of images
 - [x] Categories not loading
 - [x] Category search not working
-- [ ] CI/CD Deployment (Proper)
 - [ ] Change icons of Saving Pins
+- [ ] Error in userProfile saved pins
 - [ ] Deleting Comments by users
-- [ ] Sanity.io is slow
+
 
 ## Future Improvements TODO :- 🔧
 
@@ -126,18 +126,17 @@ What did you learn while building this project? What challenges did you face and
 - [ ] Light/Dark Mode Addition
 - [x] Adding Toasts while login/logout
 - [x] Changing highlight color
-- [ ] Showing confetti animation, creating a pin
-- [ ] Contact us section in
-- [ ] Confirmations popups
-- [ ] Cutomer feedback section
-- [ ] Sanitising user input in createPin
+<!-- - [ ] Showing confetti animation, creating a pin -->
+- [x] Contact us section in
+- [x] Confirmations popups
+<!-- - [ ] Cutomer feedback section -->
 
 ### Medium Changes
 
-- [ ] Show tags on posts
 - [ ] Scanning QR Code to open website on mobile
 - [ ] Adding Share Button (Share Pin to Whatsapp, Twitter, Email)
 - [ ] Pressing enter should simulate button click
+- [ ] Show tags on posts
 - [ ] Smooth + Infinite Scrolling
 - [ ] Showing toasts when post saved
 - [ ] Unsaving the posts

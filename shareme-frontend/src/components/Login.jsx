@@ -18,6 +18,7 @@ import { client } from "../client";
 import { useToast } from "@chakra-ui/react";
 // React typing animation
 import { TypeAnimation } from "react-type-animation";
+import Confettis from "../components/Confettis";
 
 const Login = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -130,7 +131,7 @@ const Login = () => {
         })
         .catch((error) => {
           toast({
-            title: "Cant sign in with github 😔",
+            title: "Cant sign in with Google 😔",
             description:
               "An account already exists with the same email address but different sign-in credentials.",
             status: "error",
@@ -177,6 +178,7 @@ const Login = () => {
             duration: 5000,
             isClosable: true,
           });
+          // Confettis for 5 seconds
         })
         .catch((error) => {
           toast({

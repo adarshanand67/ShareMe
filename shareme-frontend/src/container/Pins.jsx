@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { Navbar, Feed, PinDetails, CreatePin, Search } from "../components";
-import Popup from "../components/Popup";
+import Confettis from "../components/Confettis";
+import Contact from "../components/Contact";
+import { Icon } from "../components/Icon";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
@@ -17,12 +19,16 @@ const Pins = ({ user }) => {
           setSearchTerm={setSearchTerm}
           user={user && user} // If user is not null then pass user
         />
+
+        {/* Always show the icon */}
+        <Icon />
       </div>
       <div className="h-full">
         <Routes>
-          <Route path="/test" element={<Popup />} />
+          <Route path="/test" element={<QR />} />
           <Route path="/" element={<Feed />} /> {/* Home feed */}
-          <Route path="/category/:categoryId" element={<Feed />} />{" "}
+          <Route path="/category/:categoryId" element={<Feed />} />
+          <Route path="/contact" element={<Contact />} />
           {/* Category feed */}
           <Route
             path="/pin-detail/:pinId"
