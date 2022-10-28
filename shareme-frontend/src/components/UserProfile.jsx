@@ -8,10 +8,7 @@ import React, { useEffect, useState } from "react";
 import { IoIosLogOut } from "react-icons/io";
 import { useParams, useNavigate } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
-import img1 from "../assets/back.jpg";
-import img2 from "../assets/back2.jpg";
-import img3 from "../assets/back3.jpg";
-import img4 from "../assets/back4.jpg";
+import img from "../assets/download.jpeg";
 import Spinner from "./Spinner";
 import {
   userCreatedPinsQuery,
@@ -27,16 +24,6 @@ const activeBtnStyles =
 const notActiveBtnStyles =
   "bg-primary mr-4 text-black font-bold p-2 rounded-full w-30 outline-non";
 
-function generateRandomImage() {
-  var randomImage = new Array();
-  randomImage[0] = img1;
-  randomImage[1] = img2;
-  randomImage[2] = img3;
-  randomImage[3] = img4;
-  var random = Math.floor(Math.random() * randomImage.length);
-  return randomImage[random];
-}
-const randomImage = generateRandomImage();
 
 const UserProfile = () => {
   const [user, setUser] = useState();
@@ -106,7 +93,7 @@ const UserProfile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               className="w-full h-40 2xl:h-50 shadow-lg object-cover"
-              src={randomImage}
+              src={img}
               alt="user-pic"
             />
             <img

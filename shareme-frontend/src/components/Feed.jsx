@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
+import Confettis from "./Confettis";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
+import { Icon } from "./Icon";
 
 const Feed = () => {
   const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(true);
+
   const { categoryId } = useParams(); // Getting category id from url
 
+  const navigate = useNavigate();
+  // Capitalize first letter of category
   const categoryName =
     categoryId && categoryId.charAt(0).toUpperCase() + categoryId.slice(1);
-  // Capitalize first letter of category
 
   useEffect(() => {
     if (categoryId) {
@@ -33,7 +37,6 @@ const Feed = () => {
         });
     } else {
       setLoading(true);
-
       // Fetching query from sanity database
       client
         .fetch(feedQuery)
@@ -53,10 +56,7 @@ const Feed = () => {
   if (loading) {
     return <Spinner message={`Loading your ${ideaName} pins`} />;
   }
-  // Home feed
-  // {
-  //   console.log(pins);
-  // }
+
   if (pins?.length === 0) {
     return (
       <div className="text-center justify-center">
@@ -75,6 +75,7 @@ const Feed = () => {
           </h1>
         )}
         {pins && <MasonryLayout pins={pins} />}
+        <Icon/>
       </div>
     );
   }
