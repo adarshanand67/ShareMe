@@ -84,7 +84,7 @@ const CreatePin = ({ user }) => {
         category,
       };
       toast({
-        title: "Pin created successfully",
+        title: "Pin created successfully, wait for ~10 seconds to see it",
         status: "success",
         duration: 3000,
         isClosable: true,
