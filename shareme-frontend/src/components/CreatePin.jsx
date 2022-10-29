@@ -173,12 +173,18 @@ const CreatePin = ({ user }) => {
               <p className="font-bold">{user.userName}</p>
             </div>
           )}
+          {/* Title */}
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)} // Set title
             placeholder="Add your title"
             className="outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2"
+            onKeyDownCapture={(e) => {
+              if (e.key === "Enter") {
+                savePin();
+              }
+            }}
           />
 
           {/* Writing About */}
@@ -188,14 +194,24 @@ const CreatePin = ({ user }) => {
             onChange={(e) => setAbout(e.target.value)}
             placeholder="Tell everyone what your Pin is about"
             className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
+            onKeyDownCapture={(e) => {
+              if (e.key === "Enter") {
+                savePin();
+              }
+            }}
           />
           {/* Writing destination */}
           <input
             type="url"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            placeholder="Add a destination link"
+            placeholder="Add destination URL"
             className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
+            onKeyDownCapture={(e) => {
+              if (e.key === "Enter") {
+                savePin();
+              }
+            }}
           />
 
           {/* Selecting Category */}
@@ -210,12 +226,12 @@ const CreatePin = ({ user }) => {
                 }}
                 className="outline-none w-4/5 text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer"
               >
-                <option value="others" className="sm:text-bg bg-red-300">
+                <option value="others" className="sm:text-bg">
                   Select Category
                 </option>
                 {categories.map((item) => (
                   <option
-                    className="text-base border-0 outline-none capitalize bg-red-300 text-white "
+                    className="text-base border-0 outline-none capitalize  "
                     value={item.name}
                     key={item._id}
                   >
