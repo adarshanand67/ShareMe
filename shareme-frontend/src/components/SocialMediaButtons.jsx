@@ -48,14 +48,14 @@ import {
 
 const SocialMediaButtons = () => {
   // const currentUrl = window.location.href; // Get current url
-  const currentUrl = "https://share-me-web.netlify.app/";
+  const currentUrl = "https://share-me-web.netlify.app/login";
 
   return (
     // Send all buttons to bottom right
     <div className="flex items-end justify-center mb-5 mt2 gap-3">
       <hr />
       <h1 className="text-3xl">Share Website on - </h1>
-      
+
       <Tooltip title="Facebook" placement="top">
         <FacebookShareButton url={currentUrl}>
           <FacebookIcon
