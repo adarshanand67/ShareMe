@@ -31,21 +31,18 @@ const UserProfile = () => {
   const [pins, setPins] = useState();
   const [text, setText] = useState("Created");
   const [activeBtn, setActiveBtn] = useState("created");
-
   const navigate = useNavigate();
+  const { userId } = useParams();
 
   const toast = useToast();
 
-  const { userId } = useParams();
   const User =
     localStorage.getItem("user") !== "undefined"
       ? JSON.parse(localStorage.getItem("user"))
       : localStorage.clear();
 
-  // console.log(User);
-
   useEffect(() => {
-    const query = userQuery(userId); // fetch
+    const query = userQuery(userId);
     client.fetch(query).then((data) => {
       setUser(data[0]);
     });
@@ -93,12 +90,12 @@ const UserProfile = () => {
         <div className="relative flex flex-col mb-7">
           <div className="flex flex-col justify-center items-center">
             <img
-              className="w-full h-40 2xl:h-50 shadow-lg object-cover"
+              className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-40"
               src={img}
               alt="user-pic"
             />
             <img
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
+              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover z-10"
               src={user.image}
               alt="user-pic"
             />
@@ -133,9 +130,8 @@ const UserProfile = () => {
               activeBtn === "created" ? activeBtnStyles : notActiveBtnStyles
             }`}
           >
-            Created ({pins?.length})
+            Created
           </button>
-          {/* Saved Pins */}
           <button
             type="button"
             onClick={(e) => {
@@ -146,16 +142,14 @@ const UserProfile = () => {
               activeBtn === "saved" ? activeBtnStyles : notActiveBtnStyles
             }`}
           >
-            Saved ({pins?.length})
+            Saved
           </button>
         </div>
 
-        {/* Render the Masonry Layout of all my pins */}
         <div className="px-2">
           <MasonryLayout pins={pins} />
         </div>
 
-        {/* Checker for no pins */}
         {pins?.length === 0 && (
           <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
             No Pins Found!

@@ -109,10 +109,9 @@ What did you learn while building this project? What challenges did you face and
 - [x] Handle empty url of images
 - [x] Categories not loading
 - [x] Category search not working
-- [ ] Change icons of Saving Pins
-- [ ] Error in userProfile saved pins
+<!-- - [ ] Change icons of Saving Pins -->
+- [x] Error in userProfile saved pins
 - [ ] Deleting Comments by users
-
 
 ## Future Improvements TODO :- 🔧
 
@@ -134,19 +133,17 @@ What did you learn while building this project? What challenges did you face and
 ### Medium Changes
 
 - [x] Scanning QR Code to open website on mobile
-- [x]  Adding Share Button (Share Pin to Whatsapp, Twitter, Email)
+- [x] Adding Share Button (Share Pin to Whatsapp, Twitter, Email)
 - [x] Pressing enter should simulate button click
-- [ ] Show tags on posts
-- [ ] Smooth + Infinite Scrolling
+- [x] Show tags on posts
+- [x] Infinite Scrolling
 - [ ] Showing toasts when post saved
-- [ ] Unsaving the posts
-- [ ] Send email on google login
 
 ### Advanced Changes
 
 - [ ] Ability to follow other users
 - [ ] Creating a notification system when new user uploads a post
-- [ ] Ability to upload videos instead of images
+<!-- - [ ] Ability to upload videos instead of images (Not possible) -->
 - [ ] Adding feature like pin (Store count of likes)
 - [ ] Creating a guided tour of app
 - [ ] Improve the saved Features
