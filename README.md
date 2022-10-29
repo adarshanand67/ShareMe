@@ -137,7 +137,7 @@ What did you learn while building this project? What challenges did you face and
 - [x] Pressing enter should simulate button click
 - [x] Show tags on posts
 - [x] Infinite Scrolling
-- [ ] Showing toasts when post saved
+- [x] Showing toasts when post saved
 
 ### Advanced Changes
 
@@ -146,7 +146,7 @@ What did you learn while building this project? What challenges did you face and
 <!-- - [ ] Ability to upload videos instead of images (Not possible) -->
 - [ ] Adding feature like pin (Store count of likes)
 - [ ] Creating a guided tour of app
-- [ ] Improve the saved Features
+- [x] Improve the saved Features
 - [ ] Writing unit tests using React Testing Library
 
 ## Feedback 📝

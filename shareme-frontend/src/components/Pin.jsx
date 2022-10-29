@@ -7,10 +7,10 @@ import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
-import { Button, Toast, Tooltip } from "@chakra-ui/react";
+import { Button, Toast, Tooltip, useToast } from "@chakra-ui/react";
 
 const Pin = ({ pin }) => {
-  const { postedBy, category,image, _id, destination } = pin;
+  const { postedBy, category, image, _id, destination } = pin;
   // console.log(pin);
   // console.log(category);
   const [savingPost, setSavingPost] = useState(false);
@@ -18,6 +18,7 @@ const Pin = ({ pin }) => {
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
 
   const navigate = useNavigate(); // Navigate to a new page
+  const toast = useToast(); // Toast
 
   // Fetch user data
   const user = fetchUser();
@@ -114,6 +115,13 @@ const Pin = ({ pin }) => {
                   onClick={(e) => {
                     e.stopPropagation();
                     savePin(_id);
+                    toast({
+                      title: "Post will be saved soon!.",
+                      description: "Adding one entry of saved posts!.",
+                      status: "success",
+                      duration: 9000,
+                      isClosable: true,
+                    });
                   }}
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
