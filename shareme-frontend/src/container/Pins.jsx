@@ -7,6 +7,7 @@ import Confettis from "../components/Confettis";
 import Contact from "../components/Contact";
 import { Icon } from "../components/Icon";
 import SocialMediaButtons from "../components/SocialMediaButtons";
+import QRCodeGenerator from "../components/QRCode";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
@@ -26,7 +27,7 @@ const Pins = ({ user }) => {
       </div>
       <div className="h-full">
         <Routes>
-          <Route path="/test" element={<SocialMediaButtons />} />
+          <Route path="/test" element={<QRCodeGenerator />} />
           <Route path="/" element={<Feed />} /> {/* Home feed */}
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route path="/contact" element={<Contact />} />

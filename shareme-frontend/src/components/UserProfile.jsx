@@ -19,12 +19,12 @@ import { client } from "../client";
 import MasonryLayout from "./MasonryLayout";
 import { useToast } from "@chakra-ui/react";
 import SocialMediaButtons from "./SocialMediaButtons";
+import QRCodeGenerator from "./QRCode";
 
 const activeBtnStyles =
   "bg-red-500 text-white font-bold p-2 rounded-full w-30 outline-none";
 const notActiveBtnStyles =
   "bg-primary mr-4 text-black font-bold p-2 rounded-full w-30 outline-non";
-
 
 const UserProfile = () => {
   const [user, setUser] = useState();
@@ -161,6 +161,11 @@ const UserProfile = () => {
             No Pins Found!
           </div>
         )}
+        {/* Show QR Code at bottom right */}
+        <div className="absolute bottom-0 right-0 p-2">
+          <h2 className="w-[177px] mx-auto">Scan QR Code to view in Mobile</h2>
+          <QRCodeGenerator />
+        </div>
       </div>
     </div>
   );
