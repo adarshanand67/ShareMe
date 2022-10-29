@@ -6,6 +6,7 @@ import { Navbar, Feed, PinDetails, CreatePin, Search } from "../components";
 import Confettis from "../components/Confettis";
 import Contact from "../components/Contact";
 import { Icon } from "../components/Icon";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
@@ -19,13 +20,13 @@ const Pins = ({ user }) => {
           setSearchTerm={setSearchTerm}
           user={user && user} // If user is not null then pass user
         />
-
         {/* Always show the icon */}
         <Icon />
+        <SocialMediaButtons />
       </div>
       <div className="h-full">
         <Routes>
-          <Route path="/test" element={<QR />} />
+          <Route path="/test" element={<SocialMediaButtons />} />
           <Route path="/" element={<Feed />} /> {/* Home feed */}
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route path="/contact" element={<Contact />} />

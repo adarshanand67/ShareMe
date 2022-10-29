@@ -18,6 +18,7 @@ import {
 import { client } from "../client";
 import MasonryLayout from "./MasonryLayout";
 import { useToast } from "@chakra-ui/react";
+import SocialMediaButtons from "./SocialMediaButtons";
 
 const activeBtnStyles =
   "bg-red-500 text-white font-bold p-2 rounded-full w-30 outline-none";
@@ -118,6 +119,8 @@ const UserProfile = () => {
             )}
           </div>
         </div>
+        <SocialMediaButtons />
+
         {/* Created Pins */}
         <div className="text-center mb-7">
           <button

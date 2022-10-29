@@ -134,7 +134,7 @@ What did you learn while building this project? What challenges did you face and
 ### Medium Changes
 
 - [ ] Scanning QR Code to open website on mobile
-- [ ] Adding Share Button (Share Pin to Whatsapp, Twitter, Email)
+- [x]  Adding Share Button (Share Pin to Whatsapp, Twitter, Email)
 - [ ] Pressing enter should simulate button click
 - [ ] Show tags on posts
 - [ ] Smooth + Infinite Scrolling
