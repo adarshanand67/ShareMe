@@ -48,7 +48,7 @@ const Search = ({ searchTerm }) => {
         toast({
           title: "Search term should be alphanumeric",
           status: "error",
-          duration: 3000,
+          duration: 1000,
           isClosable: true,
         });
       }

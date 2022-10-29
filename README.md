@@ -67,6 +67,9 @@ Application similar to pininterest, where users can upload photos, save favourit
   - Create random background image
   - Show all the created and save Posts
   - Logout button
+- SocialMediaButtons
+  - Layout of the social media buttons
+- 
 
 <!-- ## Screenshots 📷
 
@@ -98,11 +101,11 @@ Start the server
   npm run start
 ```
 
-## Lessons Learned 📝
+<!-- ## Lessons Learned 📝
 
 What did you learn while building this project? What challenges did you face and how did you overcome them?
 
-- Learnt bla bla...
+- Learnt bla bla... -->
 
 ## Current Problems :- 🔧
 
@@ -171,5 +174,7 @@ Please make sure to update tests as appropriate.
 ## Acknowledgements 🙏
 
 - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
-- [Practical React Learning](https://www.youtube.com/watch?v=XxXyfkrP298)
 - [React Docs](https://reactjs.org/docs/getting-started.html)
+- [Firebase Docs](https://firebase.google.com/docs)
+- [Sanity Docs](https://www.sanity.io/docs)
+- [Tailwind Docs](https://tailwindcss.com/docs)
