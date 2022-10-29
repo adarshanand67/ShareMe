@@ -10,8 +10,9 @@ import { fetchUser } from "../utils/fetchUser";
 import { Button, Toast, Tooltip } from "@chakra-ui/react";
 
 const Pin = ({ pin }) => {
-  const { postedBy, image, _id, destination } = pin; // Destructure props
+  const { postedBy, category,image, _id, destination } = pin;
   // console.log(pin);
+  // console.log(category);
   const [savingPost, setSavingPost] = useState(false);
 
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
