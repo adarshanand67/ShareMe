@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { MdDownloadForOffline } from "react-icons/md";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import { client, urlFor } from "../client";
 import MasonryLayout from "./MasonryLayout";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import Spinner from "./Spinner";
-import { Toast } from "@chakra-ui/react";
+import { Toast, useToast } from "@chakra-ui/react";
 import { VscLink } from "react-icons/vsc";
 import { VscTag } from "react-icons/vsc";
 
@@ -23,6 +23,9 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState();
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
+  const toast = useToast();
+  const navigate = useNavigate();
+
   let category = pinDetail?.category;
   category = capitalizeFirstLetter(category);
 
@@ -73,12 +76,19 @@ const PinDetail = ({ user }) => {
           // After commit
           fetchPinDetails(); // Fetch pin details
           setComment(""); // Clear comment
-          window.location.reload(); // Reload the page
+          navigate("/") // Navigate to pin details page
+          toast({
+            title: "Comment added will be added soon",
+            description: "Writing your comment to Database",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
           setAddingComment(false); // Set adding comment to false
         });
 
-      // Toast
-      <Toast status="success" description="Your comment will be added soon!" />;
+      // // Toast
+      // <Toast status="success" description="Your comment will be added soon!" />;
     }
   };
 
@@ -143,12 +153,11 @@ const PinDetail = ({ user }) => {
               target="_blank"
               rel="noreferrer"
             >
-              <VscLink size={25}/>
+              <VscLink size={25} />
               <span className="px-5">
-
-              {pinDetail.destination.length > 30
-                ? pinDetail.destination.substring(0, 30) + "..."
-                : pinDetail.destination}
+                {pinDetail.destination.length > 30
+                  ? pinDetail.destination.substring(0, 30) + "..."
+                  : pinDetail.destination}
               </span>
             </a>
             {/* Posted by */}
