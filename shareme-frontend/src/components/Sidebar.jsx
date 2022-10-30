@@ -47,7 +47,7 @@ const Sidebar = ({ closeToggle }) => {
             Discover cateogries
           </h3>
           {/* All categories */}
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {categories.slice(0, categories.length).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) =>
