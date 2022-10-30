@@ -1,4 +1,4 @@
-// Exporting components
+// Exporting all components in components file
 
 export { default as Sidebar } from "./Sidebar";
 export { default as UserProfile } from "./UserProfile";
@@ -7,3 +7,6 @@ export { default as Feed } from "./Feed";
 export { default as PinDetails } from "./PinDetails";
 export { default as CreatePin } from "./CreatePin";
 export { default as Search } from "./Search";
+export { default as Confetti } from "./Confettis";
+export { default as Contact } from "./Contact";
+export { default as MasonryLayout } from "./MasonryLayout";

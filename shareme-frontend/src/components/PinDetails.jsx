@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { MdDownloadForOffline } from "react-icons/md";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
+import { useToast } from "@chakra-ui/react";
+import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
-import MasonryLayout from "./MasonryLayout";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
+import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
-import { Toast, useToast } from "@chakra-ui/react";
-import { VscLink } from "react-icons/vsc";
-import { VscTag } from "react-icons/vsc";
-
-function capitalizeFirstLetter(string) {
-  return string?.charAt(0).toUpperCase() + string?.slice(1);
-}
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const PinDetail = ({ user }) => {
   // console.log(user);
@@ -76,7 +72,7 @@ const PinDetail = ({ user }) => {
           // After commit
           fetchPinDetails(); // Fetch pin details
           setComment(""); // Clear comment
-          navigate("/") // Navigate to pin details page
+          navigate("/"); // Navigate to pin details page
           toast({
             title: "Comment added will be added soon",
             description: "Writing your comment to Database",
@@ -86,9 +82,6 @@ const PinDetail = ({ user }) => {
           });
           setAddingComment(false); // Set adding comment to false
         });
-
-      // // Toast
-      // <Toast status="success" description="Your comment will be added soon!" />;
     }
   };
 

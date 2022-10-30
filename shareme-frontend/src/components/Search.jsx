@@ -1,29 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import MasonryLayout from "./MasonryLayout";
 import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
+import MasonryLayout from "./MasonryLayout";
 
-import Spinner from "./Spinner";
-import { Switch, Route, Redirect } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
-
-function isAlphabetorNumber(str) {
-  // return /^[a-zA-Z0-9]+$/.test(str);
-  let flag = true;
-  for (let i = 0; i < str.length; i++) {
-    if (
-      !(
-        (str[i] >= "a" && str[i] <= "z") ||
-        (str[i] >= "A" && str[i] <= "Z") ||
-        (str[i] >= "0" && str[i] <= "9")
-      )
-    ) {
-      flag = false;
-    }
-  }
-  return flag;
-}
+import Spinner from "./Spinner";
+import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
 
 const Search = ({ searchTerm }) => {
   const [pins, setPins] = useState();

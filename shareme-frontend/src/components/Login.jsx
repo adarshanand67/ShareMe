@@ -1,24 +1,21 @@
 import React, { useState } from "react";
-import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
+import shareVideo from "../assets/share.mp4";
 // Icons
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 import { useNavigate } from "react-router-dom";
 // Firebase
-import { auth } from "../firebase";
 import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  GithubAuthProvider,
+  GithubAuthProvider, GoogleAuthProvider, signInWithPopup
 } from "firebase/auth";
 import { client } from "../client";
+import { auth } from "../firebase";
 // Toast
 import { useToast } from "@chakra-ui/react";
 // React typing animation
 import { TypeAnimation } from "react-type-animation";
-import Confettis from "../components/Confettis";
 
 const Login = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -55,9 +52,9 @@ const Login = () => {
                     2000,
                     "family 👨‍👩‍👧‍👦",
                     2000,
-                    "strangers 🤗",
-                    2000,
                     "colleagues 🤝",
+                    2000,
+                    "world 🤗",
                     2000,
                   ]}
                   wrapper="div"
