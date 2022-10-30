@@ -20,7 +20,7 @@ const Sidebar = ({ closeToggle }) => {
   // console.log(user);
 
   return (
-    <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-210 hide-scrollbar">
+    <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-210 hide-scrollbar ">
       <div className="flex flex-col">
         {/* ShareMe Logo */}
         <Link
