@@ -5,16 +5,19 @@ import { RiHomeFill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { categories } from "../utils/data";
+import { fetchUser } from "../utils/fetchUser";
 
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 hover:text-black transition-all duration-200 ease-in-out capitalize";
 const isActiveStyle =
   "flex items-center px-5 gap-3 font-extrabold border-r-5 border-black  transition-all duration-200 ease-in-out capitalize";
 
-const Sidebar = ({ user, closeToggle }) => {
-    const handleCloseSidebar = () => {
+const Sidebar = ({ closeToggle }) => {
+  const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
   };
+  const user = fetchUser();
+  // console.log(user);
 
   return (
     <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-210 hide-scrollbar">
@@ -63,21 +66,19 @@ const Sidebar = ({ user, closeToggle }) => {
         </div>
       </div>
       {/* User Profile */}
-      {user && (
-        <Link
-          to={`user-profile/${user?._id}`}
-          className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
-          onClick={handleCloseSidebar}
-        >
-          <img
-            src={user?.image}
-            className="w-10 h-10 rounded-full"
-            alt="user-profile"
-          />
-          <p>{user?.userName}</p>
-          <IoIosArrowForward />
-        </Link>
-      )}
+      <Link
+        to={`user-profile/${user?.uid}`}
+        className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+        onClick={handleCloseSidebar}
+      >
+        <img
+          src={user?.photoURL}
+          className="w-10 h-10 rounded-full"
+          alt="user-profile"
+        />
+        <p>{user?.displayName}</p>
+        <IoIosArrowForward />
+      </Link>
     </div>
   );
 };

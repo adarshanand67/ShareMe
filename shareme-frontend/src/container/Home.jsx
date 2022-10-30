@@ -10,6 +10,7 @@ import Pins from "./Pins";
 
 import Confettis from "../components/Confettis";
 import { userQuery } from "../utils/data";
+import { fetchUser } from "../utils/fetchUser";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
@@ -20,32 +21,26 @@ const Home = () => {
   const width = 1920; // Setting up width
   const height = 1080; // Setting up height
 
-  const userInfo =
-    localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear(); // Get user info from local storage
-
+  const userInfo = fetchUser();
   useEffect(() => {
     const query = userQuery(userInfo?.uid); // Get user data from sanity
 
     client.fetch(query).then((data) => {
       // console.log(data);
       setUser(data[0]);
+      // console.log("user",user);
     });
-  }, []); // componentDidMount
-
-  useEffect(() => {
-    <Confettis />;
   }, []); // componentDidMount
 
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0); // Scroll to top when page load
   });
 
+
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
-        <Sidebar user={user && user} closeToggle={setToggleSidebar} />
+        <Sidebar closeToggle={setToggleSidebar} />
         {/* If user is logged in then show sidebar */}
       </div>
       <div className="flex md:hidden flex-row">
@@ -58,7 +53,7 @@ const Home = () => {
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
-          <Link to={`user-profile/${user?.uid}`}>
+          <Link to={`user-profile/${userInfo?.uid}`}>
             <img
               src={userInfo?.photoURL}
               alt="user-pic"
@@ -75,7 +70,7 @@ const Home = () => {
                 onClick={() => setToggleSidebar(false)}
               />
             </div>
-            <Sidebar closeToggle={setToggleSidebar} user={user && user} />
+            <Sidebar closeToggle={setToggleSidebar} />
           </div>
         )}
       </div>
