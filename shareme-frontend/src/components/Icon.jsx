@@ -8,7 +8,7 @@ export function Icon() {
   return (
     <Tooltip label="Email me!" aria-label="A tooltip">
       <EmailIcon
-        className="fixed bottom-10 right-10  text-red-500 cursor-pointer transform scale-150"
+        className="fixed bottom-10 right-10  text-red-500 cursor-pointer transform scale-150 z-10"
         size="large"
         onClick={() => navigate("/contact")}
       />
