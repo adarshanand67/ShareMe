@@ -11,6 +11,7 @@ const QRCodeGenerator = () => {
         size={190}
         level={"H"}
         includeMargin={true}
+        className = "z-10"
       />
     </div>
   );

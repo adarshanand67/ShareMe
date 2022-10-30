@@ -220,7 +220,7 @@ const PinDetail = ({ user }) => {
       {/* More from this user */}
       {pins?.length > 0 && (
         <h2 className="text-center font-bold text-2xl mt-8 mb-4">
-          More from this user ({pins.length}) ▶
+          More lke this ({pins.length}) ▶
         </h2>
       )}
       {pins ? (
