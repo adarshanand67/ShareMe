@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
-import { RiHomeFill } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
+import { RiHomeFill } from "react-icons/ri";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { categories } from "../utils/data";
 
@@ -12,12 +12,7 @@ const isActiveStyle =
   "flex items-center px-5 gap-3 font-extrabold border-r-5 border-black  transition-all duration-200 ease-in-out capitalize";
 
 const Sidebar = ({ user, closeToggle }) => {
-  // console.log(user);
-  // console.log(user?._id);
-  // console.log(user?.userName);
-  // console.log(user?.image);
-
-  const handleCloseSidebar = () => {
+    const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
   };
 
@@ -48,6 +43,7 @@ const Sidebar = ({ user, closeToggle }) => {
           <h3 className="mt-2 px-5 font-bold text-base 3xl:text-xl capitalize">
             Discover cateogries
           </h3>
+          {/* All categories */}
           {categories.slice(0, categories.length - 1).map((category) => (
             <NavLink
               to={`/category/${category.name}`}

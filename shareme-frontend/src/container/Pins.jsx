@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import { Navbar, Feed, PinDetails, CreatePin, Search } from "../components";
-import Confettis from "../components/Confettis";
+import { CreatePin, Feed, Navbar, PinDetails, Search } from "../components";
 import Contact from "../components/Contact";
 import { Icon } from "../components/Icon";
-import SocialMediaButtons from "../components/SocialMediaButtons";
 import QRCodeGenerator from "../components/QRCode";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
@@ -27,7 +26,7 @@ const Pins = ({ user }) => {
       </div>
       <div className="h-full">
         <Routes>
-          <Route path="/test" element={<QRCodeGenerator />} />
+          <Route path="/test" element={<QRCodeGenerator />} /> {/* Testing purposes */}
           <Route path="/" element={<Feed />} /> {/* Home feed */}
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route path="/contact" element={<Contact />} />

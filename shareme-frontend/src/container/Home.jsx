@@ -1,16 +1,15 @@
-import { Link, Route, Routes } from "react-router-dom";
 import React, { useEffect, useRef, useState } from "react";
+import { Link, Route, Routes } from "react-router-dom";
 import { Sidebar, UserProfile } from "../components";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { HiMenu } from "react-icons/hi";
-import Pins from "./Pins";
-import { client } from "../client";
 import logo from "../assets/logo.png";
-import Confetti from "react-confetti";
+import { client } from "../client";
+import Pins from "./Pins";
 
-import { userQuery } from "../utils/data";
 import Confettis from "../components/Confettis";
+import { userQuery } from "../utils/data";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off

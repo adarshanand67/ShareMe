@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-import { categories } from "../utils/data";
+import { useToast } from "@chakra-ui/react";
 import { client } from "../client";
+import { categories } from "../utils/data";
 import Spinner from "./Spinner";
-import { Toast, useToast } from "@chakra-ui/react";
 
 const CreatePin = ({ user }) => {
   const [loading, setLoading] = useState(false);
@@ -45,7 +45,7 @@ const CreatePin = ({ user }) => {
           // After upload the got document
           setImageAsset(document);
           toast({
-            title: " Image uploaded successfully",
+            title: "📷 Image uploaded successfully",
             status: "success",
             duration: 3000,
             isClosable: true,
@@ -84,7 +84,7 @@ const CreatePin = ({ user }) => {
         category,
       };
       toast({
-        title: "Pin created successfully, wait for ~10 seconds to see it",
+        title: "📌 Pin created successfully, wait for ~10 seconds to see it",
         status: "success",
         duration: 3000,
         isClosable: true,

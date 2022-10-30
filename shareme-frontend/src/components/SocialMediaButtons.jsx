@@ -1,49 +1,17 @@
-import { Tooltip, Typography } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import React from "react";
 import {
-  EmailShareButton,
-  FacebookShareButton,
-  HatenaShareButton,
-  InstapaperShareButton,
-  LineShareButton,
-  LinkedinShareButton,
-  LivejournalShareButton,
-  MailruShareButton,
-  OKShareButton,
-  PinterestShareButton,
-  PocketShareButton,
-  RedditShareButton,
+  FacebookShareButton, LinkedinShareButton, PinterestShareButton, RedditShareButton,
   TelegramShareButton,
   TumblrShareButton,
-  TwitterShareButton,
-  ViberShareButton,
-  VKShareButton,
-  WhatsappShareButton,
-  WorkplaceShareButton,
+  TwitterShareButton, WhatsappShareButton
 } from "react-share";
 
 import {
-  EmailIcon,
-  FacebookIcon,
-  FacebookMessengerIcon,
-  HatenaIcon,
-  InstapaperIcon,
-  LineIcon,
-  LinkedinIcon,
-  LivejournalIcon,
-  MailruIcon,
-  OKIcon,
-  PinterestIcon,
-  PocketIcon,
-  RedditIcon,
+  FacebookIcon, LinkedinIcon, PinterestIcon, RedditIcon,
   TelegramIcon,
   TumblrIcon,
-  TwitterIcon,
-  ViberIcon,
-  VKIcon,
-  WeiboIcon,
-  WhatsappIcon,
-  WorkplaceIcon,
+  TwitterIcon, WhatsappIcon
 } from "react-share";
 
 const SocialMediaButtons = () => {
@@ -61,7 +29,7 @@ const SocialMediaButtons = () => {
           <FacebookIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </FacebookShareButton>
       </Tooltip>
@@ -71,7 +39,7 @@ const SocialMediaButtons = () => {
           <TwitterIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </TwitterShareButton>
       </Tooltip>
@@ -81,7 +49,7 @@ const SocialMediaButtons = () => {
           <WhatsappIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </WhatsappShareButton>
       </Tooltip>
@@ -91,7 +59,7 @@ const SocialMediaButtons = () => {
           <LinkedinIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </LinkedinShareButton>
       </Tooltip>
@@ -101,7 +69,7 @@ const SocialMediaButtons = () => {
           <PinterestIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </PinterestShareButton>
       </Tooltip>
@@ -111,7 +79,7 @@ const SocialMediaButtons = () => {
           <RedditIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </RedditShareButton>
       </Tooltip>
@@ -121,7 +89,7 @@ const SocialMediaButtons = () => {
           <TumblrIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </TumblrShareButton>
       </Tooltip>
@@ -131,7 +99,7 @@ const SocialMediaButtons = () => {
           <TelegramIcon
             size={48}
             round={true}
-            title="Share Me - by Adarsh Anand"
+            title="ShareMe - Next Gen Social Media Website"
           />
         </TelegramShareButton>
       </Tooltip>

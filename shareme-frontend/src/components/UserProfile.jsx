@@ -1,30 +1,21 @@
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "firebase/auth";
+import { useToast } from "@chakra-ui/react";
+import { getAuth, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { IoIosLogOut } from "react-icons/io";
-import { useParams, useNavigate } from "react-router-dom";
-import { GoogleLogout } from "react-google-login";
+import { useNavigate, useParams } from "react-router-dom";
 import img from "../assets/download.jpeg";
-import Spinner from "./Spinner";
+import { client } from "../client";
+import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
   userQuery,
-  userSavedPinsQuery,
+  userSavedPinsQuery
 } from "../utils/data";
-import { client } from "../client";
+import { fetchUser } from "../utils/fetchUser";
 import MasonryLayout from "./MasonryLayout";
-import { useToast } from "@chakra-ui/react";
-import SocialMediaButtons from "./SocialMediaButtons";
 import QRCodeGenerator from "./QRCode";
-
-const activeBtnStyles =
-  "bg-red-500 text-white font-bold p-2 rounded-full w-30 outline-none";
-const notActiveBtnStyles =
-  "bg-primary mr-4 text-black font-bold p-2 rounded-full w-30 outline-non";
+import SocialMediaButtons from "./SocialMediaButtons";
+import Spinner from "./Spinner";
 
 const UserProfile = () => {
   const [user, setUser] = useState();
@@ -36,10 +27,7 @@ const UserProfile = () => {
 
   const toast = useToast();
 
-  const User =
-    localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
+  const User = fetchUser();
 
   useEffect(() => {
     const query = userQuery(userId);

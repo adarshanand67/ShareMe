@@ -1,7 +1,5 @@
 # ShareMe 😄
 
-Application similar to pininterest, where users can upload photos, save favourite photos and comment on the posts. Homepage is the pinboard where all the posts are displayed. Users can also search for posts by tags. Users can also follow other users and see their posts on their profile page. Users can also like and comment on the posts.
-
 ## Flow of the application
 
 ### Backend using sanity.io
@@ -11,65 +9,77 @@ Application similar to pininterest, where users can upload photos, save favourit
   - For creating users (By userName and Image)
   - For Creating Pins (Title,About, Destination, Category, Image, UserID, PostedBy, Save, Comments)
   - Saving Posts
-  - Adding comments [TODO]
+  - Adding comments 
 
 ### Frontend using React + Tailwind CSS
 
-- Setup the project using create-react-app from Tailwind Website as Dev Dependencies
-  - Install Tailwind CSS(Custom UI), PostCSS(Purging Extra CSS files), Autoprefixer
-- Customize the tailwind.config.js
-- Adding rules to .eslint.json
-- Adding Packages
+- Setup the project using create-react-app from Tailwind website
+- package.json
   - sanity client , sanity image url
   - react-router-dom
   - react-icons
   - react-masonry-css
   - react-spinners
   - Chakra UI - Toast
-- Login page
+- Login
   - Adding video with dark overlay + controls
   - Firebase integration - Google + Github
-  - Adding newly created users on sanity page
+  - Adding newly created users on sanity db
+  - Check if user already logged in
   - Redirecting to the homepage once logged in
   - Adding Typed.js Animations
 - Sidebar
-  - Creating sidebar component wrt different screen sizes
   - Link vs NavLink
   - User attributes naming convention
-  - Writing React Proptypes
-- Pins
-  - Different components created - Pins, search, Navbar, Feed , PinDetails
-  - Creating Navbar with search
-  - Creating Feed using React Masonry grid Layout
-  - Crearing pins container to show all the pins
-  - Creating Query from sanity to get pins of one category
+  - Listing all categories
+  - Go to userProfile Button
+- Pins container
+  - Setting up entire routes of the application (react-router-dom)
 - Navbar
-  - Adding search functionality
-  - Create Post button
+  - Adding search bar fuzzy searching functionality
+  - Create new Post option
   - UserProfile page
-  - Props Validation
 - Feed
   - Queries to get all the pins from sanity
+  - Fetch category feed when category selected
   - Conditional rendering if no pins found
 - PinDetails
-  - Layout of the pinDetails on clicking
-  - Adding comment section
-  - Providing Download button + Url of site
+  - Layout of the pinDetails on clicking a pin
+  - Showing Image, Title, About, Link, Category, Download button, PostedBy
+  - Adding comment section for all users
 - Creating Pin
   - Utility of Creating pin
   - Upload Image url, title, about , destination, category
-  - Create Pin Button saves all data to sanity and redirects to the homepage
+  - Create Pin Button writes to sanity db and redirects to the homepage
 - Pin
-  - Getting image , title, description, tags, likes, comments, postedBy from sanity
-  - Displaying all on a single pin
-  - Attaching utils to the pin (delete, saved , url etc)
+  - Query image , title, description, tags, likes, comments, postedBy from sanity
+  - Attaching utils to the pin (delete, saved , url ) on hover
+  - Showing the user who posted it
 - UserProfile
-  - Create random background image
+  - Fetch the details of user
   - Show all the created and save Posts
-  - Logout button
+  - Firebase Logout button
+  - Conditional rendering if no pins found
 - SocialMediaButtons
   - Layout of the social media buttons
-- 
+  - Share the URL To social media sites
+- Spinner
+  - Showing the spinner component when isLoading is true
+- Icons
+  - Email Me Icon, redirect to contact page
+- index.js
+  - Having all the exports t once place
+- Contact
+  - Showing Contact us page setup using EmailJS
+- MasonryLayout
+  - Displaying all the pins in Masonry format
+  - Varying Vertical sizes
+- QRCode
+  - Showing QR Code of current website
+  - Login using mobile
+- Search
+  - Fuzzy search for posts
+  - Queries the rendered pins and returns pins matching title
 
 <!-- ## Screenshots 📷
 

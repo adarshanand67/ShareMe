@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import QRCode from "qrcode.react";
+import React from "react";
 
 const QRCodeGenerator = () => {
   const qrValue = "https://share-me-web.netlify.app/login";
