@@ -9,7 +9,7 @@
   - For creating users (By userName and Image)
   - For Creating Pins (Title,About, Destination, Category, Image, UserID, PostedBy, Save, Comments)
   - Saving Posts
-  - Adding comments 
+  - Adding comments
 
 ### Frontend using React + Tailwind CSS
 
@@ -81,9 +81,9 @@
   - Fuzzy search for posts
   - Queries the rendered pins and returns pins matching title
 
-<!-- ## Screenshots 📷
+<!-- ## Screenshots 📷 -->
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) -->
+<!-- ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here) -->
 
 ## Run Locally 🚀
 
@@ -151,6 +151,9 @@ What did you learn while building this project? What challenges did you face and
 - [x] Show tags on posts
 - [x] Infinite Scrolling
 - [x] Showing toasts when post saved
+- [ ] Create Progressive Web App
+- [x] Minify bundle size
+- [ ] Pre commit lint staging
 
 ### Advanced Changes
 
