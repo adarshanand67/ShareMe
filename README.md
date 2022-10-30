@@ -1,8 +1,8 @@
-# ShareMe 😄
+# ShareMe 📷
 
 ## Flow of the application
 
-### Backend using sanity.io
+### Backend Firebase + DB using sanity.io
 
 - Using sanity studio to create the schemas (database)
 - Creating schemas (blueprint of the content)
