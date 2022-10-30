@@ -1,4 +1,4 @@
-# ShareMe 😄
+# ShareMe 📷
 
 ## Flow of the application
 
