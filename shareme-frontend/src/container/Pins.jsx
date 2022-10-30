@@ -7,6 +7,7 @@ import Contact from "../components/Contact";
 import { Icon } from "../components/Icon";
 import QRCodeGenerator from "../components/QRCode";
 import SocialMediaButtons from "../components/SocialMediaButtons";
+import DarkMode from "../components/DarkMode";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
@@ -26,7 +27,7 @@ const Pins = ({ user }) => {
       </div>
       <div className="h-full">
         <Routes>
-          <Route path="/test" element={<QRCodeGenerator />} /> {/* Testing purposes */}
+          <Route path="/test" element={<DarkMode/>} /> {/* Testing purposes */}
           <Route path="/" element={<Feed />} /> {/* Home feed */}
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route path="/contact" element={<Contact />} />

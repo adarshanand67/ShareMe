@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useState } from "react";
 import { IoMdAdd, IoMdSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-
+import { IoMoon, IoSunny } from "react-icons/io5";
+import DarkMode from "./DarkMode";
 const Navbar = ({ searchTerm, setSearchTerm, user }) => {
   const navigate = useNavigate();
-  // const [isDarkMode, setIsDarkMode] = useState(false);
+
   if (user) {
     return (
       <div className="flex gap-2 md:gap-5 w-full mt-5 p-2 ">
@@ -36,7 +38,7 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
               />
             </button>
           </div> */}
-
+          <DarkMode />
           {/* User Profile */}
           <Link to={`user-profile/${user?._id}`} className="hidden md:block">
             <img

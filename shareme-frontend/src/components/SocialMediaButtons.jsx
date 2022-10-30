@@ -1,17 +1,25 @@
 import { Tooltip } from "@mui/material";
 import React from "react";
 import {
-  FacebookShareButton, LinkedinShareButton, PinterestShareButton, RedditShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  RedditShareButton,
   TelegramShareButton,
   TumblrShareButton,
-  TwitterShareButton, WhatsappShareButton
+  TwitterShareButton,
+  WhatsappShareButton,
 } from "react-share";
 
 import {
-  FacebookIcon, LinkedinIcon, PinterestIcon, RedditIcon,
+  FacebookIcon,
+  LinkedinIcon,
+  PinterestIcon,
+  RedditIcon,
   TelegramIcon,
   TumblrIcon,
-  TwitterIcon, WhatsappIcon
+  TwitterIcon,
+  WhatsappIcon,
 } from "react-share";
 
 const SocialMediaButtons = () => {
@@ -21,8 +29,6 @@ const SocialMediaButtons = () => {
   return (
     // Send all buttons to bottom right
     <div className="flex items-end justify-center mb-5 mt2 gap-3">
-      <hr />
-      <h1 className="text-3xl">Share Website on - </h1>
 
       <Tooltip title="Facebook" placement="top">
         <FacebookShareButton url={currentUrl}>
