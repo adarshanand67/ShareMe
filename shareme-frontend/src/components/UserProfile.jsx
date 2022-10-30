@@ -3,7 +3,7 @@ import { getAuth, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { IoIosLogOut } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
-import img from "../assets/download.jpeg";
+import img from "../assets/img.jpeg";
 import { client } from "../client";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
@@ -78,12 +78,12 @@ const UserProfile = () => {
         <div className="relative flex flex-col mb-7">
           <div className="flex flex-col justify-center items-center">
             <img
-              className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-40"
+              className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-100 "
               src={img}
               alt="user-pic"
             />
             <img
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover z-10"
+              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
               src={user.image}
               alt="user-pic"
             />
