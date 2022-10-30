@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { useState } from "react";
 import { IoMdAdd, IoMdSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import { IoMoon, IoSunny } from "react-icons/io5";
-const Navbar = ({ searchTerm, setSearchTerm, user }) => {
-  const navigate = useNavigate();
+import { fetchUser } from "../utils/fetchUser";
 
+const Navbar = ({ searchTerm, setSearchTerm }) => {
+  const navigate = useNavigate();
+  const user = fetchUser();
+  console.log(user);
   if (user) {
     return (
       <div className="flex gap-2 md:gap-5 w-full mt-5 p-2 ">
@@ -38,7 +39,7 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
             </button>
           </div> */}
           {/* User Profile */}
-          <Link to={`user-profile/${user?._id}`} className="hidden md:block">
+          <Link to={`user-profile/${user?.uid}`} className="hidden md:block">
             <img
               src={user.image}
               alt="user-pic"

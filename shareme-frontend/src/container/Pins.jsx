@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { CreatePin, Feed, Navbar, PinDetails, Search } from "../components";
+import { CreatePin, Feed, Navbar, PinDetails, Search, Sidebar } from "../components";
 import Contact from "../components/Contact";
 import { Icon } from "../components/Icon";
 import QRCodeGenerator from "../components/QRCode";
@@ -26,7 +26,7 @@ const Pins = ({ user }) => {
       </div>
       <div className="h-full">
         <Routes>
-          {/* <Route path="/test" element={<DarkMode/>} /> Testing purposes */}
+          {/* <Route path="/test" element={<Navbar/>} /> */}
           <Route path="/" element={<Feed />} /> {/* Home feed */}
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route path="/contact" element={<Contact />} />

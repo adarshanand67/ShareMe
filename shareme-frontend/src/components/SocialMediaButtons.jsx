@@ -70,16 +70,6 @@ const SocialMediaButtons = () => {
         </LinkedinShareButton>
       </Tooltip>
 
-      <Tooltip title="Pinterest" placement="top">
-        <PinterestShareButton url={currentUrl}>
-          <PinterestIcon
-            size={48}
-            round={true}
-            title="ShareMe - Next Gen Social Media Website"
-          />
-        </PinterestShareButton>
-      </Tooltip>
-
       <Tooltip title="Reddit" placement="top">
         <RedditShareButton url={currentUrl}>
           <RedditIcon
@@ -88,16 +78,6 @@ const SocialMediaButtons = () => {
             title="ShareMe - Next Gen Social Media Website"
           />
         </RedditShareButton>
-      </Tooltip>
-
-      <Tooltip title="Tumblr" placement="top">
-        <TumblrShareButton url={currentUrl}>
-          <TumblrIcon
-            size={48}
-            round={true}
-            title="ShareMe - Next Gen Social Media Website"
-          />
-        </TumblrShareButton>
       </Tooltip>
 
       <Tooltip title="Telegram" placement="top">
