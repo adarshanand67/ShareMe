@@ -9,7 +9,7 @@ import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
   userQuery,
-  userSavedPinsQuery
+  userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 import MasonryLayout from "./MasonryLayout";
@@ -105,6 +105,11 @@ const UserProfile = () => {
           </div>
         </div>
         <SocialMediaButtons />
+        {/* Show QR Code at bottom right */}
+        <div className="flex flex-col items-center">
+          {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
+          <QRCodeGenerator />
+        </div>
 
         {/* Created Pins */}
         <div className="text-center mb-7">
@@ -143,11 +148,6 @@ const UserProfile = () => {
             No Pins Found!
           </div>
         )}
-        {/* Show QR Code at bottom right */}
-        <div className="absolute bottom-0 right-0 p-2">
-          <h2 className="w-[177px] mx-auto">Scan QR Code to view in Mobile</h2>
-          <QRCodeGenerator />
-        </div>
       </div>
     </div>
   );
