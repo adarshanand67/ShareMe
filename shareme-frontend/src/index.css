@@ -15,6 +15,25 @@ body {
   font-family: "Fuzzy Bubbles", cursive;
 }
 
+/* Scrollbar customization */
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+  border-radius: 150px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 150px;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #de2626;
+  border-radius: 150px;
+}
+
+/* Selection Customization */
+
 ::-moz-selection {
   background: #ed6e6e;
   color: #fff;

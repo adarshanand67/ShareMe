@@ -19,7 +19,6 @@ const Pin = ({ pin }) => {
 
   const navigate = useNavigate(); // Navigate to a new page
   const toast = useToast(); // Toast
-
   // Fetch user data
   const user = fetchUser();
 

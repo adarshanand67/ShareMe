@@ -124,7 +124,7 @@ What did you learn while building this project? What challenges did you face and
 - [x] Category search not working
 <!-- - [ ] Change icons of Saving Pins -->
 - [x] Error in userProfile saved pins
-- [ ] Deleting Comments by users
+<!-- - [ ] Deleting Comments by users -->
 
 ## Future Improvements TODO :- 🔧
 
