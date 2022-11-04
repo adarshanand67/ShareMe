@@ -1,4 +1,11 @@
 # ShareMe 📷
+[![GitHub contributors](https://img.shields.io/github/contributors/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/issues)
+[![GitHub forks](https://img.shields.io/github/forks/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/network)
+[![GitHub stars](https://img.shields.io/github/stars/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/stargazers)
+[![GitHub license](https://img.shields.io/github/license/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/blob/master/LICENSE)
+<img src="https://img.shields.io/github/languages/top/adarshanand67/ShareMe">
+<img src="https://img.shields.io/github/watchers/adarshanand67/ShareMe" />
 
 ## Flow of the application
 
