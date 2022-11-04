@@ -22,14 +22,17 @@ import {
   WhatsappIcon,
 } from "react-share";
 
-const SocialMediaButtons = () => {
+const SocialMediaButtons = ({ url }) => {
   // const currentUrl = window.location.href; // Get current url
-  const currentUrl = "https://share-me-web.netlify.app/login";
+  let currentUrl = "https://share-me-web.netlify.app/login";
+  if (url) {
+    currentUrl = url;
+  }
+  // console.log(currentUrl);
 
   return (
     // Send all buttons to bottom right
     <div className="flex items-end justify-center mb-5 mt2 gap-3">
-
       <Tooltip title="Facebook" placement="top">
         <FacebookShareButton url={currentUrl}>
           <FacebookIcon

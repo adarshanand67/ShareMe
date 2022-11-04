@@ -10,7 +10,7 @@ import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
-
+import SocialMediaButtons from './SocialMediaButtons'
 const PinDetail = ({ user }) => {
   // console.log(user);
   const { pinId } = useParams(); // Get pin id from url
@@ -90,9 +90,13 @@ const PinDetail = ({ user }) => {
     return <Spinner message="Showing pin" />;
   }
 
+  const BASE_URL = "https://share-me-web.netlify.app/";
+  const POST_URL = BASE_URL + "pin-detail/" + pinId;
+  
   return (
     <div>
       {/* Pin exists */}
+      <SocialMediaButtons url={POST_URL}/>
       {pinDetail && (
         <div
           className="flex xl:flex-row flex-col m-auto bg-white rounded-lg shadow-lg w-full gap-5"

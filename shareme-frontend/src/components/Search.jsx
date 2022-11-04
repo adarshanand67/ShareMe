@@ -22,6 +22,8 @@ const Search = ({ searchTerm }) => {
           // Fetch data from sanity
           setPins(data);
           setLoading(false);
+          console.log(data);
+          // console.log(data[0].postedBy.userName);
         });
       } else {
         client.fetch(feedQuery).then((data) => {
@@ -43,6 +45,8 @@ const Search = ({ searchTerm }) => {
     }
   }, [searchTerm]); // If search term changes then fetch data
 
+
+  // console.log(pins);
   return (
     <div>
       {loading && <Spinner message="Searching pins" />}
@@ -50,7 +54,6 @@ const Search = ({ searchTerm }) => {
       {pins?.length === 0 && searchTerm !== "" && !loading && (
         <div className="mt-10 text-center text-xl ">No Pins Found!</div>
       )}
-      {/* If no pins found */}
     </div>
   );
 };
