@@ -22,7 +22,6 @@ const Pins = ({ user }) => {
         />
         {/* Always show the icon */}
         <Icon />
-        <SocialMediaButtons />
       </div>
       <div className="h-full">
         <Routes>

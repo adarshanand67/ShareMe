@@ -7,7 +7,7 @@ import { fetchUser } from "../utils/fetchUser";
 const Navbar = ({ searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   const user = fetchUser();
-  console.log(user);
+  // console.log(user);
   if (user) {
     return (
       <div className="flex gap-2 md:gap-5 w-full mt-5 p-2 ">

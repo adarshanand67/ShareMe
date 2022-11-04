@@ -104,7 +104,7 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-        <SocialMediaButtons />
+        <SocialMediaButtons /> 
         {/* Show QR Code at bottom right */}
         <div className="flex flex-col items-center">
           {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
