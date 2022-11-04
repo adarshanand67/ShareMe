@@ -8,11 +8,13 @@ import { v4 as uuidv4 } from "uuid";
 import { Toast, useToast } from "@chakra-ui/react";
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
+import { Typography } from "@mui/material";
 
 const Pin = ({ pin }) => {
-  const { postedBy, category, image, _id, destination } = pin;
+  const { postedBy, category, image, _id, destination, title } = pin;
   // console.log(pin);
   // console.log(category);
+  // console.log(title);
   const [savingPost, setSavingPost] = useState(false);
 
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
@@ -65,7 +67,7 @@ const Pin = ({ pin }) => {
   // console.log(user);
 
   return (
-    <div className="m-2">
+    <div className="m-2 py-3">
       <div
         onMouseEnter={() => setPostHovered(true)} // If post is hovered
         onMouseLeave={() => setPostHovered(false)}
@@ -74,16 +76,18 @@ const Pin = ({ pin }) => {
       >
         {/* Pin image */}
         {image && (
-          <img
-            className="rounded-xl w-full "
-            src={urlFor(image).width(250).url()}
-            alt="user-post"
-          />
+          <div className="flex flex-col items-center">
+            <img
+              className="rounded-xl w-full "
+              src={urlFor(image).width(250).url()}
+              alt="user-post"
+            />
+          </div>
         )}
         {/* When post is hovered */}
         {postHovered && (
           <div
-            className="absolute top-0 w-full h-full flex flex-col justify-between p-1 pr-2 pt-2 pb-2 z-50"
+            className="absolute top-0 w-full h-full flex flex-col justify-between p-1 pr-2 pt-2 pb-2 z-50 cursor-pointer"
             style={{ height: "100%" }}
           >
             <div className="flex items-center justify-between">
@@ -100,7 +104,6 @@ const Pin = ({ pin }) => {
                   <MdDownloadForOffline />
                 </a>
               </div>
-              {/* TODO - Fix the saved up posts */}
               {/* Already saved posts */}
               {alreadySaved?.length !== 0 ? (
                 <button
@@ -149,9 +152,7 @@ const Pin = ({ pin }) => {
                 <button
                   type="button"
                   onClick={(e) => {
-                    e.stopPropagation(); // Stop the event from bubbling up the DOM tree
-                    // deletePin(_id); // Delete pin
-                    // Toast
+                    e.stopPropagation();
                     <Toast status="success" description="Pin deleted" />;
                   }}
                   className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
@@ -163,18 +164,24 @@ const Pin = ({ pin }) => {
           </div>
         )}
       </div>
-      {/* Show the user who posted it */}
-      <Link
-        to={`/user-profile/${postedBy?._id}`}
-        className="flex gap-2 mt-2 items-center"
-      >
-        <img
-          className="w-8 h-8 rounded-full object-cover"
-          src={postedBy?.image}
-          alt="user-profile"
-        />
-        <p className="capitalize font-thin text-sm">{postedBy?.userName}</p>
-      </Link>
+      <div className="flex flex-col items-center justify-center">
+        <span className="h1 text-center font-bold text-red-400">
+          {title && title}
+        </span>
+        {/* Show the user who posted it */}
+        <Link
+          to={`/user-profile/${postedBy?._id}`}
+          className="flex gap-2 items-center "
+        >
+          <img
+            className="w-8 h-8 rounded-full object-cover"
+            src={postedBy?.image}
+            alt="user-profile"
+          />
+          <p className="capitalize font-thin text-sm">{postedBy?.userName}</p>
+          <hr />
+        </Link>
+      </div>
     </div>
   );
 };
