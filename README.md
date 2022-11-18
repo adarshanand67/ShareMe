@@ -7,6 +7,10 @@
 <img src="https://img.shields.io/github/languages/top/adarshanand67/ShareMe">
 <img src="https://img.shields.io/github/watchers/adarshanand67/ShareMe" />
 
+## Demo
+
+https://user-images.githubusercontent.com/73928744/202767277-d99f4c09-5a42-4dfb-9873-72f3bd6843e9.mp4
+
 ## Flow of the application
 
 ### Backend Firebase + DB using sanity.io
