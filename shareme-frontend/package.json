@@ -5,9 +5,10 @@
   "dependencies": {
     "@chakra-ui/react": "^2.3.6",
     "@emailjs/browser": "^3.7.0",
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.15",
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",
     "firebase": "^9.12.1",
