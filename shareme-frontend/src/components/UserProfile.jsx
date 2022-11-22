@@ -24,7 +24,7 @@ const UserProfile = () => {
   const [activeBtn, setActiveBtn] = useState("created");
   const navigate = useNavigate();
   const { userId } = useParams();
-  const windowWidth = window.innerWidth;
+
   const toast = useToast();
 
   const User = fetchUser();
@@ -79,12 +79,11 @@ const UserProfile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-100 "
-              // src={img}
-              src="https://source.unsplash.com/1600x900/?nature,photography,technology"
+              src={img}
               alt="user-pic"
             />
             <img
-              className="rounded-full w-60 h-60 -mt-10 shadow-xl object-cover"
+              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
               src={user.image}
               alt="user-pic"
             />
@@ -105,7 +104,7 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-        <SocialMediaButtons />
+        <SocialMediaButtons /> 
         {/* Show QR Code at bottom right */}
         <div className="flex flex-col items-center">
           {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
