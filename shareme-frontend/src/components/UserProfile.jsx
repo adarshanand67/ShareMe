@@ -12,6 +12,7 @@ import {
   userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
+import { Icon } from "./Icon";
 import MasonryLayout from "./MasonryLayout";
 import QRCodeGenerator from "./QRCode";
 import SocialMediaButtons from "./SocialMediaButtons";
@@ -22,12 +23,15 @@ const UserProfile = () => {
   const [pins, setPins] = useState();
   const [text, setText] = useState("Created");
   const [activeBtn, setActiveBtn] = useState("created");
+
   const navigate = useNavigate();
+
   const { userId } = useParams();
 
   const toast = useToast();
 
   const User = fetchUser();
+  // console.log(User)
 
   useEffect(() => {
     const query = userQuery(userId);
@@ -83,7 +87,7 @@ const UserProfile = () => {
               alt="user-pic"
             />
             <img
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
+              className="rounded-full w-30 h-30 -mt-10 shadow-xl object-cover"
               src={user.image}
               alt="user-pic"
             />
@@ -104,11 +108,12 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-        <SocialMediaButtons /> 
         {/* Show QR Code at bottom right */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-row items-center justify-center ali">
           {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
-          <QRCodeGenerator />
+          <SocialMediaButtons url={window.location.href} />
+          <QRCodeGenerator url={window.location.href} />
+          <Icon />
         </div>
 
         {/* Created Pins */}

@@ -11,6 +11,7 @@ import Pins from "./Pins";
 import Confettis from "../components/Confettis";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
@@ -35,7 +36,6 @@ const Home = () => {
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0); // Scroll to top when page load
   });
-
 
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
@@ -78,6 +78,7 @@ const Home = () => {
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Pins user={user && user} />} />
+          <Route path="/test" element={<SocialMediaButtons />} />
         </Routes>
       </div>
     </div>

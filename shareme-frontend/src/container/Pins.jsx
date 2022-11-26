@@ -20,8 +20,6 @@ const Pins = ({ user }) => {
           setSearchTerm={setSearchTerm}
           user={user && user} // If user is not null then pass user
         />
-        {/* Always show the icon */}
-        <Icon />
       </div>
       <div className="h-full">
         <Routes>
