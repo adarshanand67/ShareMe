@@ -75,7 +75,6 @@ const Feed = () => {
           </h1>
         )}
         {pins && <MasonryLayout pins={pins} />}
-        <Icon/>
       </div>
     );
   }
