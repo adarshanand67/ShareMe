@@ -1,4 +1,7 @@
-# ShareMe 📷
+<img width="160" alt="favicon" src="https://user-images.githubusercontent.com/73928744/205104569-73967f36-fe3d-4dbc-ad8f-26070420fe10.png">
+
+# ShareMe 
+
 [![GitHub contributors](https://img.shields.io/github/contributors/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/issues)
 [![GitHub forks](https://img.shields.io/github/forks/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/network)
