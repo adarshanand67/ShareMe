@@ -11,7 +11,7 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
   if (user) {
     return (
       <div className="flex gap-2 md:gap-5 w-full mt-5 p-2 ">
-        <div className="flex justify-start items-center w-full px-5 rounded-md bg-white border-none outline-none focus-within:shadow-sm">
+        <div className="flex justify-start items-center w-full px-5 rounded-full bg-gray-300 border-none outline-none focus-within:shadow-sm">
           {/* Searchbar */}
           <IoMdSearch fontSize={21} className="ml-1" />
           <input
@@ -20,24 +20,10 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             placeholder="Search"
             value={searchTerm}
             onFocus={() => navigate("/search")}
-            className="p-2 w-full bg-white outline-none"
+            className="p-2 w-full bg-gray-300 outline-none"
           />
         </div>
         <div className="flex gap-5 ">
-          {/* TODO Dark Mode Toggle  */}
-          {/* <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="bg-gray-300 w-10 h-5 rounded-full p-1 flex items-center"
-            >
-              <div
-                className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-all duration-500 ease-in-out ${
-                  isDarkMode ? "translate-x-5" : ""
-                }`}
-              />
-            </button>
-          </div> */}
           {/* User Profile */}
           <Link to={`user/${user?.uid}`} className="hidden md:block">
             <img

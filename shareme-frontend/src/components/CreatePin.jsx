@@ -33,8 +33,7 @@ const CreatePin = ({ user }) => {
       file.type === "image/jpg" ||
       file.type === "image/gif" ||
       file.type === "image/tiff" ||
-      file.type === "image/webp" ||
-      file.type === "video/mp4"
+      file.type === "image/webp"
     ) {
       setWrongImageType(false); // If image type is correct
       setLoading(true);
