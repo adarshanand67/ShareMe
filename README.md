@@ -1,4 +1,5 @@
 # ShareMe 📷
+
 [![GitHub contributors](https://img.shields.io/github/contributors/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/issues)
 [![GitHub forks](https://img.shields.io/github/forks/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/network)
@@ -140,6 +141,7 @@ What did you learn while building this project? What challenges did you face and
 ### Easy Changes
 
 - [x] Improve github readme
+- [ ] Pre commit lint staging (husky)
 - [x] Write the entire flow of the application
 - [x] Add Github Auth
 - [x] Add Typed JS Animations
@@ -150,11 +152,15 @@ What did you learn while building this project? What challenges did you face and
 <!-- - [ ] Showing confetti animation, creating a pin -->
 - [x] Contact us section in
 - [x] Confirmations popups
+- [ ] Fix URL of profile page
+- [ ] Search Bar UI Like pinterest
+- [ ] Add right border to filter section
 <!-- - [ ] Cutomer feedback section -->
 
 ### Medium Changes
 
-- [x] Scanning QR Code to open website on mobile
+- [x] Scanning QR Code to open website on mobile (qrcode-react)
+- [x] Ability to Add GIFs
 - [x] Adding Share Button (Share Pin to Whatsapp, Twitter, Email)
 - [x] Pressing enter should simulate button click
 - [x] Show tags on posts
@@ -162,15 +168,15 @@ What did you learn while building this project? What challenges did you face and
 - [x] Showing toasts when post saved
 - [ ] Create Progressive Web App
 - [x] Minify bundle size
-- [ ] Pre commit lint staging
 
 ### Advanced Changes
 
 - [ ] Ability to follow other users
 - [ ] Creating a notification system when new user uploads a post
-<!-- - [ ] Ability to upload videos instead of images (Not possible) -->
 - [ ] Adding feature like pin (Store count of likes)
 - [ ] Creating a guided tour of app
+- [ ] Feature of Liking a comment
+- [ ] Showing the time when comment was posted
 - [x] Improve the saved Features
 - [ ] Writing unit tests using React Testing Library
 
