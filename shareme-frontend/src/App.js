@@ -19,7 +19,7 @@ const App = () => {
   return (
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/firebase" element={<Firebase />} />
+        {/* <Route path="/firebase" element={<Firebase />} /> */}
         <Route path="/*" element={<Home />} />
       </Routes>
   );

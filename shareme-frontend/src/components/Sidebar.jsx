@@ -10,7 +10,9 @@ import { fetchUser } from "../utils/fetchUser";
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 hover:text-black transition-all duration-200 ease-in-out capitalize";
 const isActiveStyle =
-  "flex items-center px-5 gap-3 font-extrabold border-r-5 border-black  transition-all duration-200 ease-in-out capitalize";
+  "flex items-center px-5 my-0 gap-3 font-extrabold border-l-8 border-r-8 border-red-500 transition-all duration-500 ease-in-out capitalize";
+const isActiveStyleHome =
+  "flex items-center px-5 my-0 gap-3 font-extrabold transition-all duration-500 ease-in-out capitalize";
 
 const Sidebar = ({ closeToggle }) => {
   const handleCloseSidebar = () => {
@@ -31,23 +33,13 @@ const Sidebar = ({ closeToggle }) => {
           <img src={logo} alt="logo" className="w-full" />
         </Link>
         {/* Home */}
-        <div className="flex flex-col gap-3">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? isActiveStyle : isNotActiveStyle
-            }
-            onClick={handleCloseSidebar}
-          >
-            <RiHomeFill />
-            Home
-          </NavLink>
+        <div className="flex flex-col gap-2">
           {/* Categories */}
           <h3 className="mt-2 px-5 font-bold text-base 3xl:text-xl capitalize">
-            Discover cateogries
+            Categories
           </h3>
           {/* All categories */}
-          {categories.slice(0, categories.length).map((category) => (
+          {categories.map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) =>
@@ -58,7 +50,7 @@ const Sidebar = ({ closeToggle }) => {
             >
               <img
                 src={category.image}
-                className="w-8 h-8 rounded-full shadow-lg"
+                className="w-8 h-8 rounded-md shadow-lg"
               />
               {category.name}
             </NavLink>
@@ -67,14 +59,14 @@ const Sidebar = ({ closeToggle }) => {
       </div>
       {/* User Profile */}
       <Link
-        to={`user-profile/${user?.uid}`}
+        to={`user/${user?.uid}`}
         className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
         onClick={handleCloseSidebar}
       >
         <img
           src={user?.photoURL}
           className="w-10 h-10 rounded-full"
-          alt="user-profile"
+          alt="user"
         />
         <p>{user?.displayName}</p>
         <IoIosArrowForward />

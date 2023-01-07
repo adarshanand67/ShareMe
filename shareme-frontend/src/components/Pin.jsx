@@ -6,9 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 import { Toast, useToast } from "@chakra-ui/react";
+import { Typography } from "@mui/material";
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
-import { Typography } from "@mui/material";
 
 const Pin = ({ pin }) => {
   const { postedBy, category, image, _id, destination, title } = pin;
@@ -170,13 +170,13 @@ const Pin = ({ pin }) => {
         </span>
         {/* Show the user who posted it */}
         <Link
-          to={`/user-profile/${postedBy?._id}`}
+          to={`/user/${postedBy?._id}`}
           className="flex gap-2 items-center "
         >
           <img
             className="w-8 h-8 rounded-full object-cover"
             src={postedBy?.image}
-            alt="user-profile"
+            alt="user"
           />
           <p className="capitalize font-thin text-sm">{postedBy?.userName}</p>
           <hr />

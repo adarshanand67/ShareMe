@@ -39,7 +39,7 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             </button>
           </div> */}
           {/* User Profile */}
-          <Link to={`user-profile/${user?.uid}`} className="hidden md:block">
+          <Link to={`user/${user?.uid}`} className="hidden md:block">
             <img
               src={user.photoURL}
               alt="user-pic"

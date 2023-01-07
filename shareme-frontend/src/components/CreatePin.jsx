@@ -32,7 +32,9 @@ const CreatePin = ({ user }) => {
       file.type === "image/jpeg" ||
       file.type === "image/jpg" ||
       file.type === "image/gif" ||
-      file.type === "image/tiff"
+      file.type === "image/tiff" ||
+      file.type === "image/webp" ||
+      file.type === "video/mp4"
     ) {
       setWrongImageType(false); // If image type is correct
       setLoading(true);
@@ -168,7 +170,7 @@ const CreatePin = ({ user }) => {
               <img
                 src={user.image}
                 className="w-10 h-10 rounded-full"
-                alt="user-profile"
+                alt="user"
               />
               <p className="font-bold">{user.userName}</p>
             </div>

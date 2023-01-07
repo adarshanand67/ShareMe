@@ -143,7 +143,6 @@ What did you learn while building this project? What challenges did you face and
 ### Easy Changes
 
 - [x] Improve github readme
-- [ ] Pre commit lint staging (husky)
 - [x] Write the entire flow of the application
 - [x] Add Github Auth
 - [x] Add Typed JS Animations
@@ -154,9 +153,9 @@ What did you learn while building this project? What challenges did you face and
 <!-- - [ ] Showing confetti animation, creating a pin -->
 - [x] Contact us section in
 - [x] Confirmations popups
+- [x] Add right border of categories
 - [ ] Fix URL of profile page
 - [ ] Search Bar UI Like pinterest
-- [ ] Add right border to filter section
 <!-- - [ ] Cutomer feedback section -->
 
 ### Medium Changes
@@ -169,7 +168,6 @@ What did you learn while building this project? What challenges did you face and
 - [x] Infinite Scrolling
 - [x] Showing toasts when post saved
 - [ ] Create Progressive Web App
-- [x] Minify bundle size
 
 ### Advanced Changes
 

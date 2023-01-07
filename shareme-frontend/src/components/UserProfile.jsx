@@ -27,6 +27,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   const { userId } = useParams();
+  // console.log(userId);
 
   const toast = useToast();
 
@@ -34,11 +35,11 @@ const UserProfile = () => {
   // console.log(User)
 
   useEffect(() => {
-    const query = userQuery(userId);
-    client.fetch(query).then((data) => {
-      setUser(data[0]);
+    const query = userQuery(userId); // Get user by id
+    client.fetch(query).then((data) => { // Fetch user by id
+      setUser(data[0]); // Set user
     });
-  }, [userId]);
+  }, [userId]); // If user id changes then fetch user again
 
   useEffect(() => {
     if (text === "Created") {
@@ -87,7 +88,7 @@ const UserProfile = () => {
               alt="user-pic"
             />
             <img
-              className="rounded-full w-30 h-30 -mt-10 shadow-xl object-cover"
+              className="rounded-full w-40 h-40 -mt-20 shadow-xl object-cover"
               src={user.image}
               alt="user-pic"
             />
