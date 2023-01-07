@@ -3,7 +3,7 @@ import React from "react";
 
 const QRCodeGenerator = ({url}) => {
   const qrValue = "https://share-me-web.netlify.app/login";
-  console.log(url);
+  // console.log(url);
   return (
     <div className="App">
       <QRCode

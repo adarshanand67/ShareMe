@@ -9,9 +9,9 @@ import { client } from "../client";
 import Pins from "./Pins";
 
 import Confettis from "../components/Confettis";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-import SocialMediaButtons from "../components/SocialMediaButtons";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
@@ -53,7 +53,7 @@ const Home = () => {
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
-          <Link to={`user-profile/${userInfo?.uid}`}>
+          <Link to={`user/${userInfo?.uid}`}>
             <img
               src={userInfo?.photoURL}
               alt="user-pic"
@@ -76,7 +76,7 @@ const Home = () => {
       </div>
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
         <Routes>
-          <Route path="/user-profile/:userId" element={<UserProfile />} />
+          <Route path="/user/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Pins user={user && user} />} />
           <Route path="/test" element={<SocialMediaButtons />} />
         </Routes>

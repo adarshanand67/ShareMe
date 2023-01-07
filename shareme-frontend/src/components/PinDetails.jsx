@@ -6,11 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 import { useToast } from "@chakra-ui/react";
 import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
-import Spinner from "./Spinner";
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import SocialMediaButtons from "./SocialMediaButtons";
+import Spinner from "./Spinner";
 const PinDetail = ({ user }) => {
   // console.log(user);
   const { pinId } = useParams(); // Get pin id from url
@@ -163,13 +163,13 @@ const PinDetail = ({ user }) => {
             </a>
             {/* Posted by */}
             <Link
-              to={`/user-profile/${pinDetail?.postedBy._id}`}
+              to={`/user/${pinDetail?.postedBy._id}`}
               className="flex gap-2 mt-5 items-center bg-white rounded-lg "
             >
               <img
                 src={pinDetail?.postedBy.image}
                 className="w-10 h-10 rounded-full"
-                alt="user-profile"
+                alt="user"
               />
               <p className="font-bold">{pinDetail?.postedBy.userName}</p>
             </Link>
@@ -185,7 +185,7 @@ const PinDetail = ({ user }) => {
                   <img
                     src={item.postedBy?.image}
                     className="w-10 h-10 rounded-full cursor-pointer"
-                    alt="user-profile"
+                    alt="user"
                   />
                   <div className="flex flex-col">
                     <p className="font-bold">{item.postedBy?.userName}</p>
@@ -196,11 +196,11 @@ const PinDetail = ({ user }) => {
             </div>
             <div className="flex flex-wrap mt-6 gap-3">
               {/* Who created this post */}
-              <Link to={`/user-profile/${user._id}`}>
+              <Link to={`/user/${user._id}`}>
                 <img
                   src={user.image}
                   className="w-10 h-10 rounded-full cursor-pointer"
-                  alt="user-profile"
+                  alt="user"
                 />
               </Link>
               {/* Adding comments */}
