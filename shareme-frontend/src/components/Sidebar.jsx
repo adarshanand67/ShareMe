@@ -8,11 +8,11 @@ import { categories } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 
 const isNotActiveStyle =
-  "flex items-center px-5 gap-3 hover:text-black transition-all duration-200 ease-in-out capitalize";
+  "flex items-center pl-5 gap-3 hover:text-black transition-all duration-200 ease-in-out capitalize";
 const isActiveStyle =
-  "flex items-center px-5 my-0 gap-3 font-extrabold border-l-8 border-r-8 border-red-500 transition-all duration-500 ease-in-out capitalize";
+  "flex items-center pl-5 my-0 gap-3 font-extrabold border-l-8 border-r-8 border-red-500 transition-all duration-500 ease-in-out capitalize";
 const isActiveStyleHome =
-  "flex items-center px-5 my-0 gap-3 font-extrabold transition-all duration-500 ease-in-out capitalize";
+  "flex items-center pl-5 my-0 gap-3 font-extrabold transition-all duration-500 ease-in-out capitalize";
 
 const Sidebar = ({ closeToggle }) => {
   const handleCloseSidebar = () => {
@@ -22,12 +22,12 @@ const Sidebar = ({ closeToggle }) => {
   // console.log(user);
 
   return (
-    <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-210 hide-scrollbar ">
+    <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-120">
       <div className="flex flex-col">
         {/* ShareMe Logo */}
         <Link
           to="/"
-          className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
+          className="flex pl-5 gap-2 my-6 pt-1 w-190 items-center"
           onClick={handleCloseSidebar}
         >
           <img src={logo} alt="logo" className="w-full" />
@@ -35,7 +35,7 @@ const Sidebar = ({ closeToggle }) => {
         {/* Home */}
         <div className="flex flex-col gap-2">
           {/* Categories */}
-          <h3 className="mt-2 px-5 font-bold text-base 3xl:text-xl capitalize">
+          <h3 className="mt-2 pl-5 font-bold text-base 3xl:text-xl capitalize">
             Categories
           </h3>
           {/* All categories */}
@@ -60,7 +60,7 @@ const Sidebar = ({ closeToggle }) => {
       {/* User Profile */}
       <Link
         to={`user/${user?.uid}`}
-        className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+        className="flex mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
         onClick={handleCloseSidebar}
       >
         <img

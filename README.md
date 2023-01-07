@@ -154,8 +154,8 @@ What did you learn while building this project? What challenges did you face and
 - [x] Contact us section in
 - [x] Confirmations popups
 - [x] Add right border of categories
-- [ ] Fix URL of profile page
-- [ ] Search Bar UI Like pinterest
+<!-- - [ ] Fix URL of profile page -->
+- [x] Search Bar UI Like pinterest
 <!-- - [ ] Cutomer feedback section -->
 
 ### Medium Changes
