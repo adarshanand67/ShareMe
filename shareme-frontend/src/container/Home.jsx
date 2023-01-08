@@ -12,6 +12,7 @@ import Confettis from "../components/Confettis";
 import SocialMediaButtons from "../components/SocialMediaButtons";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
+import VoiceSearch from "../components/VoiceSearch";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
@@ -79,6 +80,7 @@ const Home = () => {
           <Route path="/user/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Pins user={user && user} />} />
           <Route path="/test" element={<SocialMediaButtons />} />
+          <Route path="/voice" element=<VoiceSearch/> />
         </Routes>
       </div>
     </div>
