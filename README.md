@@ -156,7 +156,6 @@ What did you learn while building this project? What challenges did you face and
 - [x] Add right border of categories
 <!-- - [ ] Fix URL of profile page -->
 - [x] Search Bar UI Like pinterest
-<!-- - [ ] Cutomer feedback section -->
 
 ### Medium Changes
 
@@ -171,6 +170,7 @@ What did you learn while building this project? What challenges did you face and
 
 ### Advanced Changes
 
+- [x] Adding Voice search
 - [ ] Ability to follow other users
 - [ ] Creating a notification system when new user uploads a post
 - [ ] Adding feature like pin (Store count of likes)
