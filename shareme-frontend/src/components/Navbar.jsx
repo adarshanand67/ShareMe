@@ -1,13 +1,30 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { IoMdAdd, IoMdSearch } from "react-icons/io";
+import { IoMdAdd, IoMdMic, IoMdSearch } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 import { fetchUser } from "../utils/fetchUser";
+
+const MicActiveStyles = "bg-red-500 text-white";
+const MicInactiveStyles = "bg-gray-300 text-gray-500";
 
 const Navbar = ({ searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   const user = fetchUser();
   // console.log(user);
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  const navigateToSearch = () => {
+    navigate("/search");
+  };
+
   if (user) {
     return (
       <div className="flex gap-2 md:gap-5 w-full mt-5 p-2 ">
@@ -22,6 +39,25 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             onFocus={() => navigate("/search")}
             className="p-2 w-full bg-gray-300 outline-none"
           />
+
+          {browserSupportsSpeechRecognition ? (
+            <button
+              className={`p-2 rounded-full ml-2 ${
+                listening ? MicActiveStyles : MicInactiveStyles
+              }`}
+              onClick={
+                listening
+                  ? resetTranscript && setSearchTerm(transcript)
+                  : () => {
+                      navigateToSearch();
+                      SpeechRecognition.startListening();
+                    }
+              }
+            >
+              <IoMdMic fontSize={21} />
+            </button>
+          ) : null}
+          {/* <p>{transcript}</p> */}
         </div>
         <div className="flex gap-5 ">
           {/* User Profile */}
