@@ -47,7 +47,11 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
               }`}
               onClick={
                 listening
-                  ? resetTranscript && setSearchTerm(transcript)
+                  ? () => {
+                      SpeechRecognition.stopListening();
+                      resetTranscript();
+                      setSearchTerm(transcript);
+                    }
                   : () => {
                       navigateToSearch();
                       SpeechRecognition.startListening();

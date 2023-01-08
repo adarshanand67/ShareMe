@@ -77,6 +77,7 @@ const UserProfile = () => {
       })
       .catch((error) => {});
   }
+
   return (
     <div className="relative pb-2 h-full justify-center items-center">
       <div className="flex flex-col pb-5">
@@ -84,11 +85,11 @@ const UserProfile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-100 "
-              src={img}
+              src={"https://source.unsplash.com/random/680x300"}
               alt="user-pic"
             />
             <img
-              className="rounded-full w-40 h-40 -mt-20 shadow-xl object-cover"
+              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
               src={user.image}
               alt="user-pic"
             />
@@ -113,7 +114,7 @@ const UserProfile = () => {
         <div className="flex flex-row items-center justify-center ali">
           {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
           <SocialMediaButtons url={window.location.href} />
-          <QRCodeGenerator url={window.location.href} />
+          {/* <QRCodeGenerator url={window.location.href} /> */}
           <Icon />
         </div>
 
