@@ -80,7 +80,7 @@ const Home = () => {
           <Route path="/user/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Pins user={user && user} />} />
           <Route path="/test" element={<SocialMediaButtons />} />
-          <Route path="/voice" element=<VoiceSearch/> />
+          <Route path="/voice" element=<VoiceSearch /> />
         </Routes>
       </div>
     </div>
