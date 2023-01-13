@@ -85,7 +85,7 @@ const UserProfile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-100 "
-              src={"https://source.unsplash.com/random/680x300"}
+              src={"https://source.unsplash.com/random/680x300/?city,water,sky"}
               alt="user-pic"
             />
             <img
