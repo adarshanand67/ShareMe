@@ -3,7 +3,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-
 const VoiceSearch = () => {
   const {
     transcript,
