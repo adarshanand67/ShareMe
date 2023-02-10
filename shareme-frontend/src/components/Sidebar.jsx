@@ -22,12 +22,12 @@ const Sidebar = ({ closeToggle }) => {
   // console.log(user);
 
   return (
-    <div className="flex flex-col justify-between bg-red-100 h-full overflow-y-scroll min-w-120 hide-scrollbar">
+    <div className="min-w-120 hide-scrollbar flex h-full flex-col justify-between overflow-y-scroll bg-red-100">
       <div className="flex flex-col">
         {/* ShareMe Logo */}
         <Link
           to="/"
-          className="flex pl-5 gap-2 my-6 pt-1 w-190 items-center"
+          className="my-6 flex w-190 items-center gap-2 pl-5 pt-1"
           onClick={handleCloseSidebar}
         >
           <img src={logo} alt="logo" className="w-full" />
@@ -35,7 +35,7 @@ const Sidebar = ({ closeToggle }) => {
         {/* Home */}
         <div className="flex flex-col gap-2">
           {/* Categories */}
-          <h3 className="mt-2 pl-5 font-bold text-base 3xl:text-xl capitalize">
+          <h3 className="3xl:text-xl mt-2 pl-5 text-base font-bold capitalize">
             Categories
           </h3>
           {/* All categories */}
@@ -50,7 +50,7 @@ const Sidebar = ({ closeToggle }) => {
             >
               <img
                 src={category.image}
-                className="w-8 h-8 rounded-md shadow-lg"
+                className="h-8 w-8 rounded-md shadow-lg"
               />
               {category.name}
             </NavLink>
@@ -60,12 +60,12 @@ const Sidebar = ({ closeToggle }) => {
       {/* User Profile */}
       <Link
         to={`user/${user?.uid}`}
-        className="flex mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+        className="mx-3 mb-3 flex items-center gap-2 rounded-lg bg-white p-2 shadow-lg"
         onClick={handleCloseSidebar}
       >
         <img
           src={user?.photoURL}
-          className="w-10 h-10 rounded-full"
+          className="h-10 w-10 rounded-full"
           alt="user"
         />
         <p>{user?.displayName}</p>
