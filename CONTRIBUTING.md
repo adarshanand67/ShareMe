@@ -4,7 +4,8 @@ We welcome contributions to this project from the community! Whether you're fixi
 
 ## Issues
 
-If you find a bug or have an idea for a new feature, please [open an issue](https://github.com/ShareMe/issues) on GitHub. Before opening a new issue, please search for existing issues to avoid duplicates.
+If you find a bug or have an idea for a new feature, please [open an issue](https://github.com/adarshanand67/ShareMe/issues) on GitHub. Before opening a new issue, please search for existing issues to avoid duplicates.
+
 
 ## Pull Requests
 
