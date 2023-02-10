@@ -13,6 +13,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { fetchUser } from "../utils/fetchUser";
+import { UserProfilePhoto } from "./UserProfilePhoto";
 
 const MicActiveStyles = "bg-red-500 text-white";
 const MicInactiveStyles = "bg-gray-300 text-gray-500";
@@ -20,8 +21,9 @@ const MicInactiveStyles = "bg-gray-300 text-gray-500";
 const Navbar = ({ searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   const user = fetchUser();
-  // console.log(user);
-  
+  console.log(user);
+
+
   const {
     transcript,
     listening,
@@ -35,8 +37,8 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
 
   if (user) {
     return (
-      <div className="flex gap-2 md:gap-5 w-full mt-5 p-2 ">
-        <div className="flex justify-start items-center w-full px-5 rounded-full bg-gray-300 border-none outline-none focus-within:shadow-sm">
+      <div className="mt-5 flex w-full gap-2 p-2 md:gap-5 ">
+        <div className="flex w-full items-center justify-start rounded-full border-none bg-gray-300 px-5 outline-none focus-within:shadow-sm">
           {/* Searchbar */}
           <IoMdSearch fontSize={21} className="ml-1" />
           <input
@@ -46,11 +48,11 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             value={searchTerm}
             onFocus={() => navigate("/search")}
             onBlur={() => setSearchTerm("")} // Clear search term when user clicks outside
-            className="p-2 w-full bg-gray-300 outline-none"
+            className="w-full bg-gray-300 p-2 outline-none"
           />
           {/* Close button */}
           <button
-            className="p-2 rounded-full ml-2 bg-gray-300 text-gray-500"
+            className="ml-2 rounded-full bg-gray-300 p-2 text-gray-500"
             onClick={() => setSearchTerm("")}
           >
             <IoMdClose fontSize={21} />
@@ -61,10 +63,8 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
 
         {browserSupportsSpeechRecognition ? (
           <button
-            className={`p-4 rounded-full ml-2 hover:bg-red-400
-            ${
-              listening ? MicActiveStyles : MicInactiveStyles
-            }`}
+            className={`ml-2 rounded-full p-4 hover:bg-red-400
+            ${listening ? MicActiveStyles : MicInactiveStyles}`}
             onClick={
               listening
                 ? resetTranscript && setSearchTerm(transcript)
@@ -80,17 +80,11 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
 
         {/* User Profile */}
         <div className="flex gap-5 ">
-          <Link to={`user/${user?.uid}`} className="hidden md:block">
-            <img
-              src={user.photoURL}
-              alt="user-pic"
-              className="w-14 h-12 rounded-lg "
-            />
-          </Link>
+          {/* <UserProfilePhoto user={user} /> */}
           {/* Creating new pin */}
           <Link
             to="/create-pin"
-            className="bg-black text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center"
+            className="flex h-12 w-12 items-center justify-center rounded-lg bg-black text-white md:h-12 md:w-14"
           >
             <IoMdAdd />
           </Link>
