@@ -186,8 +186,7 @@ If you have any feedback, please reach out to us at 📫 adarsh.anand.20031@iitg
 
 ## Contributing 🤝
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Read the [contributing guidelines]( https://www.github.com/adarshanand67/shareme/blob/main/CONTRIBUTING.md) before contributing.
 Please make sure to update tests as appropriate.
 
 ## Contributors ✨
