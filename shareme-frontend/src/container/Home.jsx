@@ -9,10 +9,10 @@ import { client } from "../client";
 import Pins from "./Pins";
 
 import Confettis from "../components/Confettis";
-import SocialMediaButtons from "../components/SocialMediaButtons";
+import VoiceSearch from "../components/VoiceSearch";
+import SocialMediaButtons from "../pages/SocialMediaButtons";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-import VoiceSearch from "../components/VoiceSearch";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
@@ -39,13 +39,13 @@ const Home = () => {
   });
 
   return (
-    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
-      <div className="hidden md:flex h-screen flex-initial">
+    <div className="flex h-screen flex-col bg-gray-50 transition-height duration-75 ease-out md:flex-row">
+      <div className="hidden h-screen flex-initial md:flex">
         <Sidebar closeToggle={setToggleSidebar} />
         {/* If user is logged in then show sidebar */}
       </div>
-      <div className="flex md:hidden flex-row">
-        <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
+      <div className="flex flex-row md:hidden">
+        <div className="flex w-full flex-row items-center justify-between p-2 shadow-md">
           <HiMenu
             fontSize={40}
             className="cursor-pointer"
@@ -58,13 +58,13 @@ const Home = () => {
             <img
               src={userInfo?.photoURL}
               alt="user-pic"
-              className="w-9 h-9 rounded-full "
+              className="h-9 w-9 rounded-full "
             />
           </Link>
         </div>
         {toggleSidebar && (
-          <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
-            <div className="absolute w-full flex justify-end items-center p-2">
+          <div className="fixed z-10 h-screen w-4/5 animate-slide-in overflow-y-auto bg-white shadow-md">
+            <div className="absolute flex w-full items-center justify-end p-2">
               <AiFillCloseCircle
                 fontSize={30}
                 className="cursor-pointer"
@@ -75,12 +75,11 @@ const Home = () => {
           </div>
         )}
       </div>
-      <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
+      <div className="h-screen flex-1 overflow-y-scroll pb-2" ref={scrollRef}>
         <Routes>
           <Route path="/user/:userId" element={<UserProfile />} />
           <Route path="/*" element={<Pins user={user && user} />} />
           <Route path="/test" element={<SocialMediaButtons />} />
-          <Route path="/voice" element=<VoiceSearch /> />
         </Routes>
       </div>
     </div>

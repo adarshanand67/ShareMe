@@ -5,6 +5,10 @@ import { IoIosLogOut } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
 import img from "../assets/img.jpeg";
 import { client } from "../client";
+import { Icon } from "../components/Icon";
+import MasonryLayout from "../components/MasonryLayout";
+import QRCodeGenerator from "../components/QRCode";
+import Spinner from "../components/Spinner";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
@@ -12,11 +16,7 @@ import {
   userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-import { Icon } from "./Icon";
-import MasonryLayout from "./MasonryLayout";
-import QRCodeGenerator from "./QRCode";
 import SocialMediaButtons from "./SocialMediaButtons";
-import Spinner from "./Spinner";
 
 const UserProfile = () => {
   const [user, setUser] = useState();
@@ -36,7 +36,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     const query = userQuery(userId); // Get user by id
-    client.fetch(query).then((data) => { // Fetch user by id
+    client.fetch(query).then((data) => {
+      // Fetch user by id
       setUser(data[0]); // Set user
     });
   }, [userId]); // If user id changes then fetch user again
@@ -79,30 +80,30 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="relative pb-2 h-full justify-center items-center">
+    <div className="relative h-full items-center justify-center pb-2">
       <div className="flex flex-col pb-5">
-        <div className="relative flex flex-col mb-7">
-          <div className="flex flex-col justify-center items-center">
+        <div className="relative mb-7 flex flex-col">
+          <div className="flex flex-col items-center justify-center">
             <img
-              className="w-full h-40 2xl:h-50 shadow-lg object-cover opacity-100 "
+              className="2xl:h-50 h-40 w-full object-cover opacity-100 shadow-lg "
               src={"https://source.unsplash.com/random/680x300/?city,water,sky"}
               alt="user-pic"
             />
             <img
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
+              className="-mt-10 h-20 w-20 rounded-full object-cover shadow-xl"
               src={user.image}
               alt="user-pic"
             />
           </div>
-          <h1 className="font-bold text-3xl text-center mt-3">
+          <h1 className="mt-3 text-center text-3xl font-bold">
             {user.userName}
           </h1>
-          <div className="absolute top-0 z-1 right-0 p-2">
+          <div className="z-1 absolute top-0 right-0 p-2">
             {userId === User.uid && (
               // Logic for logout redirec to login page
               <button
                 type="button"
-                className=" bg-white p-2 rounded-full cursor-pointer outline-none shadow-md"
+                className=" cursor-pointer rounded-full bg-white p-2 shadow-md outline-none"
                 onClick={() => FirebaseLogout()}
               >
                 <IoIosLogOut color="red" fontSize={21} />
@@ -111,7 +112,7 @@ const UserProfile = () => {
           </div>
         </div>
         {/* Show QR Code at bottom right */}
-        <div className="flex flex-row items-center justify-center ali">
+        <div className="ali flex flex-row items-center justify-center">
           {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
           <SocialMediaButtons url={window.location.href} />
           {/* <QRCodeGenerator url={window.location.href} /> */}
@@ -119,7 +120,7 @@ const UserProfile = () => {
         </div>
 
         {/* Created Pins */}
-        <div className="text-center mb-7">
+        <div className="mb-7 text-center">
           <button
             type="button"
             onClick={(e) => {
@@ -151,7 +152,7 @@ const UserProfile = () => {
         </div>
 
         {pins?.length === 0 && (
-          <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
+          <div className="text-1xl mt-2 flex w-full items-center justify-center font-bold">
             No Pins Found!
           </div>
         )}

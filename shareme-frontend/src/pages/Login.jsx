@@ -8,7 +8,9 @@ import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 // Firebase
 import {
-  GithubAuthProvider, GoogleAuthProvider, signInWithPopup
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { client } from "../client";
 import { auth } from "../firebase";
@@ -25,8 +27,8 @@ const Login = () => {
   const { signInWithGoogle, signInWithGithub } = SignInUtility();
 
   return (
-    <div className="flex justify-start items-center flex-col h-screen">
-      <div className=" relative w-full h-full">
+    <div className="flex h-screen flex-col items-center justify-start">
+      <div className=" relative h-full w-full">
         <video
           src={shareVideo}
           type="video/mp4"
@@ -34,16 +36,16 @@ const Login = () => {
           controls={false}
           muted
           autoPlay
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
 
-        <div className="absolute flex flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
-          <div className="p-5 m-5">
+        <div className="absolute top-0 right-0 left-0 bottom-0 flex flex-col items-center justify-center bg-blackOverlay">
+          <div className="m-5 p-5">
             <img src={logo} width="130px" />
           </div>
           <div className="m-5 p-5">
             {/* Content  */}
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center justify-center">
               <h1 className="text-3xl font-bold text-white">
                 Share your moments with
                 <TypeAnimation
@@ -67,16 +69,16 @@ const Login = () => {
               </h1>
             </div>
           </div>
-          <div className="shadow-2xl flex gap-20">
+          <div className="flex gap-20 shadow-2xl">
             <button
-              className="bg-mainColor flex justify-center items-center p-3 pr-5 rounded-full outline-none cursor-pointer hover:bg-opacity-80"
+              className="flex cursor-pointer items-center justify-center rounded-full bg-mainColor p-3 pr-5 outline-none hover:bg-opacity-80"
               onClick={signInWithGoogle}
             >
               <FcGoogle className="mr-4" />
               <span className=""> Google</span>
             </button>
             <button
-              className="bg-mainColor flex justify-center items-center p-3 pr-5 rounded-full outline-none cursor-pointer hover:bg-opacity-80"
+              className="flex cursor-pointer items-center justify-center rounded-full bg-mainColor p-3 pr-5 outline-none hover:bg-opacity-80"
               onClick={signInWithGithub}
             >
               <FaGithub className="mr-4" /> Github

@@ -6,10 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 import { useToast } from "@chakra-ui/react";
 import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
+import SocialMediaButtons from "../pages/SocialMediaButtons";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
-import SocialMediaButtons from "./SocialMediaButtons";
 import Spinner from "./Spinner";
 const PinDetail = ({ user }) => {
   // console.log(user);
@@ -103,11 +103,11 @@ const PinDetail = ({ user }) => {
 
       {pinDetail && (
         <div
-          className="flex xl:flex-row flex-col m-auto bg-white rounded-lg shadow-lg w-full gap-5"
+          className="m-auto flex w-full flex-col gap-5 rounded-lg bg-white shadow-lg xl:flex-row"
           style={{ maxWidth: "1500px", borderRadius: "32px" }}
         >
           {/* Image */}
-          <div className="flex justify-center items-center gap-5">
+          <div className="flex items-center justify-center gap-5">
             <img
               className="rounded-t-3xl rounded-b-lg"
               src={pinDetail?.image && urlFor(pinDetail?.image).url()}
@@ -115,31 +115,31 @@ const PinDetail = ({ user }) => {
             />
           </div>
 
-          <div className="w-full p-5 flex-1 xl:min-w-620 gap-5">
+          <div className="w-full flex-1 gap-5 p-5 xl:min-w-620">
             {/* Title about */}
             <div>
-              <h1 className="text-4xl font-bold break-words">
+              <h1 className="break-words text-4xl font-bold">
                 {pinDetail.title}
               </h1>
               <p className="mt-3">{pinDetail.about}</p>
             </div>
 
-            <div className="flex items-center justify-between mt-5 gap-5">
-              <div className="flex gap-2 items-center">
+            <div className="mt-5 flex items-center justify-between gap-5">
+              <div className="flex items-center gap-2">
                 {/* Download icon */}
                 <a
                   href={`${pinDetail.image.asset.url}?dl=`}
                   download
-                  className="bg-red-600 p-2 text-xl rounded-full flex items-center justify-center text-white opacity-75 hover:opacity-100"
+                  className="flex items-center justify-center rounded-full bg-red-600 p-2 text-xl text-white opacity-75 hover:opacity-100"
                 >
                   <MdDownloadForOffline size={25} />
                   <span className="px-2"> Download</span>
                 </a>
               </div>
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 {/* Showing Tags */}
                 <a
-                  className="bg-red-600 p-2 text-xl rounded-full flex items-center justify-center text-white opacity-75 hover:opacity-100"
+                  className="flex items-center justify-center rounded-full bg-red-600 p-2 text-xl text-white opacity-75 hover:opacity-100"
                   href={`/category/${category}`}
                 >
                   <VscTag size={25} />
@@ -149,7 +149,7 @@ const PinDetail = ({ user }) => {
             </div>
             {/* Link */}
             <a
-              className="p-2 mt-5 text-xl rounded-full flex text-black opacity-75 hover:opacity-100 hover:border border-black "
+              className="mt-5 flex rounded-full border-black p-2 text-xl text-black opacity-75 hover:border hover:opacity-100 "
               href={pinDetail.destination}
               target="_blank"
               rel="noreferrer"
@@ -164,11 +164,11 @@ const PinDetail = ({ user }) => {
             {/* Posted by */}
             <Link
               to={`/user/${pinDetail?.postedBy._id}`}
-              className="flex gap-2 mt-5 items-center bg-white rounded-lg "
+              className="mt-5 flex items-center gap-2 rounded-lg bg-white "
             >
               <img
                 src={pinDetail?.postedBy.image}
-                className="w-10 h-10 rounded-full"
+                className="h-10 w-10 rounded-full"
                 alt="user"
               />
               <p className="font-bold">{pinDetail?.postedBy.userName}</p>
@@ -179,12 +179,12 @@ const PinDetail = ({ user }) => {
             <div className="max-h-370 overflow-y-auto">
               {pinDetail?.comments?.map((item) => (
                 <div
-                  className="flex gap-2 mt-5 items-center bg-white rounded-lg"
+                  className="mt-5 flex items-center gap-2 rounded-lg bg-white"
                   key={item.comment}
                 >
                   <img
                     src={item.postedBy?.image}
-                    className="w-10 h-10 rounded-full cursor-pointer"
+                    className="h-10 w-10 cursor-pointer rounded-full"
                     alt="user"
                   />
                   <div className="flex flex-col">
@@ -194,18 +194,18 @@ const PinDetail = ({ user }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap mt-6 gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               {/* Who created this post */}
               <Link to={`/user/${user._id}`}>
                 <img
                   src={user.image}
-                  className="w-10 h-10 rounded-full cursor-pointer"
+                  className="h-10 w-10 cursor-pointer rounded-full"
                   alt="user"
                 />
               </Link>
               {/* Adding comments */}
               <input
-                className=" flex-1 border-gray-200 outline-none border-2 p-2 rounded-2xl focus:border-gray-400"
+                className=" flex-1 rounded-2xl border-2 border-gray-200 p-2 outline-none focus:border-gray-400"
                 type="text"
                 placeholder="Add a comment"
                 value={comment}
@@ -214,7 +214,7 @@ const PinDetail = ({ user }) => {
               {/* Adding comment button */}
               <button
                 type="button"
-                className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none"
+                className="rounded-full bg-red-500 px-6 py-2 text-base font-semibold text-white outline-none"
                 onClick={addComment}
               >
                 {addingComment ? "Doing..." : "Done"}
@@ -227,7 +227,7 @@ const PinDetail = ({ user }) => {
 
       {/* More from this user */}
       {pins?.length > 0 && (
-        <h2 className="text-center font-bold text-2xl mt-8 mb-4">
+        <h2 className="mt-8 mb-4 text-center text-2xl font-bold">
           More from this category! ({pins.length}) ▶
         </h2>
       )}

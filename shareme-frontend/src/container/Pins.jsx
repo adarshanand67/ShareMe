@@ -2,11 +2,18 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { CreatePin, Feed, Navbar, PinDetails, Search, Sidebar } from "../components";
+import {
+  CreatePin,
+  Feed,
+  Navbar,
+  PinDetails,
+  Search,
+  Sidebar,
+} from "../components";
 import Contact from "../components/Contact";
 import { Icon } from "../components/Icon";
 import QRCodeGenerator from "../components/QRCode";
-import SocialMediaButtons from "../components/SocialMediaButtons";
+import SocialMediaButtons from "../pages/SocialMediaButtons";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
