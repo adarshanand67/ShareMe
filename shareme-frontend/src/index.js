@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
-import "./index.css";
+import './styles/index.css'
 
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/react";
