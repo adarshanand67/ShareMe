@@ -33,7 +33,10 @@ cd shareme-frontend
 
 ```bash
 npm install
+copy .env.example .env
 ```
+
+Ask the maintainer for the values of the environment variables as they contain sensitive information.
 
 6. Run dev server.
 
