@@ -190,6 +190,10 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+## Contributors ✨
+Made with ❤️ by Awesome Contributors
+https://github.com/adarshanand67/shareme/graphs/contributors
+
 ## License 📜
 
 [MIT](https://choosealicense.com/licenses/mit/)
