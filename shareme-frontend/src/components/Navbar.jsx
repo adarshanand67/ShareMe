@@ -13,7 +13,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { fetchUser } from "../utils/fetchUser";
-import { UserProfilePhoto } from "./UserProfilePhoto";
 import { UserProfile } from "../pages/UserProfile";
 
 const MicActiveStyles = "bg-red-500 text-white";
@@ -78,22 +77,22 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
         ) : null}
 
         {/* User Profile */}
-        <div className="flex gap-5 ">
+        <div className="flex items-center gap-5">
           <Link
             to={`user/${user?.uid}`}
-            className="mx-3 flex items-center justify-center rounded-full h-12 w-12"
+            className="mx-3 flex h-12 w-12 items-center justify-center rounded-full"
             // onClick={handleCloseSidebar}
           >
             <img
               src={user?.photoURL}
-              className="h-10 w-10 rounded-full"
+              className="rounded-lg"
               alt="user"
             />
           </Link>
           {/* Creating new pin */}
           <Link
             to="/create-pin"
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-black text-white md:h-12 md:w-14"
+            className="flex items-center justify-center rounded-lg bg-black text-white md:h-12 md:w-14"
           >
             <IoMdAdd />
           </Link>
