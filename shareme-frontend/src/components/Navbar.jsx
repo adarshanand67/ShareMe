@@ -14,6 +14,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { fetchUser } from "../utils/fetchUser";
 import { UserProfilePhoto } from "./UserProfilePhoto";
+import { UserProfile } from "../pages/UserProfile";
 
 const MicActiveStyles = "bg-red-500 text-white";
 const MicInactiveStyles = "bg-gray-300 text-gray-500";
@@ -22,7 +23,6 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   const user = fetchUser();
   console.log(user);
-
 
   const {
     transcript,
@@ -60,7 +60,6 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
         </div>
 
         {/* Voice search */}
-
         {browserSupportsSpeechRecognition ? (
           <button
             className={`ml-2 rounded-full p-4 hover:bg-red-400
@@ -80,7 +79,17 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
 
         {/* User Profile */}
         <div className="flex gap-5 ">
-          {/* <UserProfilePhoto user={user} /> */}
+          <Link
+            to={`user/${user?.uid}`}
+            className="mx-3 flex items-center justify-center rounded-full h-12 w-12"
+            // onClick={handleCloseSidebar}
+          >
+            <img
+              src={user?.photoURL}
+              className="h-10 w-10 rounded-full"
+              alt="user"
+            />
+          </Link>
           {/* Creating new pin */}
           <Link
             to="/create-pin"
