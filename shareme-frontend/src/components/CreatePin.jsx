@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+import Confettis from "./Confettis";
 import { useToast } from "@chakra-ui/react";
 import { client } from "../client";
 import { categories } from "../utils/data";
@@ -15,6 +15,7 @@ const CreatePin = ({ user }) => {
   // Data of uploaded pin
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
   const [destination, setDestination] = useState();
   const [fields, setFields] = useState();
   const [category, setCategory] = useState();
@@ -186,7 +187,10 @@ const CreatePin = ({ user }) => {
             <div className="mt-5 flex items-end justify-end">
               <button
                 type="button"
-                onClick={savePins}
+                onClick={() => {
+                  savePins();
+                  setShowConfetti(true);
+                }}
                 className="w-28 rounded-full bg-red-500 p-2 font-bold text-white outline-none"
               >
                 Save Pin
@@ -195,6 +199,7 @@ const CreatePin = ({ user }) => {
           </div>
         </div>
       </div>
+      {showConfetti ? <Confettis /> : null}
     </div>
   );
 };
