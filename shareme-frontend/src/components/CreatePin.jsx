@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { client } from "../client";
 import { categories } from "../utils/data";
@@ -20,6 +20,7 @@ const CreatePin = ({ user }) => {
   const [imageAsset, setImageAsset] = useState();
   const [showConfetti, setShowConfetti] = useState(false);
   const [wrongImageType, setWrongImageType] = useState(false);
+  console.log(user)
 
   const navigate = useNavigate(); // Navigate to a new page
 
@@ -153,6 +154,7 @@ const CreatePin = ({ user }) => {
         </div>
 
         {/* Writing Title */}
+
         <div className="mt-5 flex w-full flex-1 flex-col gap-6 lg:pl-5">
           <input
             type="text"
@@ -161,6 +163,7 @@ const CreatePin = ({ user }) => {
             placeholder="Add your title"
             className="bg-red-100 border-b-2 border-gray-300 p-2 text-2xl font-bold outline-none sm:text-3xl"
           />
+          
           {user && (
             <div className="mt-2 mb-2 flex items-center gap-2 rounded-lg bg-red-100 ">
               <img
@@ -171,6 +174,7 @@ const CreatePin = ({ user }) => {
               <p className="font-bold">{user.userName}</p>
             </div>
           )}
+
           {/* Writing About */}
           <input
             type="text"
@@ -219,7 +223,15 @@ const CreatePin = ({ user }) => {
             </div>
 
             {/* Save Pin Button */}
-            <div className="mt-5 flex items-end justify-end">
+            <div className="mt-5 flex items-end justify-end gap-3">
+              {/* Cancel button */}
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="w-28 rounded-full bg-black p-2 font-bold text-white outline-none"
+              >
+                Cancel
+              </button>
               <button
                 type="button"
                 onClick={() => {
@@ -241,6 +253,20 @@ const CreatePin = ({ user }) => {
           </div>
         </div>
       </div>
+      {user && (
+        <div className="mx-auto mt-2 mb-2 flex items-center gap-2 rounded-lg bg-red-300 p-3 ">
+          <Link to={`/user/${user._id}`}>
+            <img
+              src={user.image}
+              className="h-10 w-10 rounded-full"
+              alt="user-profile"
+            />
+          </Link>
+          <Link to={`/user/${user._id}`}>
+            <p className="font-bold">{user.userName}</p>
+          </Link>
+        </div>
+      )}
       {/* Confetti */}
       {showConfetti ? <Confettis /> : null}
     </div>

@@ -60,7 +60,7 @@ const Sidebar = ({ closeToggle }) => {
       {/* User Profile */}
       <Link
         to={`user/${user?.uid}`}
-        className="mx-3 mb-3 flex items-center gap-2 rounded-lg bg-white p-2 shadow-lg"
+        className="mx-3 mb-3 mt-10 flex items-center gap-2 rounded-lg bg-white p-2 shadow-lg"
         onClick={handleCloseSidebar}
       >
         <img
