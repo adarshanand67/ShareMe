@@ -20,7 +20,7 @@ const CreatePin = ({ user }) => {
   const [imageAsset, setImageAsset] = useState();
   const [showConfetti, setShowConfetti] = useState(false);
   const [wrongImageType, setWrongImageType] = useState(false);
-  console.log(user)
+  console.log(user);
 
   const navigate = useNavigate(); // Navigate to a new page
 
@@ -163,7 +163,7 @@ const CreatePin = ({ user }) => {
             placeholder="Add your title"
             className="bg-red-100 border-b-2 border-gray-300 p-2 text-2xl font-bold outline-none sm:text-3xl"
           />
-          
+
           {user && (
             <div className="mt-2 mb-2 flex items-center gap-2 rounded-lg bg-red-100 ">
               <img
@@ -222,7 +222,6 @@ const CreatePin = ({ user }) => {
               </select>
             </div>
 
-            {/* Save Pin Button */}
             <div className="mt-5 flex items-end justify-end gap-3">
               {/* Cancel button */}
               <button
@@ -232,15 +231,7 @@ const CreatePin = ({ user }) => {
               >
                 Cancel
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  navigate("/");
-                }}
-                className="w-28 rounded-full bg-black p-2 mx-4 font-bold text-white outline-none"
-              >
-                Cancel
-              </button>
+              {/* Save Pin Button */}
               <button
                 type="button"
                 onClick={savePin}
@@ -249,24 +240,9 @@ const CreatePin = ({ user }) => {
                 Save Pin
               </button>
             </div>
-            {/* End of Save Pin Button */}
           </div>
         </div>
       </div>
-      {user && (
-        <div className="mx-auto mt-2 mb-2 flex items-center gap-2 rounded-lg bg-red-300 p-3 ">
-          <Link to={`/user/${user._id}`}>
-            <img
-              src={user.image}
-              className="h-10 w-10 rounded-full"
-              alt="user-profile"
-            />
-          </Link>
-          <Link to={`/user/${user._id}`}>
-            <p className="font-bold">{user.userName}</p>
-          </Link>
-        </div>
-      )}
       {/* Confetti */}
       {showConfetti ? <Confettis /> : null}
     </div>
