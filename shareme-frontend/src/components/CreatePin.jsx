@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { client } from "../client";
 import { categories } from "../utils/data";
+import Confettis from "./Confettis";
 import Spinner from "./Spinner";
 
 const CreatePin = ({ user }) => {
@@ -17,6 +18,7 @@ const CreatePin = ({ user }) => {
   const [fields, setFields] = useState();
   const [category, setCategory] = useState();
   const [imageAsset, setImageAsset] = useState();
+  const [showConfetti, setShowConfetti] = useState(false);
   const [wrongImageType, setWrongImageType] = useState(false);
 
   const navigate = useNavigate(); // Navigate to a new page
@@ -75,6 +77,7 @@ const CreatePin = ({ user }) => {
         },
         category,
       };
+      setShowConfetti(true);
       client.create(doc).then(() => {
         navigate("/"); // Create pin and navigate to home page
       });
@@ -224,6 +227,8 @@ const CreatePin = ({ user }) => {
           </div>
         </div>
       </div>
+      {/* Confetti */}
+      {showConfetti ? <Confettis /> : null}
     </div>
   );
 };
