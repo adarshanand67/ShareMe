@@ -16,7 +16,7 @@ const Pin = ({ pin }) => {
   // console.log(category);
   // console.log(title);
   const [savingPost, setSavingPost] = useState(false);
-
+  const [deleted, setDeleted] = useState(false);
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
 
   const navigate = useNavigate(); // Navigate to a new page
@@ -27,8 +27,9 @@ const Pin = ({ pin }) => {
   // Delete pin of the own user only (not others)
   const deletePin = (id) => {
     client.delete(id).then(() => {
-      window.location.reload();
       setSavingPost(false);
+      setDeleted(true);
+      // window.location.reload();
     });
   };
 
@@ -67,7 +68,7 @@ const Pin = ({ pin }) => {
   // console.log(user);
 
   return (
-    <div className="m-2 py-3">
+    <div className={`m-2 py-3 ${deleted ? "hidden" : null}`}>
       <div
         onMouseEnter={() => setPostHovered(true)} // If post is hovered
         onMouseLeave={() => setPostHovered(false)}
@@ -99,9 +100,9 @@ const Pin = ({ pin }) => {
                   onClick={(e) => {
                     e.stopPropagation(); // Stop the event from bubbling up the DOM tree
                   }}
-                  className="bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
+                  className="bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
                 >
-                  <MdDownloadForOffline />
+                  <MdDownloadForOffline color="black" />
                 </a>
               </div>
               {/* Already saved posts */}
@@ -153,11 +154,12 @@ const Pin = ({ pin }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
+                    deletePin(_id);
                     <Toast status="success" description="Pin deleted" />;
                   }}
-                  className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
+                  className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-white opacity-75 hover:opacity-100 outline-none"
                 >
-                  <AiTwotoneDelete />
+                  <AiTwotoneDelete color="black" />
                 </button>
               )}
             </div>
