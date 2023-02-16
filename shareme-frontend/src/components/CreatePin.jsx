@@ -79,7 +79,9 @@ const CreatePin = ({ user }) => {
       };
       setShowConfetti(true);
       client.create(doc).then(() => {
-        navigate("/"); // Create pin and navigate to home page
+        setTimeout(() => {
+          navigate("/"); // Create pin and navigate to home page
+        }, 3000);
       });
     } else {
       setFields(true);
