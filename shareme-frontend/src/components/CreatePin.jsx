@@ -164,17 +164,7 @@ const CreatePin = ({ user }) => {
             className="border-b-2 border-gray-300 bg-red-100 p-2 text-2xl font-bold outline-none sm:text-3xl"
           />
 
-          {user && (
-            <div className="mt-2 mb-2 flex items-center gap-2 rounded-lg bg-red-100 ">
-              <img
-                src={user.image}
-                className="h-10 w-10 rounded-full"
-                alt="user-profile"
-              />
-              <p className="font-bold">{user.userName}</p>
-            </div>
-          )}
-
+        
           {/* Writing About */}
           <input
             type="text"
