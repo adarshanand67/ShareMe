@@ -20,7 +20,7 @@ const CreatePin = ({ user }) => {
   const [imageAsset, setImageAsset] = useState();
   const [showConfetti, setShowConfetti] = useState(false);
   const [wrongImageType, setWrongImageType] = useState(false);
-  console.log(user)
+  console.log(user);
 
   const navigate = useNavigate(); // Navigate to a new page
 
@@ -101,8 +101,8 @@ const CreatePin = ({ user }) => {
           Please add all fields.
         </p>
       )}
-      <div className=" flex w-full flex-col items-center justify-center bg-white p-3 lg:w-4/5 lg:flex-row  lg:p-5">
-        <div className="flex w-full flex-0.7 bg-secondaryColor p-3">
+      <div className=" flex w-full flex-col items-center justify-center bg-red-100 p-3 lg:w-4/5 lg:flex-row  lg:p-5">
+        <div className="flex w-full flex-0.7 p-3">
           <div className=" flex h-420 w-full flex-col items-center justify-center border-2 border-dotted border-gray-300 p-3">
             {/* Image Loading */}
             {loading && <Spinner />}
@@ -143,7 +143,7 @@ const CreatePin = ({ user }) => {
                 />
                 <button
                   type="button"
-                  className="absolute bottom-3 right-3 cursor-pointer rounded-full bg-white p-3 text-xl outline-none transition-all duration-500 ease-in-out hover:shadow-md"
+                  className="absolute bottom-3 right-3 cursor-pointer rounded-full bg-red-100 p-3 text-xl outline-none transition-all duration-500 ease-in-out hover:shadow-md"
                   onClick={() => setImageAsset(null)}
                 >
                   <MdDelete />
@@ -161,7 +161,7 @@ const CreatePin = ({ user }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)} // Set title
             placeholder="Add your title"
-            className="border-b-2 border-gray-200 p-2 text-2xl font-bold outline-none sm:text-3xl"
+            className="border-b-2 border-gray-300 bg-red-100 p-2 text-2xl font-bold outline-none sm:text-3xl"
           />
 
           {/* Writing About */}
@@ -170,7 +170,7 @@ const CreatePin = ({ user }) => {
             value={about}
             onChange={(e) => setAbout(e.target.value)}
             placeholder="Tell everyone what your Pin is about"
-            className="border-b-2 border-gray-200 p-2 text-base outline-none sm:text-lg"
+            className="border-b-2 border-gray-300 bg-red-100 p-2 text-base outline-none sm:text-lg"
           />
           {/* Writing destination */}
           <input
@@ -178,7 +178,7 @@ const CreatePin = ({ user }) => {
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
             placeholder="Add a destination link"
-            className="border-b-2 border-gray-200 p-2 text-base outline-none sm:text-lg"
+            className="border-b-2 border-gray-300 bg-red-100 p-2 text-base outline-none sm:text-lg"
           />
 
           {/* Selecting Category */}
@@ -191,14 +191,17 @@ const CreatePin = ({ user }) => {
                 onChange={(e) => {
                   setCategory(e.target.value);
                 }}
-                className="w-4/5 cursor-pointer rounded-md border-b-2 border-gray-200 p-2 text-base outline-none"
+                className="w-4/5 cursor-pointer rounded-md border-b-2 border-gray-300 bg-red-100 p-2 text-base outline-none"
               >
-                <option value="others" className="sm:text-bg bg-white">
+                <option
+                  value="others"
+                  className="sm:text-bg border-b-2 border-gray-300 bg-red-100"
+                >
                   Select Category
                 </option>
                 {categories.map((item) => (
                   <option
-                    className="border-0 bg-white text-base capitalize text-black outline-none "
+                    className="border-0 border-b-2 border-gray-300 bg-red-100 text-base capitalize text-black outline-none "
                     value={item.name}
                     key={item._id}
                   >
@@ -208,7 +211,6 @@ const CreatePin = ({ user }) => {
               </select>
             </div>
 
-            {/* Save Pin Button */}
             <div className="mt-5 flex items-end justify-end gap-3">
               {/* Cancel button */}
               <button
@@ -218,6 +220,7 @@ const CreatePin = ({ user }) => {
               >
                 Cancel
               </button>
+              {/* Save Pin Button */}
               <button
                 type="button"
                 onClick={savePin}
@@ -226,7 +229,6 @@ const CreatePin = ({ user }) => {
                 Save Pin
               </button>
             </div>
-            {/* End of Save Pin Button */}
           </div>
         </div>
       </div>
