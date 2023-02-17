@@ -13,7 +13,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { fetchUser } from "../utils/fetchUser";
-import { UserProfile } from "../pages/UserProfile";
 
 const MicActiveStyles = "bg-red-500 text-white";
 const MicInactiveStyles = "bg-gray-300 text-gray-500";
@@ -83,11 +82,7 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             className="mx-3 flex h-12 w-12 items-center justify-center rounded-full"
             // onClick={handleCloseSidebar}
           >
-            <img
-              src={user?.photoURL}
-              className="rounded-lg"
-              alt="user"
-            />
+            <img src={user?.photoURL} className="rounded-lg" alt="user" />
           </Link>
           {/* Creating new pin */}
           <Link

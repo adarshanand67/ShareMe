@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +11,6 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap");
 
 * {
   font-family: "Fuzzy Bubbles", cursive;
@@ -27,7 +28,7 @@ body {
   border-radius: 150px;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #de2626;
   border-radius: 150px;
 }
