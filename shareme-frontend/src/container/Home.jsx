@@ -1,12 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import { Sidebar, UserProfile } from "../components";
+import { Sidebar } from "../components";
+
+const UserProfile = lazy(() =>
+  import("../components").then((module) => {
+    return { default: module.UserProfile };
+  })
+);
+const Pins = lazy(() => import("./Pins"));
+console.log("userprofile...", UserProfile);
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { HiMenu } from "react-icons/hi";
 import logo from "../assets/logo.png";
 import { client } from "../client";
-import Pins from "./Pins";
 
 import Confettis from "../components/Confettis";
 import VoiceSearch from "../components/VoiceSearch";
@@ -76,11 +83,13 @@ const Home = () => {
         )}
       </div>
       <div className="h-screen flex-1 overflow-y-scroll pb-2" ref={scrollRef}>
-        <Routes>
-          <Route path="/user/:userId" element={<UserProfile />} />
-          <Route path="/*" element={<Pins user={user && user} />} />
-          <Route path="/test" element={<SocialMediaButtons />} />
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/*" element={<Pins user={user && user} />} />
+            <Route path="/test" element={<SocialMediaButtons />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );
