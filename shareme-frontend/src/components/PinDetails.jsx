@@ -1,10 +1,11 @@
+import { useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { BiFile, BiLike } from "react-icons/bi";
 import { MdDownloadForOffline } from "react-icons/md";
+import { VscLink, VscTag } from "react-icons/vsc";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
-import { useToast } from "@chakra-ui/react";
-import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
 import SocialMediaButtons from "../pages/SocialMediaButtons";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
@@ -19,6 +20,8 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState();
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -64,7 +67,7 @@ const PinDetail = ({ user }) => {
           {
             comment,
             _key: uuidv4(), // Generate unique key
-            postedBy: { _type: "postedBy", _ref: user._id }, // Reference to user
+            postedBy: { _type: "postedBy", _ref: user?._id }, // Reference to user
           },
         ])
         .commit() // Commit the changes
@@ -93,7 +96,43 @@ const PinDetail = ({ user }) => {
   // const BASE_URL = "https://share-me-web.netlify.app/";
   // const POST_URL = BASE_URL + "pin-detail/" + pinId;
   const currentUrl = window.location.href; // Get current url
-  // console.log(currentUrl);
+
+  // console.log(likes)
+  const likes = pinDetail?.likes;
+  // const [countOfLikes, setCountOfLikes] = useState();
+  // console.log("Count of Likes : ", countOfLikes)
+
+  // console.log("Likes : ", likes);
+  // localStorage.setItem("likes", likes);
+
+  const handleLike = () => {
+    // console.log("Liked");
+    setIsLiked(!isLiked);
+
+    const currentLikes = localStorage.getItem("likes");
+    console.log("Current Likes : ", currentLikes);
+
+    toast({
+      title: "Liked",
+      description: "You liked the pin",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
+
+  const handleUnlike = () => {
+    // console.log("Unliked");
+    setIsLiked(!isLiked);
+
+    toast({
+      title: "Unliked",
+      description: "You unliked the pin",
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+    });
+  };
 
   return (
     <div>
@@ -114,7 +153,6 @@ const PinDetail = ({ user }) => {
               alt="user-post"
             />
           </div>
-
           <div className="w-full flex-1 gap-5 p-5 xl:min-w-620">
             {/* Title about */}
             <div>
@@ -136,6 +174,8 @@ const PinDetail = ({ user }) => {
                   <span className="px-2"> Download</span>
                 </a>
               </div>
+              {/* Showing Likes */}
+
               <div className="flex items-center gap-2">
                 {/* Showing Tags */}
                 <a
@@ -161,18 +201,46 @@ const PinDetail = ({ user }) => {
                   : pinDetail.destination}
               </span>
             </a>
-            {/* Posted by */}
-            <Link
-              to={`/user/${pinDetail?.postedBy._id}`}
-              className="mt-5 flex items-center gap-2 rounded-lg bg-white "
-            >
-              <img
-                src={pinDetail?.postedBy.image}
-                className="h-10 w-10 rounded-full"
-                alt="user"
-              />
-              <p className="font-bold">{pinDetail?.postedBy.userName}</p>
-            </Link>
+            <div className="flex justify-between">
+              {/* Posted by */}
+              <div>
+                <Link
+                  to={`/user/${pinDetail?.postedBy._id}`}
+                  className="mt-5 flex items-center gap-2 rounded-lg bg-white "
+                >
+                  <img
+                    src={pinDetail?.postedBy.image}
+                    className="h-10 w-10 rounded-full"
+                    alt="user"
+                  />
+                  <p className="font-bold">{pinDetail?.postedBy.userName}</p>
+                </Link>
+              </div>
+              <div className="mt-5 flex items-center gap-2">
+                <span className="text-2xl font-bold">
+                  {isLiked ? (
+                    <div>
+                      <AiFillLike
+                        size={25}
+                        className="text-red-600"
+                        onClick={handleUnlike}
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <AiOutlineLike
+                        size={25}
+                        className="text-red-600"
+                        onClick={handleLike}
+                      />
+                    </div>
+                  )}
+                </span>
+                <div className="text-2xl">
+                  {/* {countOfLikes} {countOfLikes <= 1 ? "Like" : "Likes"} */}
+                </div>
+              </div>
+            </div>
 
             {/* Comment section */}
             <h2 className="mt-8 text-2xl">Comments</h2>
@@ -203,6 +271,7 @@ const PinDetail = ({ user }) => {
                   alt="user"
                 />
               </Link>
+
               {/* Adding comments */}
               <input
                 className=" flex-1 rounded-2xl border-2 border-gray-200 p-2 outline-none focus:border-gray-400"

@@ -101,6 +101,7 @@ export const pinDetailQuery = (pinId) => {
     _id,
     title,
     about,
+    likes,
     category,
     destination,
     postedBy->{
@@ -137,6 +138,7 @@ export const pinDetailMorePinQuery = (pin) => {
     },
     _id,
     title,
+    likes,
     destination,
     postedBy->{
       _id,

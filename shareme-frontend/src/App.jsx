@@ -7,7 +7,6 @@ import Login from "./pages/Login";
 import { fetchUser } from "./utils/fetchUser";
 
 const Home = lazy(() => import("./container/Home"));
-console.log("homle...", Home);
 
 const App = () => {
   const navigate = useNavigate();

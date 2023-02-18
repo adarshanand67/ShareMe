@@ -8,7 +8,6 @@ const UserProfile = lazy(() =>
   })
 );
 const Pins = lazy(() => import("./Pins"));
-console.log("userprofile...", UserProfile);
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { HiMenu } from "react-icons/hi";
