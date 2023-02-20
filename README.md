@@ -9,8 +9,8 @@
 [![GitHub license](https://img.shields.io/github/license/adarshanand67/ShareMe)](https://github.com/adarshanand67/ShareMe/blob/master/LICENSE)
 <img src="https://img.shields.io/github/languages/top/adarshanand67/ShareMe">
 <img src="https://img.shields.io/github/watchers/adarshanand67/ShareMe" />
-
-<iframe src="https://player.vimeo.com/video/800546739?h=353c3b1a09" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<h1>Walkthrough Video Of Website</h1>
+https://user-images.githubusercontent.com/49303222/220144969-7bb085b4-0029-4b18-85a9-1200286ac07c.mp4
 
 ## Flow of the application
 
