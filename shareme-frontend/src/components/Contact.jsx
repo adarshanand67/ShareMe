@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import { Toast, useToast } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
 import EmailIcon from "@mui/icons-material/Email";
-import { Toast, useToast } from "@chakra-ui/react";
+import React, { useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Contact = () => {
@@ -15,8 +15,8 @@ const Contact = () => {
     // Change user id and template id, personal access token
     emailjs
       .sendForm(
-        "service_h2k5q27",
-        "template_vqlawut",
+        "service_h2k5q27", // service id
+        "template_eju6fei", // template id
         form.current,
         "lgGfkiUnJICbaIc-Q"
       )
@@ -61,7 +61,7 @@ const Contact = () => {
               </label>
               <input
                 type="text"
-                name="user_name"
+                name="name"
                 className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light"
                 placeholder="Your Name"
                 required=""
@@ -74,7 +74,7 @@ const Contact = () => {
               </label>
               <input
                 type="email"
-                name="user_email"
+                name="email"
                 className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light"
                 placeholder="name@gmail.com"
                 required=""
