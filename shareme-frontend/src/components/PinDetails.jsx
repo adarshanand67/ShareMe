@@ -11,6 +11,7 @@ import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import Footers from "./Footers";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
+
 const PinDetail = ({ user }) => {
   // console.log(user);
   const { pinId } = useParams(); // Get pin id from url
@@ -26,8 +27,6 @@ const PinDetail = ({ user }) => {
 
   let category = pinDetail?.category;
   category = capitalizeFirstLetter(category);
-
-  // console.log(category);
 
   const fetchPinDetails = () => {
     const query = pinDetailQuery(pinId);
@@ -96,39 +95,58 @@ const PinDetail = ({ user }) => {
   // const POST_URL = BASE_URL + "pin-detzail/" + pinId;
   const currentUrl = window.location.href; // Get current url
 
-  const likes = pinDetail?.likes;
-  console.log(likes);
-  // const [countOfLikes, setCountOfLikes] = useState();
-  // console.log("Count of Likes : ", countOfLikes)
+  const likes = pinDetail?.likes || 0;
+  // console.log(likes);
 
-  const handleLike = () => {
-    // console.log("Liked");
-    setIsLiked(!isLiked);
+  // const handleLike = () => {
+  //   setIsLiked(!isLiked);
 
-    const currentLikes = localStorage.getItem("likes");
-    console.log("Current Likes : ", currentLikes);
+  //   const currentLikes = localStorage.getItem("likes") || 0;
+  //   // console.log("Current Likes : ", currentLikes);
 
-    toast({
-      title: "Liked",
-      description: "You liked the pin",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-  };
+  //   const newLikes = parseInt(currentLikes) + 1;
+  //   console.log("New Likes : ", newLikes);
 
-  const handleUnlike = () => {
-    // console.log("Unliked");
-    setIsLiked(!isLiked);
+  //   // Set new likes to local storage
+  //   localStorage.setItem("likes", newLikes);
 
-    toast({
-      title: "Unliked",
-      description: "You unliked the pin",
-      status: "error",
-      duration: 3000,
-      isClosable: true,
-    });
-  };
+  //   // Post likes to database
+  //   // Get a reference to the document in the database
+  //   client
+  //     .patch(pinId)
+  //     // If the document does not exist, create a new document with a default value
+  //     .setIfMissing({ likes: 0 })
+  //     // Increment the likes field by 1
+  //     .inc({ likes: 1 })
+  //     // Commit the changes
+  //     .commit()
+  //     // Update the UI with the latest data
+  //     .then(() => {
+  //       // Fetch pin details
+  //       fetchPinDetails();
+  //     });
+
+  //   toast({
+  //     title: "Liked",
+  //     description: "You liked the pin",
+  //     status: "success",
+  //     duration: 3000,
+  //     isClosable: true,
+  //   });
+  // };
+
+  // const handleUnlike = () => {
+  //   // console.log("Unliked");
+  //   setIsLiked(!isLiked);
+
+  //   toast({
+  //     title: "Unliked",
+  //     description: "You unliked the pin",
+  //     status: "error",
+  //     duration: 3000,
+  //     isClosable: true,
+  //   });
+  // };
 
   return (
     <div>
@@ -210,7 +228,7 @@ const PinDetail = ({ user }) => {
                   <p className="font-bold">{pinDetail?.postedBy.userName}</p>
                 </Link>
               </div>
-              <div className="mt-5 flex items-center gap-2">
+              {/* <div className="mt-5 flex items-center gap-2">
                 <span className="text-2xl font-bold">
                   {isLiked ? (
                     <div>
@@ -231,9 +249,10 @@ const PinDetail = ({ user }) => {
                   )}
                 </span>
                 <div className="text-2xl">
-                  {/* {countOfLikes} {countOfLikes <= 1 ? "Like" : "Likes"} */}
+                  <span className="font-bold">{pinDetail?.likes}</span>
+                  <span className="text-gray-500"> Likes</span>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Comment section */}
@@ -291,7 +310,7 @@ const PinDetail = ({ user }) => {
       {/* More from this user */}
       {pins?.length > 0 && (
         <h2 className="mt-8 mb-4 text-center text-2xl font-bold">
-          More from the category -> {" "}
+          More from the category ->{" "}
           <Link to={`/category/${category}`} className="text-red-600">
             {category}! ▶
           </Link>
