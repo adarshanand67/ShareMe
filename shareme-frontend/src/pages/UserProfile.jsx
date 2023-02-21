@@ -6,8 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { client } from "../client";
 import Footers from "../components/Footers";
 import { Icon } from "../components/Icon";
-import MasonryLayout from "../components/MasonryLayout";
 import Spinner from "../components/Spinner";
+import MasonryLayout from "../container/MasonryLayout";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,

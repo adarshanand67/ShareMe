@@ -9,7 +9,7 @@ const Feed = lazy(() =>
   })
 );
 
-const Contact = lazy(() => import("../components/Contact"));
+const Contact = lazy(() => import("../pages/Contact"));
 
 const CreatePin = lazy(() =>
   import("../components").then((module) => {
