@@ -6,6 +6,7 @@ import "regenerator-runtime/runtime";
 import App from "./App";
 import "./styles/index.css";
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -17,3 +18,5 @@ ReactDOM.render(
   </Router>,
   document.getElementById("root")
 );
+
+serviceWorkerRegistration.register();
