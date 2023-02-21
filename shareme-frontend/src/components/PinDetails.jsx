@@ -291,7 +291,11 @@ const PinDetail = ({ user }) => {
       {/* More from this user */}
       {pins?.length > 0 && (
         <h2 className="mt-8 mb-4 text-center text-2xl font-bold">
-          More from this category! ({pins.length}) ▶
+          More from the category -> {" "}
+          <Link to={`/category/${category}`} className="text-red-600">
+            {category}! ▶
+          </Link>
+          ({pins.length})
         </h2>
       )}
       {pins ? (

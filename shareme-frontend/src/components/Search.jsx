@@ -5,8 +5,8 @@ import { feedQuery, searchQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
 
 import { useToast } from "@chakra-ui/react";
-import Spinner from "./Spinner";
 import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
+import Spinner from "./Spinner";
 
 const Search = ({ searchTerm }) => {
   const [pins, setPins] = useState();
@@ -44,7 +44,6 @@ const Search = ({ searchTerm }) => {
       });
     }
   }, [searchTerm]); // If search term changes then fetch data
-
 
   // console.log(pins);
   return (

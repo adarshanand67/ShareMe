@@ -10,7 +10,7 @@
 <img src="https://img.shields.io/github/languages/top/adarshanand67/ShareMe">
 <img src="https://img.shields.io/github/watchers/adarshanand67/ShareMe" />
 
-https://user-images.githubusercontent.com/73928744/202767277-d99f4c09-5a42-4dfb-9873-72f3bd6843e9.mp4
+<https://user-images.githubusercontent.com/73928744/202767277-d99f4c09-5a42-4dfb-9873-72f3bd6843e9.mp4>
 
 ## Flow of the application
 
@@ -134,9 +134,9 @@ What did you learn while building this project? What challenges did you face and
 - [x] Handle empty url of images
 - [x] Categories not loading
 - [x] Category search not working
-<!-- - [ ] Change icons of Saving Pins -->
+- [ ] Change icons of Saving Pins
 - [x] Error in userProfile saved pins
-<!-- - [ ] Deleting Comments by users -->
+- [ ] Deleting Comments by users
 
 ## Future Improvements TODO :- 🔧
 
@@ -150,11 +150,11 @@ What did you learn while building this project? What challenges did you face and
 - [ ] Light/Dark Mode Addition
 - [x] Adding Toasts while login/logout
 - [x] Changing highlight color
-<!-- - [ ] Showing confetti animation, creating a pin -->
+- [x] Showing confetti animation, creating a pin
 - [x] Contact us section in
 - [x] Confirmations popups
 - [x] Add right border of categories
-<!-- - [ ] Fix URL of profile page -->
+- [ ] Fix URL of profile page to the title
 - [x] Search Bar UI Like pinterest
 
 ### Medium Changes
@@ -166,7 +166,7 @@ What did you learn while building this project? What challenges did you face and
 - [x] Show tags on posts
 - [x] Infinite Scrolling
 - [x] Showing toasts when post saved
-- [ ] Create Progressive Web App
+- [ ] Create Progressive Web App (PWA)
 
 ### Advanced Changes
 
@@ -175,10 +175,10 @@ What did you learn while building this project? What challenges did you face and
 - [ ] Creating a notification system when new user uploads a post
 - [ ] Adding feature like pin (Store count of likes)
 - [ ] Creating a guided tour of app
-- [ ] Feature of Liking a comment
+- On it - [] Feature of Liking a comment
 - [ ] Showing the time when comment was posted
 - [x] Improve the saved Features
-- [ ] Writing unit tests using React Testing Library
+- [ ] Writing unit tests using Vitest
 
 ## Feedback 📝
 
@@ -186,12 +186,15 @@ If you have any feedback, please reach out to us at 📫 adarsh.anand.20031@iitg
 
 ## Contributing 🤝
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Read the [contributing guidelines]( https://www.github.com/adarshanand67/shareme/blob/main/CONTRIBUTING.md) before contributing.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. Read the [contributing guidelines](https://www.github.com/adarshanand67/shareme/blob/main/CONTRIBUTING.md) before contributing.
 Please make sure to update tests as appropriate.
 
 ## Contributors ✨
+
 Made with ❤️ by Awesome Contributors
-https://github.com/adarshanand67/shareme/graphs/contributors
+
+<!-- https://github.com/adarshanand67/shareme/graphs/contributors -->
+<img src="https://contrib.rocks/image?repo=adarshanand67/shareme" />
 
 ## License 📜
 
