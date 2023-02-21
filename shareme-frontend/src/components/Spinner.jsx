@@ -1,5 +1,4 @@
-import React from "react";
-import { BounceLoader, SyncLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 
 // Change spinners
 const Spinner = ({ message }) => {
@@ -11,6 +10,7 @@ const Spinner = ({ message }) => {
         data-testid="loader"
         size={20}
       />
+
       <p className="px-2 text-center text-lg">{message}</p>
     </div>
   );

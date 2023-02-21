@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import React, { useState, lazy, Suspense } from "react";
+import { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-
 import { Navbar } from "../components";
 
 const Feed = lazy(() =>

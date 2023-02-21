@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
@@ -22,30 +22,29 @@ const Search = ({ searchTerm }) => {
           // Fetch data from sanity
           setPins(data);
           setLoading(false);
-          console.log(data);
-          // console.log(data[0].postedBy.userName);
         });
       } else {
-        client.fetch(feedQuery).then((data) => {
-          setPins(data);
-          setLoading(false);
-        });
+        // If the search term is not alphanumeric then show empty feed
+        setPins([]);
+        setLoading(false);
+
         toast({
           title: "Search term should be alphanumeric",
           status: "error",
           duration: 1000,
           isClosable: true,
+          margin: "1rem",
         });
       }
     } else {
       client.fetch(feedQuery).then((data) => {
+        // If the search term is empty, then fetch the feed
         setPins(data);
         setLoading(false);
       });
     }
   }, [searchTerm]); // If search term changes then fetch data
 
-  // console.log(pins);
   return (
     <div>
       {loading && <Spinner message="Searching pins" />}

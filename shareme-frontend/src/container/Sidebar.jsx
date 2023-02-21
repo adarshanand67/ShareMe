@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { RiHomeFill } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";

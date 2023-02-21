@@ -1,32 +1,19 @@
-import React from "react";
 import {
   FacebookShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  RedditShareButton,
-  TelegramShareButton,
-  TumblrShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
+  LinkedinShareButton, RedditShareButton,
+  TelegramShareButton, TwitterShareButton,
+  WhatsappShareButton
 } from "react-share";
 
 import {
   FacebookIcon,
-  LinkedinIcon,
-  PinterestIcon,
-  RedditIcon,
-  TelegramIcon,
-  TumblrIcon,
-  TwitterIcon,
-  WhatsappIcon,
+  LinkedinIcon, RedditIcon,
+  TelegramIcon, TwitterIcon,
+  WhatsappIcon
 } from "react-share";
 
 const SocialMediaButtons = ({ url }) => {
-  // const url = props.url;
-  // let HomeURL = "https://share-me-web.netlify.app/";
-
   return (
-    // Send all buttons to bottom right
     <div className="mt2 mb-5 flex items-end justify-center gap-3">
       {/* Socials */}
       <FacebookShareButton url={url}>

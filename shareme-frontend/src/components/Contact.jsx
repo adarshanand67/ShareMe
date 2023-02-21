@@ -1,8 +1,7 @@
-import { Toast, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 import emailjs from "@emailjs/browser";
-import EmailIcon from "@mui/icons-material/Email";
 import React, { useRef } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
   const form = useRef(); // Getting form reference
@@ -22,9 +21,6 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
-          console.log("Message sent");
-
           // Show Toast of email sent
           toast({
             title: "Email sent",
