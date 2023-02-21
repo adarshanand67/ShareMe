@@ -1,15 +1,14 @@
 import { useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { BiFile, BiLike } from "react-icons/bi";
 import { MdDownloadForOffline } from "react-icons/md";
 import { VscLink, VscTag } from "react-icons/vsc";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { client, urlFor } from "../client";
-import SocialMediaButtons from "../pages/SocialMediaButtons";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
+import Footers from "./Footers";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
 const PinDetail = ({ user }) => {
@@ -94,16 +93,13 @@ const PinDetail = ({ user }) => {
   }
 
   // const BASE_URL = "https://share-me-web.netlify.app/";
-  // const POST_URL = BASE_URL + "pin-detail/" + pinId;
+  // const POST_URL = BASE_URL + "pin-detzail/" + pinId;
   const currentUrl = window.location.href; // Get current url
 
-  // console.log(likes)
   const likes = pinDetail?.likes;
+  console.log(likes);
   // const [countOfLikes, setCountOfLikes] = useState();
   // console.log("Count of Likes : ", countOfLikes)
-
-  // console.log("Likes : ", likes);
-  // localStorage.setItem("likes", likes);
 
   const handleLike = () => {
     // console.log("Liked");
@@ -137,8 +133,6 @@ const PinDetail = ({ user }) => {
   return (
     <div>
       {/* Pin exists */}
-      {/* <SocialMediaButtons/> */}
-      <SocialMediaButtons url={window.location.href} />
 
       {pinDetail && (
         <div
@@ -301,7 +295,10 @@ const PinDetail = ({ user }) => {
         </h2>
       )}
       {pins ? (
-        <MasonryLayout pins={pins} />
+        <>
+          <MasonryLayout pins={pins} />
+          <Footers />
+        </>
       ) : (
         <Spinner message="Loading more pins" />
       )}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { Sidebar } from "../components";
 
@@ -15,8 +15,8 @@ import logo from "../assets/logo.png";
 import { client } from "../client";
 
 import Confettis from "../components/Confettis";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 import VoiceSearch from "../components/VoiceSearch";
-import SocialMediaButtons from "../pages/SocialMediaButtons";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 

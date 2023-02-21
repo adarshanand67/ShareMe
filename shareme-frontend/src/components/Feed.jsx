@@ -6,6 +6,8 @@ import Confettis from "./Confettis";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
 import { Icon } from "./Icon";
+import { Footer } from "flowbite-react";
+import Footers from "./Footers";
 
 const Feed = () => {
   const [pins, setPins] = useState();
@@ -64,17 +66,19 @@ const Feed = () => {
           Category : <span className="text-black"> {categoryName}</span>
         </h1>
         <p className="text-2xl m-5 text-center">No pins found</p>
+        <Footers/>
       </div>
     );
   } else {
     return (
-      <div className="text-center justify-center">
+      <div className="justify-center text-center">
         {categoryId && (
-          <h1 className="text-3xl text-center text-red-500">
+          <h1 className="text-center text-3xl text-red-500">
             Category : <span className="text-black"> {categoryName}</span>
           </h1>
         )}
         {pins && <MasonryLayout pins={pins} />}
+        <Footers />
       </div>
     );
   }

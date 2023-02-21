@@ -90,5 +90,10 @@ module.exports = {
     // backgroundColor: ['active'],
     extend: {},
   },
-  plugins: [],
+  // require flowbite
+  plugins: [require("flowbite/plugin")],
+  content: [
+    // ...
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+  ],
 };
