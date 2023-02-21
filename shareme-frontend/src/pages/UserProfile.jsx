@@ -3,6 +3,7 @@ import { getAuth, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { IoIosLogOut } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
+import logo from "../assets/logowhite.png";
 import { client } from "../client";
 import Footers from "../components/Footers";
 import { Icon } from "../components/Icon";
@@ -15,7 +16,6 @@ import {
   userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-
 const UserProfile = ({ image }) => {
   const [user, setUser] = useState();
   const [pins, setPins] = useState();
@@ -83,8 +83,8 @@ const UserProfile = ({ image }) => {
         <div className="relative mb-7 flex flex-col">
           <div className="flex flex-col items-center justify-center">
             <img
-              className="2xl:h-50 h-40 w-full object-cover opacity-100 shadow-lg "
-              src={image}
+              className="2xl:h-50 h-40 w-full bg-red-500 object-cover opacity-100 shadow-lg "
+              src={logo}
               alt="user-pic"
             />
             <img
