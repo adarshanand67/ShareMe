@@ -7,13 +7,12 @@ import { client } from "../client";
 import Footers from "../components/Footers";
 import { Icon } from "../components/Icon";
 import MasonryLayout from "../components/MasonryLayout";
-import SocialMediaButtons from "../components/SocialMediaButtons";
 import Spinner from "../components/Spinner";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
   userQuery,
-  userSavedPinsQuery,
+  userSavedPinsQuery
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 
@@ -112,8 +111,6 @@ const UserProfile = () => {
         </div>
         {/* Show QR Code at bottom right */}
         <div className="ali flex flex-row items-center justify-center">
-          {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
-          {/* <QRCodeGenerator url={window.location.href} /> */}
           <Icon />
         </div>
 

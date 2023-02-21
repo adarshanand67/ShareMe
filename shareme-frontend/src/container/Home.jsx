@@ -16,7 +16,6 @@ import { client } from "../client";
 
 import Confettis from "../components/Confettis";
 import SocialMediaButtons from "../components/SocialMediaButtons";
-import VoiceSearch from "../components/VoiceSearch";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 
