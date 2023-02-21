@@ -23,6 +23,7 @@ const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
   const [user, setUser] = useState(); // User data initially null
   const [showConfetti, setShowConfetti] = useState(true);
+  const image = "https://source.unsplash.com/random/680x300/?city,water,sky";
 
   const scrollRef = useRef(null); // Scroll to top
   const width = 1920; // Setting up width
@@ -83,7 +84,7 @@ const Home = () => {
       <div className="h-screen flex-1 overflow-y-scroll pb-2" ref={scrollRef}>
         <Suspense>
           <Routes>
-            <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/user/:userId" element={<UserProfile image={image} />} />
             <Route path="/*" element={<Pins user={user && user} />} />
             <Route path="/test" element={<SocialMediaButtons />} />
           </Routes>

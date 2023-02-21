@@ -12,11 +12,11 @@ import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
   userQuery,
-  userSavedPinsQuery
+  userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 
-const UserProfile = () => {
+const UserProfile = ({ image }) => {
   const [user, setUser] = useState();
   const [pins, setPins] = useState();
   const [text, setText] = useState("Created");
@@ -84,7 +84,7 @@ const UserProfile = () => {
           <div className="flex flex-col items-center justify-center">
             <img
               className="2xl:h-50 h-40 w-full object-cover opacity-100 shadow-lg "
-              src={"https://source.unsplash.com/random/680x300/?city,water,sky"}
+              src={image}
               alt="user-pic"
             />
             <img
