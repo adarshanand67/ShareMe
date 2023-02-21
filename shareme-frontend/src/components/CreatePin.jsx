@@ -1,3 +1,4 @@
+import { useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
@@ -20,34 +21,22 @@ const CreatePin = ({ user }) => {
   const [imageAsset, setImageAsset] = useState();
   const [showConfetti, setShowConfetti] = useState(false);
   const [wrongImageType, setWrongImageType] = useState(false);
-  console.log(user);
+  const toast = useToast();
 
   const navigate = useNavigate(); // Navigate to a new page
 
   const uploadImage = (e) => {
     const selectedFile = e.target.files[0];
-    // uploading asset to sanity
-    if (
-      selectedFile.type === "image/png" ||
-      selectedFile.type === "image/svg" ||
-      selectedFile.type === "image/jpeg" ||
-      selectedFile.type === "image/jpg" ||
-      selectedFile.type === "image/gif" ||
-      selectedFile.type === "image/tiff"
-    ) {
-      setWrongImageType(false); // If image type is correct
+
+    if (isImageTypeValid(selectedFile)) {
       setLoading(true);
-      client.assets // Upload image to sanity
-        .upload("image", selectedFile, {
-          contentType: selectedFile.type,
-          filename: selectedFile.name,
-        })
+      uploadImageToSanity(selectedFile)
         .then((document) => {
-          // After upload the got document
           setImageAsset(document);
           setLoading(false);
         })
         .catch((error) => {
+          setLoading(false);
           console.log("Upload failed:", error.message);
         });
     } else {
@@ -56,42 +45,69 @@ const CreatePin = ({ user }) => {
     }
   };
 
-  const savePin = () => {
-    // Save pin if all fields given
-    if (title && about && destination && imageAsset?._id && category) {
-      const doc = {
-        _type: "pin",
-        title,
-        about,
-        destination,
-        image: {
-          _type: "image",
-          asset: {
-            _type: "reference",
-            _ref: imageAsset?._id,
-          },
-        },
-        userId: user._id,
-        postedBy: {
-          _type: "postedBy",
-          _ref: user._id,
-        },
-        category,
-      };
-      setShowConfetti(true);
-      client.create(doc).then(() => {
-        setTimeout(() => {
-          navigate("/"); // Create pin and navigate to home page
-        }, 3000);
-      });
-    } else {
-      setFields(true);
+  const isImageTypeValid = (file) => {
+    return (
+      file.type === "image/png" ||
+      file.type === "image/svg" ||
+      file.type === "image/jpeg" ||
+      file.type === "image/jpg" ||
+      file.type === "image/gif" ||
+      file.type === "image/tiff"
+    );
+  };
 
-      setTimeout(() => {
-        // After 2 seconds set fields to false
-        setFields(false);
-      }, 2000);
+  const uploadImageToSanity = (file) =>
+    client.assets.upload("image", file, {
+      contentType: file.type,
+      filename: file.name,
+    });
+
+  const savePin = () => {
+    if (fieldsMissing()) {
+      setFields(true);
+      setTimeout(() => setFields(false), 2000);
+    } else {
+      setShowConfetti(true);
+      createPin();
+      toast({
+        title: "Pin created successfully.",
+        description: "Your pin will be visible after 10 seconds.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     }
+  };
+
+  const fieldsMissing = () =>
+    !title || !about || !destination || !imageAsset?._id || !category;
+
+  const createPin = () => {
+    const doc = {
+      _type: "pin",
+      title,
+      about,
+      destination,
+      image: {
+        _type: "image",
+        asset: {
+          _type: "reference",
+          _ref: imageAsset?._id,
+        },
+      },
+      userId: user._id,
+      postedBy: {
+        _type: "postedBy",
+        _ref: user._id,
+      },
+      category,
+    };
+
+    client.create(doc).then(() => {
+      setTimeout(() => {
+        navigate("/"); // Create pin and navigate to home page
+      }, 3000);
+    });
   };
   return (
     <div className="mt-5 flex flex-col items-center justify-center lg:h-4/5">

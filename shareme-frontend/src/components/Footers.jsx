@@ -10,10 +10,7 @@ const Footers = () => {
       <div className="mt-2 w-full">
         {/* <Footer.Divider /> */}
         <h1 className="mb-2 text-center text-2xl">Help us spread the word!</h1>
-        <SocialMediaButtons
-          url={url}
-          text="ShareMe™ - Documenting your life"
-        />
+        <SocialMediaButtons url={url} text="ShareMe™ - Documenting your life" />
         <div className="flex w-full justify-center pb-2">
           <hr />
 

@@ -4,14 +4,14 @@ import { BounceLoader, SyncLoader } from "react-spinners";
 // Change spinners
 const Spinner = ({ message }) => {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full gap-5 mt-5">
+    <div className="mt-5 flex h-full w-full flex-col items-center justify-center gap-5">
       <SyncLoader
         color="#f44336"
         aria-label="Loading Spinner"
         data-testid="loader"
         size={20}
       />
-      <p className="text-lg text-center px-2">{message}</p>
+      <p className="px-2 text-center text-lg">{message}</p>
     </div>
   );
 };

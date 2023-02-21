@@ -13,7 +13,7 @@ import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
   userQuery,
-  userSavedPinsQuery
+  userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 

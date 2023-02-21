@@ -61,12 +61,12 @@ const Feed = () => {
 
   if (pins?.length === 0) {
     return (
-      <div className="text-center justify-center">
-        <h1 className="text-3xl text-center text-red-500">
+      <div className="justify-center text-center">
+        <h1 className="text-center text-3xl text-red-500">
           Category : <span className="text-black"> {categoryName}</span>
         </h1>
-        <p className="text-2xl m-5 text-center">No pins found</p>
-        <Footers/>
+        <p className="m-5 text-center text-2xl">No pins found</p>
+        <Footers />
       </div>
     );
   } else {

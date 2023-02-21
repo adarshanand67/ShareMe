@@ -25,7 +25,6 @@ const SocialMediaButtons = ({ url }) => {
   // const url = props.url;
   // let HomeURL = "https://share-me-web.netlify.app/";
 
-
   return (
     // Send all buttons to bottom right
     <div className="mt2 mb-5 flex items-end justify-center gap-3">
