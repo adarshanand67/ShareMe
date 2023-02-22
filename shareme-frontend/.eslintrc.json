@@ -1,17 +1,33 @@
-// Remove no-unused-vars warning
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "rules": {
-    "jsx-a11y/label-has-for": "off",
-    "jsx-a11y/label-has-associated-control": "off",
-    "no-unused-vars": "off",
-    "react/prop-types": "off",
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    "eslint-disable-next-line": "off"
-  }
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": [
+        "react-app",
+        "react-app/jest",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin: import/typescript",
+        "plugin:react/recommended",
+        "standard-with-typescript"
+    ],
+    "overrides": [
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react", 
+        "@typescript-eslint"
+    ],
+    "rules": {
+    }
 }
