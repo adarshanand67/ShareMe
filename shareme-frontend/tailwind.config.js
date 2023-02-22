@@ -1,5 +1,4 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: "class",
   theme: {
     extend: {
@@ -90,5 +89,11 @@ module.exports = {
     // backgroundColor: ['active'],
     extend: {},
   },
-  plugins: [],
+  // require flowbite
+  plugins: [require("flowbite/plugin")],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
+  ],
 };

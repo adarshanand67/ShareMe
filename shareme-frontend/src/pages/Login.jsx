@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import logo from "../assets/logowhite.png";
 import shareVideo from "../assets/share.mp4";
 // Icons

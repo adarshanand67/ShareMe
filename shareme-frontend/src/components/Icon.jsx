@@ -8,11 +8,11 @@ export function Icon() {
   return (
     // <Tooltip label="Email me!" aria-label="A tooltip">
 
-      <EmailIcon
-        className="fixed bottom-10 right-10  text-red-500 cursor-pointer transform scale-150 z-10 bg-gray-200 rounded-full p-1"
-        size="large"
-        onClick={() => navigate("/contact")}
-      />
+    <EmailIcon
+      className="fixed bottom-10 right-10  z-10 scale-150 transform cursor-pointer rounded-full bg-gray-200 p-1 text-red-500"
+      size="large"
+      onClick={() => navigate("/contact")}
+    />
     // </Tooltip>
   );
 }

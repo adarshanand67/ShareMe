@@ -20,7 +20,7 @@ const MicInactiveStyles = "bg-gray-300 text-gray-500";
 const Navbar = ({ searchTerm, setSearchTerm }) => {
   const navigate = useNavigate();
   const user = fetchUser();
-  console.log(user);
+  // console.log(user);
 
   const {
     transcript,

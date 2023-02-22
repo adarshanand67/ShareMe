@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import "regenerator-runtime/runtime";
 
@@ -10,13 +10,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // 1. import `ChakraProvider` component
 import { ChakraProvider } from "@chakra-ui/react";
 
-ReactDOM.render(
+// use createRoot instead of render
+ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
     <ChakraProvider>
       <App />
     </ChakraProvider>
-  </Router>,
-  document.getElementById("root")
+  </Router>
 );
 
 serviceWorkerRegistration.register();

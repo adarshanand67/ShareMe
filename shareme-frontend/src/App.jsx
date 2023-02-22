@@ -1,13 +1,13 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Spinner from "./components/Spinner";
 
+import Footers from "./components/Footers";
 import Login from "./pages/Login";
 import { fetchUser } from "./utils/fetchUser";
 
 const Home = lazy(() => import("./container/Home"));
-console.log("homle...", Home);
 
 const App = () => {
   const navigate = useNavigate();
