@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { useToast } from "@chakra-ui/react";
+
 import { client } from "../client";
 import { categories } from "../utils/data";
 import { savePins } from "./savePins";
@@ -22,13 +24,22 @@ const CreatePin = ({ user }) => {
   const [wrongImageType, setWrongImageType] = useState(false);
 
   const navigate = useNavigate(); // Navigate to a new page
-  const toast = useToast();
+  const showToastMessage = () => {
+    toast.success('📷 Image uploaded successfully', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
+  const showUploadToast = () => {
+    toast.success('📌 Pin created successfully, wait for ~10 seconds to see it', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
 
   const uploadImage = uploadImages(
     setWrongImageType,
     setLoading,
     setImageAsset,
-    toast
+    showToastMessage
   );
 
   const savePin = savePins(
@@ -38,7 +49,7 @@ const CreatePin = ({ user }) => {
     imageAsset,
     category,
     user,
-    toast,
+    showUploadToast,
     navigate,
     setFields
   );
@@ -123,7 +134,7 @@ const CreatePin = ({ user }) => {
             className="border-b-2 border-gray-200 p-2 text-2xl font-bold outline-none sm:text-3xl"
             onKeyDownCapture={(e) => {
               if (e.key === "Enter") {
-                savePins();
+                savePin();
               }
             }}
           />
@@ -137,7 +148,7 @@ const CreatePin = ({ user }) => {
             className="border-b-2 border-gray-200 p-2 text-base outline-none sm:text-lg"
             onKeyDownCapture={(e) => {
               if (e.key === "Enter") {
-                savePins();
+                savePin();
               }
             }}
           />
@@ -150,7 +161,7 @@ const CreatePin = ({ user }) => {
             className="border-b-2 border-gray-200 p-2 text-base outline-none sm:text-lg"
             onKeyDownCapture={(e) => {
               if (e.key === "Enter") {
-                savePins();
+                savePin();
               }
             }}
           />
@@ -186,7 +197,7 @@ const CreatePin = ({ user }) => {
             <div className="mt-5 flex items-end justify-end">
               <button
                 type="button"
-                onClick={savePins}
+                onClick={savePin}
                 className="w-28 rounded-full bg-red-500 p-2 font-bold text-white outline-none"
               >
                 Save Pin
@@ -195,11 +206,13 @@ const CreatePin = ({ user }) => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
+    
   );
 };
 
-function uploadImages(setWrongImageType, setLoading, setImageAsset, toast) {
+function uploadImages(setWrongImageType, setLoading, setImageAsset , showToastMessage) {
   return (e) => {
     const file = e.target.files[0];
     // uploading asset to sanity
@@ -222,12 +235,8 @@ function uploadImages(setWrongImageType, setLoading, setImageAsset, toast) {
         .then((document) => {
           // After upload the got document
           setImageAsset(document);
-          toast({
-            title: "📷 Image uploaded successfully",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-          });
+          showToastMessage();
+          
           setLoading(false);
         })
         .catch((error) => {

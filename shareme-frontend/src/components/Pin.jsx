@@ -5,7 +5,8 @@ import { MdDownloadForOffline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import { Toast, useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Typography } from "@mui/material";
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
@@ -20,7 +21,16 @@ const Pin = ({ pin }) => {
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
 
   const navigate = useNavigate(); // Navigate to a new page
-  const toast = useToast(); // Toast
+  const showSavedToast = () => {
+    toast.success('Post will be saved soon!.', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
+  const showDeletedToast = () => {
+    toast.success('Pin Deleted ', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
   // Fetch user data
   const user = fetchUser();
 
@@ -61,6 +71,7 @@ const Pin = ({ pin }) => {
         .then(() => {
           window.location.reload();
           setSavingPost(false);
+         showSavedToast()
         });
     }
   };
@@ -116,14 +127,9 @@ const Pin = ({ pin }) => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
+                    
                     savePin(_id);
-                    toast({
-                      title: "Post will be saved soon!.",
-                      description: "Adding one entry of saved posts!.",
-                      status: "success",
-                      duration: 9000,
-                      isClosable: true,
-                    });
+                    showSavedToast()
                   }}
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
@@ -153,7 +159,7 @@ const Pin = ({ pin }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    <Toast status="success" description="Pin deleted" />;
+                    showDeletedToast();
                   }}
                   className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
                 >
@@ -182,6 +188,7 @@ const Pin = ({ pin }) => {
           <hr />
         </Link>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -3,7 +3,8 @@ import { MdDownloadForOffline } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import { useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
 import SocialMediaButtons from "../pages/SocialMediaButtons";
@@ -19,8 +20,13 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState();
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
-  const toast = useToast();
+  const showCommentToast = () => {
+    toast.success('Comment added will be added soon', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };  
   const navigate = useNavigate();
+  
 
   let category = pinDetail?.category;
   category = capitalizeFirstLetter(category);
@@ -54,6 +60,7 @@ const PinDetail = ({ user }) => {
   // Adding comments function
   const addComment = () => {
     if (comment) {
+      showCommentToast()
       setAddingComment(true);
 
       client // Patch the pin
@@ -73,13 +80,7 @@ const PinDetail = ({ user }) => {
           fetchPinDetails(); // Fetch pin details
           setComment(""); // Clear comment
           navigate("/"); // Navigate to pin details page
-          toast({
-            title: "Comment added will be added soon",
-            description: "Writing your comment to Database",
-            status: "success",
-            duration: 3000,
-            isClosable: true,
-          });
+          
           setAddingComment(false); // Set adding comment to false
         });
     }
@@ -236,6 +237,7 @@ const PinDetail = ({ user }) => {
       ) : (
         <Spinner message="Loading more pins" />
       )}
+      <ToastContainer />
     </div>
   );
 };

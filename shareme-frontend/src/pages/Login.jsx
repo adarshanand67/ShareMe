@@ -15,14 +15,29 @@ import {
 import { client } from "../client";
 import { auth } from "../firebase";
 // Toast
-import { useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // React typing animation
 import { TypeAnimation } from "react-type-animation";
 
 const Login = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
-  const toast = useToast();
+  const SuccedToast = () => {
+    toast.success('Welcome to ShareMe 😃', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
+  const googleErrorToast = () => {
+    toast.error('Cant sign in with Google 😔', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
+  const githubErrorToast = () => {
+    toast.error('Cant sign in with GitHub 😔', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
 
   const { signInWithGoogle, signInWithGithub } = SignInUtility();
 
@@ -86,6 +101,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 
@@ -119,24 +135,12 @@ const Login = () => {
           client.createIfNotExists(doc).then(() => {
             setAuthenticated(true);
             navigate("/", { replace: true }); // Navigate to home page replacing the current page
+            SuccedToast()
           });
-          toast({
-            title: "Welcome to ShareMe 😃",
-            description: `Hi ${name}, you are now logged in!`,
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
+          
         })
         .catch((error) => {
-          toast({
-            title: "Cant sign in with Google 😔",
-            description:
-              "An account already exists with the same email address but different sign-in credentials.",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
+          googleErrorToast()
         });
     };
 
@@ -170,24 +174,11 @@ const Login = () => {
             setAuthenticated(true);
             navigate("/", { replace: true }); // Navigate to home page replacing the current page
           });
-          toast({
-            title: "Welcome to ShareMe 😃",
-            description: `Hi ${name}, you are now logged in!`,
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
+          SuccedToast()
           // Confettis for 5 seconds
         })
         .catch((error) => {
-          toast({
-            title: "Cant sign in with github 😐",
-            description:
-              "An account already exists with the same email address but different sign-in credentials.",
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
+          githubErrorToast();
         });
     };
     return { signInWithGoogle, signInWithGithub };

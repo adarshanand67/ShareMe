@@ -4,14 +4,19 @@ import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
 import MasonryLayout from "./MasonryLayout";
 
-import { useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Spinner from "./Spinner";
 import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
 
 const Search = ({ searchTerm }) => {
   const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
-  const toast = useToast();
+  const showErrorMessage = () => {
+    toast.error('Search term should be alphanumeric', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
 
   useEffect(() => {
     if (searchTerm !== "") {
@@ -30,12 +35,7 @@ const Search = ({ searchTerm }) => {
           setPins(data);
           setLoading(false);
         });
-        toast({
-          title: "Search term should be alphanumeric",
-          status: "error",
-          duration: 1000,
-          isClosable: true,
-        });
+        showErrorMessage()
       }
     } else {
       client.fetch(feedQuery).then((data) => {
@@ -54,6 +54,7 @@ const Search = ({ searchTerm }) => {
       {pins?.length === 0 && searchTerm !== "" && !loading && (
         <div className="mt-10 text-center text-xl ">No Pins Found!</div>
       )}
+      <ToastContainer/>
     </div>
   );
 };

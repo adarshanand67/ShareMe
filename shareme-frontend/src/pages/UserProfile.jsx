@@ -1,4 +1,5 @@
-import { useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getAuth, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { IoIosLogOut } from "react-icons/io";
@@ -29,7 +30,11 @@ const UserProfile = () => {
   const { userId } = useParams();
   // console.log(userId);
 
-  const toast = useToast();
+  const showToastMessage = () => {
+    toast.warning('Sorry to see you go 😢', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
 
   const User = fetchUser();
   // console.log(User)
@@ -62,21 +67,15 @@ const UserProfile = () => {
 
   function FirebaseLogout() {
     const auth = getAuth(); // Get current state of auth object
-
     signOut(auth)
       .then(() => {
         // Sign-out successful.
         localStorage.clear();
         navigate("/login");
-        toast({
-          title: "Sorry to see you go 😢",
-          description: "You are now logged out",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-        });
+        showToastMessage();
       })
       .catch((error) => {});
+      
   }
 
   return (
@@ -157,6 +156,7 @@ const UserProfile = () => {
           </div>
         )}
       </div>
+      <ToastContainer/>
     </div>
   );
 };

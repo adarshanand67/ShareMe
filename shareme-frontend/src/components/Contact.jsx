@@ -1,13 +1,18 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import EmailIcon from "@mui/icons-material/Email";
-import { Toast, useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Contact = () => {
   const form = useRef(); // Getting form reference
   const navigate = useNavigate();
-  const toast = useToast();
+  const showToastMessage = () => {
+    toast.success('Email sent', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -26,13 +31,7 @@ const Contact = () => {
           console.log("Message sent");
 
           // Show Toast of email sent
-          toast({
-            title: "Email sent",
-            description: "We will get back to you soon",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
+          showToastMessage()
 
           navigate("/"); // Navigate to home page
         },
@@ -101,6 +100,7 @@ const Contact = () => {
             </div>
           </form>
         </div>
+        <ToastContainer/>
       </section>
     </>
   );
