@@ -7,8 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import img from "../assets/img.jpeg";
 import { client } from "../client";
 import { Icon } from "../components/Icon";
-import MasonryLayout from "../components/MasonryLayout";
-import QRCodeGenerator from "../components/QRCode";
+import MasonryLayout from "../container/MasonryLayout";
 import Spinner from "../components/Spinner";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
@@ -17,7 +16,7 @@ import {
   userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-import SocialMediaButtons from "./SocialMediaButtons";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 
 const UserProfile = () => {
   const [user, setUser] = useState();
@@ -75,7 +74,7 @@ const UserProfile = () => {
         showToastMessage();
       })
       .catch((error) => {});
-      
+
   }
 
   return (

@@ -1,4 +1,3 @@
-import { useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";

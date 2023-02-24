@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import { client } from "../client";
 import { feedQuery, searchQuery } from "../utils/data";
-import MasonryLayout from "./MasonryLayout";
+import MasonryLayout from "../container/MasonryLayout";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Spinner from "./Spinner";
+import Spinner from "../components/Spinner";
 import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
 
 const Search = ({ searchTerm }) => {

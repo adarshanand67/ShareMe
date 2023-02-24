@@ -7,11 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
-import SocialMediaButtons from "../pages/SocialMediaButtons";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
-import MasonryLayout from "./MasonryLayout";
-import Spinner from "./Spinner";
+import MasonryLayout from "../container/MasonryLayout";
+import Spinner from "../components/Spinner";
 const PinDetail = ({ user }) => {
   // console.log(user);
   const { pinId } = useParams(); // Get pin id from url
@@ -24,9 +24,9 @@ const PinDetail = ({ user }) => {
     toast.success('Comment added will be added soon', {
         position: toast.POSITION.BOTTOM_CENTER
     });
-  };  
+  };
   const navigate = useNavigate();
-  
+
 
   let category = pinDetail?.category;
   category = capitalizeFirstLetter(category);
@@ -80,7 +80,7 @@ const PinDetail = ({ user }) => {
           fetchPinDetails(); // Fetch pin details
           setComment(""); // Clear comment
           navigate("/"); // Navigate to pin details page
-          
+
           setAddingComment(false); // Set adding comment to false
         });
     }
