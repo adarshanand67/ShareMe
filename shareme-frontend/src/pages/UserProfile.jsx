@@ -1,14 +1,15 @@
-import { useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getAuth, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { IoIosLogOut } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
-import logo from "../assets/logowhite.png";
+import img from "../assets/img.jpeg";
 import { client } from "../client";
-import Footers from "../components/Footers";
 import { Icon } from "../components/Icon";
+import MasonryLayout from "../components/MasonryLayout";
+import QRCodeGenerator from "../components/QRCode";
 import Spinner from "../components/Spinner";
-import MasonryLayout from "../container/MasonryLayout";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
 import {
   userCreatedPinsQuery,
@@ -16,7 +17,9 @@ import {
   userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-const UserProfile = ({ image }) => {
+import SocialMediaButtons from "./SocialMediaButtons";
+
+const UserProfile = () => {
   const [user, setUser] = useState();
   const [pins, setPins] = useState();
   const [text, setText] = useState("Created");
@@ -27,7 +30,11 @@ const UserProfile = ({ image }) => {
   const { userId } = useParams();
   // console.log(userId);
 
-  const toast = useToast();
+  const showToastMessage = () => {
+    toast.warning('Sorry to see you go 😢', {
+        position: toast.POSITION.BOTTOM_CENTER
+    });
+  };
 
   const User = fetchUser();
   // console.log(User)
@@ -60,21 +67,15 @@ const UserProfile = ({ image }) => {
 
   function FirebaseLogout() {
     const auth = getAuth(); // Get current state of auth object
-
     signOut(auth)
       .then(() => {
         // Sign-out successful.
         localStorage.clear();
         navigate("/login");
-        toast({
-          title: "Sorry to see you go 😢",
-          description: "You are now logged out",
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-        });
+        showToastMessage();
       })
       .catch((error) => {});
+      
   }
 
   return (
@@ -83,8 +84,8 @@ const UserProfile = ({ image }) => {
         <div className="relative mb-7 flex flex-col">
           <div className="flex flex-col items-center justify-center">
             <img
-              className="2xl:h-50 h-40 w-full bg-red-500 object-cover opacity-100 shadow-lg "
-              src={logo}
+              className="2xl:h-50 h-40 w-full object-cover opacity-100 shadow-lg "
+              src={"https://source.unsplash.com/random/680x300/?city,water,sky"}
               alt="user-pic"
             />
             <img
@@ -111,6 +112,9 @@ const UserProfile = ({ image }) => {
         </div>
         {/* Show QR Code at bottom right */}
         <div className="ali flex flex-row items-center justify-center">
+          {/* <h2 className="w-[177px] mx-auto">Scan QR </h2> */}
+          <SocialMediaButtons url={window.location.href} />
+          {/* <QRCodeGenerator url={window.location.href} /> */}
           <Icon />
         </div>
 
@@ -152,7 +156,7 @@ const UserProfile = ({ image }) => {
           </div>
         )}
       </div>
-      <Footers />
+      <ToastContainer/>
     </div>
   );
 };

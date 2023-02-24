@@ -6,14 +6,10 @@ import "regenerator-runtime/runtime";
 import App from "./App";
 import "./styles/index.css";
 
-// 1. import `ChakraProvider` component
-import { ChakraProvider } from "@chakra-ui/react";
-
 // use createRoot instead of render
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router>
-    <ChakraProvider>
-      <App />
-    </ChakraProvider>
-  </Router>
+    <App />
+  </Router>,
+  document.getElementById("root")
 );
