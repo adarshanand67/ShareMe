@@ -214,3 +214,9 @@ Made with ❤️ by Awesome Contributors
 - [Firebase Docs](https://firebase.google.com/docs)
 - [Sanity Docs](https://www.sanity.io/docs)
 - [Tailwind Docs](https://tailwindcss.com/docs)
+
+---
+<div align="center">
+    <h3>Don't forget to ⭐ this repo</h3>
+    <h5>Building with the COMMUNITY for the COMMUNITY ❤️</h5>
+</div>
