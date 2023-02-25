@@ -6,20 +6,12 @@ import { VscLink, VscTag } from "react-icons/vsc";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { client, urlFor } from "../client";
-<<<<<<< HEAD
-import SocialMediaButtons from "../components/SocialMediaButtons";
-import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
-import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
-import MasonryLayout from "../container/MasonryLayout";
-import Spinner from "../components/Spinner";
-=======
 import Footers from "../components/Footers";
 import Spinner from "../components/Spinner";
 import MasonryLayout from "../container/MasonryLayout";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 
->>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
 const PinDetail = ({ user }) => {
   // console.log(user);
   const { pinId } = useParams(); // Get pin id from url
@@ -28,20 +20,10 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState();
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
-<<<<<<< HEAD
-  const showCommentToast = () => {
-    toast.success('Comment added will be added soon', {
-        position: toast.POSITION.BOTTOM_CENTER
-    });
-  };
-  const navigate = useNavigate();
-
-=======
   const [isLiked, setIsLiked] = useState(false);
 
   const toast = useToast();
   const navigate = useNavigate();
->>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
 
   let category = pinDetail?.category;
   category = capitalizeFirstLetter(category);
@@ -92,9 +74,6 @@ const PinDetail = ({ user }) => {
           fetchPinDetails(); // Fetch pin details
           setComment(""); // Clear comment
           navigate("/"); // Navigate to pin details page
-<<<<<<< HEAD
-
-=======
           toast({
             title: "Comment added will be added soon",
             description: "Writing your comment to Database",
@@ -102,7 +81,6 @@ const PinDetail = ({ user }) => {
             duration: 3000,
             isClosable: true,
           });
->>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
           setAddingComment(false); // Set adding comment to false
         });
     }

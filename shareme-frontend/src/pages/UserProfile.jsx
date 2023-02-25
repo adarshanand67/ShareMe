@@ -7,10 +7,6 @@ import logo from "../assets/logowhite.png";
 import { client } from "../client";
 import Footers from "../components/Footers";
 import { Icon } from "../components/Icon";
-<<<<<<< HEAD
-import MasonryLayout from "../container/MasonryLayout";
-=======
->>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
 import Spinner from "../components/Spinner";
 import MasonryLayout from "../container/MasonryLayout";
 import { activeBtnStyles, notActiveBtnStyles } from "../utils/activeBtnStyles";
@@ -20,13 +16,7 @@ import {
   userSavedPinsQuery,
 } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
-<<<<<<< HEAD
-import SocialMediaButtons from "../components/SocialMediaButtons";
-
-const UserProfile = () => {
-=======
 const UserProfile = ({ image }) => {
->>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
   const [user, setUser] = useState();
   const [pins, setPins] = useState();
   const [text, setText] = useState("Created");
@@ -85,10 +75,6 @@ const UserProfile = ({ image }) => {
         });
       })
       .catch((error) => {});
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
   }
 
   return (
