@@ -1,5 +1,6 @@
-import EmailIcon from "@mui/icons-material/Email";
 import React from "react";
+import EmailIcon from "@mui/icons-material/Email";
+import { Tooltip } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 export function Icon() {

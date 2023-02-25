@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^2.3.6",
     "@emailjs/browser": "^3.7.0",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.11.10",
     "@sanity/client": "^3.4.1",
@@ -23,8 +24,8 @@
     "react-share": "^4.4.1",
     "react-speech-recognition": "^3.10.0",
     "react-spinners": "^0.13.6",
-    "react-toastify": "^9.1.1",
-    "react-type-animation": "^2.1.2",
+    "react-type-animation": "^2.1.1",
+    "regenerator-runtime": "^0.13.11",
     "uuid": "^9.0.0"
   },
   "scripts": {

@@ -1,17 +1,25 @@
+import { useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { MdDownloadForOffline } from "react-icons/md";
+import { VscLink, VscTag } from "react-icons/vsc";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { VscLink, VscTag } from "react-icons/vsc";
 import { client, urlFor } from "../client";
+<<<<<<< HEAD
 import SocialMediaButtons from "../components/SocialMediaButtons";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import MasonryLayout from "../container/MasonryLayout";
 import Spinner from "../components/Spinner";
+=======
+import Footers from "../components/Footers";
+import Spinner from "../components/Spinner";
+import MasonryLayout from "../container/MasonryLayout";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
+import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
+
+>>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
 const PinDetail = ({ user }) => {
   // console.log(user);
   const { pinId } = useParams(); // Get pin id from url
@@ -20,6 +28,7 @@ const PinDetail = ({ user }) => {
   const [pinDetail, setPinDetail] = useState();
   const [comment, setComment] = useState("");
   const [addingComment, setAddingComment] = useState(false);
+<<<<<<< HEAD
   const showCommentToast = () => {
     toast.success('Comment added will be added soon', {
         position: toast.POSITION.BOTTOM_CENTER
@@ -27,11 +36,15 @@ const PinDetail = ({ user }) => {
   };
   const navigate = useNavigate();
 
+=======
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toast = useToast();
+  const navigate = useNavigate();
+>>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
 
   let category = pinDetail?.category;
   category = capitalizeFirstLetter(category);
-
-  // console.log(category);
 
   const fetchPinDetails = () => {
     const query = pinDetailQuery(pinId);
@@ -60,7 +73,6 @@ const PinDetail = ({ user }) => {
   // Adding comments function
   const addComment = () => {
     if (comment) {
-      showCommentToast()
       setAddingComment(true);
 
       client // Patch the pin
@@ -71,7 +83,7 @@ const PinDetail = ({ user }) => {
           {
             comment,
             _key: uuidv4(), // Generate unique key
-            postedBy: { _type: "postedBy", _ref: user._id }, // Reference to user
+            postedBy: { _type: "postedBy", _ref: user?._id }, // Reference to user
           },
         ])
         .commit() // Commit the changes
@@ -80,7 +92,17 @@ const PinDetail = ({ user }) => {
           fetchPinDetails(); // Fetch pin details
           setComment(""); // Clear comment
           navigate("/"); // Navigate to pin details page
+<<<<<<< HEAD
 
+=======
+          toast({
+            title: "Comment added will be added soon",
+            description: "Writing your comment to Database",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
+>>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
           setAddingComment(false); // Set adding comment to false
         });
     }
@@ -92,15 +114,65 @@ const PinDetail = ({ user }) => {
   }
 
   // const BASE_URL = "https://share-me-web.netlify.app/";
-  // const POST_URL = BASE_URL + "pin-detail/" + pinId;
+  // const POST_URL = BASE_URL + "pin-detzail/" + pinId;
   const currentUrl = window.location.href; // Get current url
-  // console.log(currentUrl);
+
+  const likes = pinDetail?.likes || 0;
+  // console.log(likes);
+
+  // const handleLike = () => {
+  //   setIsLiked(!isLiked);
+
+  //   const currentLikes = localStorage.getItem("likes") || 0;
+  //   // console.log("Current Likes : ", currentLikes);
+
+  //   const newLikes = parseInt(currentLikes) + 1;
+  //   console.log("New Likes : ", newLikes);
+
+  //   // Set new likes to local storage
+  //   localStorage.setItem("likes", newLikes);
+
+  //   // Post likes to database
+  //   // Get a reference to the document in the database
+  //   client
+  //     .patch(pinId)
+  //     // If the document does not exist, create a new document with a default value
+  //     .setIfMissing({ likes: 0 })
+  //     // Increment the likes field by 1
+  //     .inc({ likes: 1 })
+  //     // Commit the changes
+  //     .commit()
+  //     // Update the UI with the latest data
+  //     .then(() => {
+  //       // Fetch pin details
+  //       fetchPinDetails();
+  //     });
+
+  //   toast({
+  //     title: "Liked",
+  //     description: "You liked the pin",
+  //     status: "success",
+  //     duration: 3000,
+  //     isClosable: true,
+  //   });
+  // };
+
+  // const handleUnlike = () => {
+  //   // console.log("Unliked");
+  //   setIsLiked(!isLiked);
+
+  //   toast({
+  //     title: "Unliked",
+  //     description: "You unliked the pin",
+  //     status: "error",
+  //     duration: 3000,
+  //     isClosable: true,
+  //   });
+  // };
 
   return (
     <div>
       {/* Pin exists */}
-      {/* <SocialMediaButtons/> */}
-      <SocialMediaButtons url={window.location.href} />
 
       {pinDetail && (
         <div
@@ -115,7 +187,6 @@ const PinDetail = ({ user }) => {
               alt="user-post"
             />
           </div>
-
           <div className="w-full flex-1 gap-5 p-5 xl:min-w-620">
             {/* Title about */}
             <div>
@@ -137,6 +208,8 @@ const PinDetail = ({ user }) => {
                   <span className="px-2"> Download</span>
                 </a>
               </div>
+              {/* Showing Likes */}
+
               <div className="flex items-center gap-2">
                 {/* Showing Tags */}
                 <a
@@ -162,18 +235,47 @@ const PinDetail = ({ user }) => {
                   : pinDetail.destination}
               </span>
             </a>
-            {/* Posted by */}
-            <Link
-              to={`/user/${pinDetail?.postedBy._id}`}
-              className="mt-5 flex items-center gap-2 rounded-lg bg-white "
-            >
-              <img
-                src={pinDetail?.postedBy.image}
-                className="h-10 w-10 rounded-full"
-                alt="user"
-              />
-              <p className="font-bold">{pinDetail?.postedBy.userName}</p>
-            </Link>
+            <div className="flex justify-between">
+              {/* Posted by */}
+              <div>
+                <Link
+                  to={`/user/${pinDetail?.postedBy._id}`}
+                  className="mt-5 flex items-center gap-2 rounded-lg bg-white "
+                >
+                  <img
+                    src={pinDetail?.postedBy.image}
+                    className="h-10 w-10 rounded-full"
+                    alt="user"
+                  />
+                  <p className="font-bold">{pinDetail?.postedBy.userName}</p>
+                </Link>
+              </div>
+              {/* <div className="mt-5 flex items-center gap-2">
+                <span className="text-2xl font-bold">
+                  {isLiked ? (
+                    <div>
+                      <AiFillLike
+                        size={25}
+                        className="text-red-600"
+                        onClick={handleUnlike}
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <AiOutlineLike
+                        size={25}
+                        className="text-red-600"
+                        onClick={handleLike}
+                      />
+                    </div>
+                  )}
+                </span>
+                <div className="text-2xl">
+                  <span className="font-bold">{pinDetail?.likes}</span>
+                  <span className="text-gray-500"> Likes</span>
+                </div>
+              </div> */}
+            </div>
 
             {/* Comment section */}
             <h2 className="mt-8 text-2xl">Comments</h2>
@@ -204,6 +306,7 @@ const PinDetail = ({ user }) => {
                   alt="user"
                 />
               </Link>
+
               {/* Adding comments */}
               <input
                 className=" flex-1 rounded-2xl border-2 border-gray-200 p-2 outline-none focus:border-gray-400"
@@ -229,15 +332,21 @@ const PinDetail = ({ user }) => {
       {/* More from this user */}
       {pins?.length > 0 && (
         <h2 className="mt-8 mb-4 text-center text-2xl font-bold">
-          More from this category! ({pins.length}) ▶
+          More from the category :{" "}
+          <Link to={`/category/${category}`} className="text-red-600">
+            {category}! 🔗
+          </Link>
+          {/* ({pins.length}) */}
         </h2>
       )}
       {pins ? (
-        <MasonryLayout pins={pins} />
+        <>
+          <MasonryLayout pins={pins} />
+          <Footers />
+        </>
       ) : (
         <Spinner message="Loading more pins" />
       )}
-      <ToastContainer />
     </div>
   );
 };

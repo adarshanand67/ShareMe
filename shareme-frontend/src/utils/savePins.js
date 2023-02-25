@@ -7,7 +7,7 @@ export function savePins(
   imageAsset,
   category,
   user,
-  showUploadToast,
+  toast,
   navigate,
   setFields
 ) {
@@ -33,7 +33,12 @@ export function savePins(
         },
         category,
       };
-      showUploadToast();
+      toast({
+        title: "📌 Pin created successfully, wait for ~10 seconds to see it",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       client.create(doc).then(() => {
         navigate("/"); // Create pin and navigate to home page
       });

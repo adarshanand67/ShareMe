@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { client } from "../client";
+import MasonryLayout from "../container/MasonryLayout";
 import { feedQuery, searchQuery } from "../utils/data";
+<<<<<<< HEAD
 import MasonryLayout from "../container/MasonryLayout";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+=======
+
+import { useToast } from "@chakra-ui/react";
+>>>>>>> parent of 4f3b0cc (Merge branch 'pr/53')
 import Spinner from "../components/Spinner";
 import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
 
 const Search = ({ searchTerm }) => {
   const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
-  const showErrorMessage = () => {
-    toast.error('Search term should be alphanumeric', {
-        position: toast.POSITION.BOTTOM_CENTER
-    });
-  };
+  const toast = useToast();
 
   useEffect(() => {
     if (searchTerm !== "") {
@@ -27,26 +29,29 @@ const Search = ({ searchTerm }) => {
           // Fetch data from sanity
           setPins(data);
           setLoading(false);
-          console.log(data);
-          // console.log(data[0].postedBy.userName);
         });
       } else {
-        client.fetch(feedQuery).then((data) => {
-          setPins(data);
-          setLoading(false);
+        // If the search term is not alphanumeric then show empty feed
+        setPins([]);
+        setLoading(false);
+
+        toast({
+          title: "Search term should be alphanumeric",
+          status: "error",
+          duration: 1000,
+          isClosable: true,
+          margin: "1rem",
         });
-        showErrorMessage()
       }
     } else {
       client.fetch(feedQuery).then((data) => {
+        // If the search term is empty, then fetch the feed
         setPins(data);
         setLoading(false);
       });
     }
   }, [searchTerm]); // If search term changes then fetch data
 
-
-  // console.log(pins);
   return (
     <div>
       {loading && <Spinner message="Searching pins" />}
@@ -54,7 +59,6 @@ const Search = ({ searchTerm }) => {
       {pins?.length === 0 && searchTerm !== "" && !loading && (
         <div className="mt-10 text-center text-xl ">No Pins Found!</div>
       )}
-      <ToastContainer/>
     </div>
   );
 };

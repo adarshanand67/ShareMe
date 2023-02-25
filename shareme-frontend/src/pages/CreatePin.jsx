@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { Link, useNavigate } from "react-router-dom";
 
 import { client } from "../client";
 import Confettis from "../components/Confettis";
@@ -23,37 +20,94 @@ const CreatePin = ({ user }) => {
   const [imageAsset, setImageAsset] = useState();
   const [showConfetti, setShowConfetti] = useState(false);
   const [wrongImageType, setWrongImageType] = useState(false);
+  const toast = useToast();
 
   const navigate = useNavigate(); // Navigate to a new page
-  const showToastMessage = () => {
-    toast.success('📷 Image uploaded successfully', {
-        position: toast.POSITION.BOTTOM_CENTER
-    });
-  };
-  const showUploadToast = () => {
-    toast.success('📌 Pin created successfully, wait for ~10 seconds to see it', {
-        position: toast.POSITION.BOTTOM_CENTER
-    });
+
+  const uploadImage = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (isImageTypeValid(selectedFile)) {
+      setLoading(true);
+      uploadImageToSanity(selectedFile)
+        .then((document) => {
+          setImageAsset(document);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log("Upload failed:", error.message);
+        });
+    } else {
+      setLoading(false);
+      setWrongImageType(true);
+    }
   };
 
-  const uploadImage = uploadImages(
-    setWrongImageType,
-    setLoading,
-    setImageAsset,
-    showToastMessage
-  );
+  const isImageTypeValid = (file) => {
+    return (
+      file.type === "image/png" ||
+      file.type === "image/svg" ||
+      file.type === "image/jpeg" ||
+      file.type === "image/jpg" ||
+      file.type === "image/gif" ||
+      file.type === "image/tiff"
+    );
+  };
 
-  const savePin = savePins(
-    title,
-    about,
-    destination,
-    imageAsset,
-    category,
-    user,
-    showUploadToast,
-    navigate,
-    setFields
-  );
+  const uploadImageToSanity = (file) =>
+    client.assets.upload("image", file, {
+      contentType: file.type,
+      filename: file.name,
+    });
+
+  const savePin = () => {
+    if (fieldsMissing()) {
+      setFields(true);
+      setTimeout(() => setFields(false), 2000);
+    } else {
+      setShowConfetti(true);
+      createPin();
+      toast({
+        title: "Pin created successfully.",
+        description: "Your pin will be visible after 10 seconds.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const fieldsMissing = () =>
+    !title || !about || !destination || !imageAsset?._id || !category;
+
+  const createPin = () => {
+    const doc = {
+      _type: "pin",
+      title,
+      about,
+      destination,
+      image: {
+        _type: "image",
+        asset: {
+          _type: "reference",
+          _ref: imageAsset?._id,
+        },
+      },
+      userId: user._id,
+      postedBy: {
+        _type: "postedBy",
+        _ref: user._id,
+      },
+      category,
+    };
+
+    client.create(doc).then(() => {
+      setTimeout(() => {
+        navigate("/"); // Create pin and navigate to home page
+      }, 3000);
+    });
+  };
   return (
     <div className="mt-5 flex flex-col items-center justify-center lg:h-4/5">
       {/* When some field is empty */}
@@ -122,12 +176,7 @@ const CreatePin = ({ user }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)} // Set title
             placeholder="Add your title"
-            className="border-b-2 border-gray-200 p-2 text-2xl font-bold outline-none sm:text-3xl"
-            onKeyDownCapture={(e) => {
-              if (e.key === "Enter") {
-                savePin();
-              }
-            }}
+            className="border-b-2 border-gray-300 bg-red-100 p-2 text-2xl font-bold outline-none sm:text-3xl"
           />
 
           {/* Writing About */}
@@ -136,25 +185,15 @@ const CreatePin = ({ user }) => {
             value={about}
             onChange={(e) => setAbout(e.target.value)}
             placeholder="Tell everyone what your Pin is about"
-            className="border-b-2 border-gray-200 p-2 text-base outline-none sm:text-lg"
-            onKeyDownCapture={(e) => {
-              if (e.key === "Enter") {
-                savePin();
-              }
-            }}
+            className="border-b-2 border-gray-300 bg-red-100 p-2 text-base outline-none sm:text-lg"
           />
           {/* Writing destination */}
           <input
             type="url"
             value={destination}
             onChange={(e) => setDestination(e.target.value)}
-            placeholder="Add destination URL"
-            className="border-b-2 border-gray-200 p-2 text-base outline-none sm:text-lg"
-            onKeyDownCapture={(e) => {
-              if (e.key === "Enter") {
-                savePin();
-              }
-            }}
+            placeholder="Add a destination link"
+            className="border-b-2 border-gray-300 bg-red-100 p-2 text-base outline-none sm:text-lg"
           />
 
           {/* Selecting Category */}
@@ -191,6 +230,14 @@ const CreatePin = ({ user }) => {
               {/* Cancel button */}
               <button
                 type="button"
+                onClick={() => navigate("/")}
+                className="w-28 rounded-full bg-black p-2 font-bold text-white outline-none"
+              >
+                Cancel
+              </button>
+              {/* Save Pin Button */}
+              <button
+                type="button"
                 onClick={savePin}
                 className="w-28 rounded-full bg-red-500 p-2 font-bold text-white outline-none"
               >
@@ -200,59 +247,24 @@ const CreatePin = ({ user }) => {
           </div>
         </div>
       </div>
-      <ToastContainer />
+      {user && (
+        <div className="mx-auto mt-2 mb-2 flex items-center gap-2 rounded-lg bg-red-300 p-3 ">
+          <Link to={`/user/${user._id}`}>
+            <img
+              src={user.image}
+              className="h-10 w-10 rounded-full"
+              alt="user-profile"
+            />
+          </Link>
+          <Link to={`/user/${user._id}`}>
+            <p className="font-bold">{user.userName}</p>
+          </Link>
+        </div>
+      )}
+      {/* Confetti */}
+      {showConfetti ? <Confettis /> : null}
     </div>
-
   );
 };
-
-function uploadImages(setWrongImageType, setLoading, setImageAsset , showToastMessage) {
-  return (e) => {
-    const file = e.target.files[0];
-    // uploading asset to sanity
-    if (
-      file.type === "image/png" ||
-      file.type === "image/svg" ||
-      file.type === "image/jpeg" ||
-      file.type === "image/jpg" ||
-      file.type === "image/gif" ||
-      file.type === "image/tiff" ||
-      file.type === "image/webp"
-    ) {
-      setWrongImageType(false); // If image type is correct
-      setLoading(true);
-      client.assets // Upload image to sanity
-        .upload("image", file, {
-          contentType: file.type,
-          filename: file.name,
-        })
-        .then((document) => {
-          // After upload the got document
-          setImageAsset(document);
-          showToastMessage();
-
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log("Upload failed:", error.message);
-        });
-    } else {
-      setLoading(false);
-      setWrongImageType(true);
-    }
-  };
-}
-
-// TODO - sanitizing form data react
-
-function isValidHttpUrl(string) {
-  let url;
-  try {
-    url = new URL(string);
-  } catch (_) {
-    return false;
-  }
-  return url.protocol === "http:" || url.protocol === "https:";
-}
 
 export default CreatePin;
