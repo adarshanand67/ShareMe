@@ -1,0 +1,104 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "airbnb", "prettier"],
+	"overrides": [],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"plugins": ["react"],
+	"rules": {
+		"indent": "off",
+		"quotes": "off",
+		"semi": "off",
+		"import/prefer-default-export": "off",
+		"no-unsafe-optional-chaining": "off",
+		"import/no-unresolved": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-uses-react": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"no-shadow": "off",
+		"no-console": "off",
+		"react/prop-types": "off",
+		"prettier/prettier": "off",
+		"react/function-component-definition": [
+			"off",
+			{ "namedComponents": "function-declaration" }
+		],
+		"no-plusplus": ["off", { "allowForLoopAfterthoughts": true }],
+		"no-use-before-define": [
+			"off",
+			{
+				"functions": false,
+				"variables": false,
+				"classes": false,
+				"allowNamedExports": true
+			}
+		],
+		"global-require": "off",
+		"no-underscore-dangle": [
+			"off",
+			{
+				"allowAfterThis": true,
+				"allowAfterSuper": true,
+				"allowAfterThisConstructor": true,
+				"allowInObjectDestructuring": false
+			}
+		],
+		"import/order": [
+			"off",
+			{
+				"pathGroups": [
+					{
+						"pattern": "react",
+						"group": "builtin",
+						"position": "before"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["react"]
+			}
+		],
+		"react/button-has-type": [
+			"off",
+			{
+				"button": true,
+				"submit": true,
+				"reset": true
+			}
+		],
+		"import/no-extraneous-dependencies": [
+			"off",
+			{
+				"devDependencies": false,
+				"optionalDependencies": false,
+				"peerDependencies": false
+			}
+		],
+		"no-else-return": ["off", { "allowElseIf": false }],
+		"react/require-default-props": [
+			"off",
+			{
+				"forbidDefaultForRequired": true,
+				"classes": "defaultProps",
+				"functions": "defaultProps",
+				"ignoreFunctionalComponents": true
+			}
+		],
+
+		"react/forbid-prop-types": [
+			"off",
+			{
+				"forbid": ["any", "array", "object"],
+				"checkContextTypes": true,
+				"checkChildContextTypes": true
+			}
+		],
+		"no-undef": "off",
+		"arrow-body-style": "off",
+		"no-mixed-spaces-and-tabs": "off"
+	}
+}
