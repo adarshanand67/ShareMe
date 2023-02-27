@@ -1,33 +1,34 @@
 import PropTypes from "prop-types";
 import { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Navbar } from "../components";
+import { Contact, CreatePin, Feed, Navbar, PinDetails, Search } from "../components";
 
-const Feed = lazy(() =>
-  import("../components").then((module) => {
-    return { default: module.Feed };
-  })
-);
 
-const Contact = lazy(() => import("../pages/Contact"));
+// const Feed = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.Feed };
+//   })
+// );
 
-const CreatePin = lazy(() =>
-  import("../components").then((module) => {
-    return { default: module.CreatePin };
-  })
-);
+// const Contact = lazy(() => import("../pages/Contact"));
 
-const PinDetails = lazy(() =>
-  import("../components").then((module) => {
-    return { default: module.PinDetails };
-  })
-);
+// const CreatePin = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.CreatePin };
+//   })
+// );
 
-const Search = lazy(() =>
-  import("../components").then((module) => {
-    return { default: module.Search };
-  })
-);
+// const PinDetails = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.PinDetails };
+//   })
+// );
+
+// const Search = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.Search };
+//   })
+// );
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term

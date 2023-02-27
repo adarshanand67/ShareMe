@@ -35,7 +35,7 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
 
   if (user) {
     return (
-      <div className="mt-5 flex w-full gap-2 p-2 md:gap-5 ">
+      <div className="mt-5 flex w-full gap-2 p-2 md:gap-5  outline-none">
         <div className="flex w-full items-center justify-start rounded-full border-none bg-gray-300 px-5 outline-none focus-within:shadow-sm">
           {/* Searchbar */}
           <IoMdSearch fontSize={21} className="ml-1" />
@@ -45,8 +45,12 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
             placeholder="Search Pins"
             value={searchTerm}
             onFocus={() => navigate("/search")}
-            onBlur={() => setSearchTerm("")} // Clear search term when user clicks outside
-            className="w-full bg-gray-300 p-2 outline-none"
+            onBlur={() => {
+              setSearchTerm("");
+              navigate("/");
+            }}
+            // remove border and outline
+            className="w-full bg-gray-300 p-2 outline-none border-none"
           />
           {/* Close button */}
           <button

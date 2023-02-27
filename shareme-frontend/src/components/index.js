@@ -10,3 +10,4 @@ export { default as Search } from "../pages/Search";
 export { default as UserProfile } from "../pages/UserProfile";
 export { default as Confetti } from "./Confettis";
 export { default as Navbar } from "./Navbar";
+export { default as Pin } from "./Pin";

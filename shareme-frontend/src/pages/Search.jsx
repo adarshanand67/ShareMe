@@ -18,10 +18,11 @@ const Search = ({ searchTerm, setSearchTerm }) => {
       if (isAlphabetorNumber(searchTerm)) {
         setLoading(true);
         const query = searchQuery(searchTerm.toLowerCase()); // Get query
-        console.log(query)
+        // console.log(query)
+        
         client.fetch(query).then((data) => {
           // Fetch data from sanity
-          setPins(data);
+          setPins(data); // Set pins that match the search term
           setLoading(false);
         });
       } else {
