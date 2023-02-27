@@ -1,3 +1,5 @@
+import { createFuzzySearchTerm } from "./createFuzzySearchTerm";
+
 export const categories = [
   {
     name: "cars",
@@ -65,7 +67,7 @@ export const categories = [
       "https://i.pinimg.com/236x/2e/63/c8/2e63c82dfd49aca8dccf9de3f57e8588.jpg",
   },
 ];
-
+// GROQ queries - https://www.sanity.io/docs/query-cheat-sheet#170b92d4caa2
 export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
   image{
     asset->{
@@ -158,8 +160,10 @@ export const pinDetailMorePinQuery = (pin) => {
 };
 
 export const searchQuery = (searchTerm) => {
-  const query = `*[_type == "pin" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*' || destination match '${searchTerm}*' || postedBy.userName match '${searchTerm}*']{
-        image{
+  const fuzzySearchTerm = createFuzzySearchTerm(searchTerm); // car -> *c*a*r*
+  const query = `*[_type == "pin" && title match '${fuzzySearchTerm}'|| category match '${fuzzySearchTerm}*' || about match '${fuzzySearchTerm}*' || destination match '${fuzzySearchTerm}*' || postedBy.userName match '${fuzzySearchTerm}*']
+    {
+      image{
           asset->{
             url
           }

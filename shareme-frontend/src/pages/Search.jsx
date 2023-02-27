@@ -8,7 +8,7 @@ import { useToast } from "@chakra-ui/react";
 import Spinner from "../components/Spinner";
 import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
 
-const Search = ({ searchTerm }) => {
+const Search = ({ searchTerm, setSearchTerm }) => {
   const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
   const toast = useToast();
@@ -18,6 +18,7 @@ const Search = ({ searchTerm }) => {
       if (isAlphabetorNumber(searchTerm)) {
         setLoading(true);
         const query = searchQuery(searchTerm.toLowerCase()); // Get query
+        console.log(query)
         client.fetch(query).then((data) => {
           // Fetch data from sanity
           setPins(data);
