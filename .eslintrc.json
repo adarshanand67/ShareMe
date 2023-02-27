@@ -26,12 +26,12 @@
 		"react/prop-types": "off",
 		"prettier/prettier": "off",
 		"react/function-component-definition": [
-			"off",
+			"warn",
 			{ "namedComponents": "function-declaration" }
 		],
-		"no-plusplus": ["off", { "allowForLoopAfterthoughts": true }],
+		"no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
 		"no-use-before-define": [
-			"off",
+			"warn",
 			{
 				"functions": false,
 				"variables": false,
@@ -39,9 +39,9 @@
 				"allowNamedExports": true
 			}
 		],
-		"global-require": "off",
+		"global-require": "error",
 		"no-underscore-dangle": [
-			"off",
+			"error",
 			{
 				"allowAfterThis": true,
 				"allowAfterSuper": true,
@@ -50,7 +50,7 @@
 			}
 		],
 		"import/order": [
-			"off",
+			"error",
 			{
 				"pathGroups": [
 					{
@@ -63,7 +63,7 @@
 			}
 		],
 		"react/button-has-type": [
-			"off",
+			"error",
 			{
 				"button": true,
 				"submit": true,
@@ -71,16 +71,16 @@
 			}
 		],
 		"import/no-extraneous-dependencies": [
-			"off",
+			"error",
 			{
 				"devDependencies": false,
 				"optionalDependencies": false,
 				"peerDependencies": false
 			}
 		],
-		"no-else-return": ["off", { "allowElseIf": false }],
+		"no-else-return": ["error", { "allowElseIf": false }],
 		"react/require-default-props": [
-			"off",
+			"error",
 			{
 				"forbidDefaultForRequired": true,
 				"classes": "defaultProps",
@@ -90,15 +90,15 @@
 		],
 
 		"react/forbid-prop-types": [
-			"off",
+			"error",
 			{
 				"forbid": ["any", "array", "object"],
 				"checkContextTypes": true,
 				"checkChildContextTypes": true
 			}
 		],
-		"no-undef": "off",
-		"arrow-body-style": "off",
-		"no-mixed-spaces-and-tabs": "off"
+		"no-undef": "error",
+		"arrow-body-style": "warn",
+		"no-mixed-spaces-and-tabs": "error"
 	}
 }
