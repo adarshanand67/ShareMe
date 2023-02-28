@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Spinner from "./Spinner";
 import { isAlphabetorNumber } from "../utils/isAlphabetorNumber";
 
-const Search = ({ searchTerm }) => {
+const Search = ({ searchTerm ,searchButton}) => {
   const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
   const showErrorMessage = () => {
@@ -43,7 +43,7 @@ const Search = ({ searchTerm }) => {
         setLoading(false);
       });
     }
-  }, [searchTerm]); // If search term changes then fetch data
+  }, [searchTerm , searchButton]); // If search term changes then fetch data
 
 
   // console.log(pins);

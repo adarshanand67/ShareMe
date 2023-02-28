@@ -17,6 +17,7 @@ import SocialMediaButtons from "../pages/SocialMediaButtons";
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
+  const [searchButton , setSearchButton] = useState(true);
 
   return (
     <div className="px-2 md:px-5">
@@ -25,6 +26,8 @@ const Pins = ({ user }) => {
         <Navbar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          searchButton={searchButton}
+          setSearchButton={setSearchButton}
           user={user && user} // If user is not null then pass user
         />
       </div>
@@ -46,7 +49,7 @@ const Pins = ({ user }) => {
           <Route
             path="/search"
             element={
-              <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+              <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} searchButton={searchButton} setSearchButton={setSearchButton} />
             }
           />
         </Routes>
