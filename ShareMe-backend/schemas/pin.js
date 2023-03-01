@@ -14,6 +14,11 @@ export default {
       type: "string",
     },
     {
+      name: "likes",
+      title: "Likes",
+      type: "number",
+    },
+    {
       name: "destination",
       title: "Destination",
       type: "url",

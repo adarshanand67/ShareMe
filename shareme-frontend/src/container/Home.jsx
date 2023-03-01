@@ -1,16 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import { Sidebar, UserProfile } from "../components";
+import { Sidebar } from "../components";
+
+const UserProfile = lazy(() =>
+  import("../components").then((module) => {
+    return { default: module.UserProfile };
+  })
+);
+const Pins = lazy(() => import("./Pins"));
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { HiMenu } from "react-icons/hi";
 import logo from "../assets/logo.png";
 import { client } from "../client";
-import Pins from "./Pins";
 
 import Confettis from "../components/Confettis";
-import VoiceSearch from "../components/VoiceSearch";
-import SocialMediaButtons from "../pages/SocialMediaButtons";
+import SocialMediaButtons from "../components/SocialMediaButtons";
 import { userQuery } from "../utils/data";
 import { fetchUser } from "../utils/fetchUser";
 
@@ -18,6 +23,7 @@ const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false); // Toggle sidebar false means off
   const [user, setUser] = useState(); // User data initially null
   const [showConfetti, setShowConfetti] = useState(true);
+  const image = "https://source.unsplash.com/random/680x300/?city,water,sky";
 
   const scrollRef = useRef(null); // Scroll to top
   const width = 1920; // Setting up width
@@ -76,11 +82,13 @@ const Home = () => {
         )}
       </div>
       <div className="h-screen flex-1 overflow-y-scroll pb-2" ref={scrollRef}>
-        <Routes>
-          <Route path="/user/:userId" element={<UserProfile />} />
-          <Route path="/*" element={<Pins user={user && user} />} />
-          <Route path="/test" element={<SocialMediaButtons />} />
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path="/user/:userId" element={<UserProfile image={image} />} />
+            <Route path="/*" element={<Pins user={user && user} />} />
+            <Route path="/test" element={<SocialMediaButtons />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );

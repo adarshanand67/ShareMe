@@ -1,9 +1,8 @@
-import React from "react";
 import Confetti from "react-confetti";
 
 const Confettis = () => {
-  const width = 1920,
-    height = 1080;
+  const width = window.innerWidth,
+    height = window.innerHeight;
   return (
     <Confetti
       width={width}

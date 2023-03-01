@@ -13,7 +13,6 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { fetchUser } from "../utils/fetchUser";
-import { UserProfilePhoto } from "./UserProfilePhoto";
 
 const MicActiveStyles = "bg-red-500 text-white";
 const MicInactiveStyles = "bg-gray-300 text-gray-500";
@@ -21,8 +20,7 @@ const MicInactiveStyles = "bg-gray-300 text-gray-500";
 const Navbar = ({ searchTerm, setSearchTerm , searchButton , setSearchButton}) => {
   const navigate = useNavigate();
   const user = fetchUser();
-  console.log(user);
-
+  // console.log(user);
 
   const {
     transcript,
@@ -37,7 +35,7 @@ const Navbar = ({ searchTerm, setSearchTerm , searchButton , setSearchButton}) =
 
   if (user) {
     return (
-      <div className="mt-5 flex w-full gap-2 p-2 md:gap-5 ">
+      <div className="mt-5 flex w-full gap-2 p-2 md:gap-5  outline-none">
         <div className="flex w-full items-center justify-start rounded-full border-none bg-gray-300 px-5 outline-none focus-within:shadow-sm">
           {/* Searchbar */}
           <button
@@ -50,8 +48,12 @@ const Navbar = ({ searchTerm, setSearchTerm , searchButton , setSearchButton}) =
             placeholder="Search Pins"
             value={searchTerm}
             onFocus={() => navigate("/search")}
-            // onBlur={() => setSearchTerm("")} // Clear search term when user clicks outside
-            className="w-full bg-gray-300 p-2 outline-none"
+            onBlur={() => {
+              setSearchTerm("");
+              navigate("/");
+            }}
+            // remove border and outline
+            className="w-full bg-gray-300 p-2 outline-none border-none"
           />
           {/* Close button */}
           <button
@@ -63,7 +65,6 @@ const Navbar = ({ searchTerm, setSearchTerm , searchButton , setSearchButton}) =
         </div>
 
         {/* Voice search */}
-
         {browserSupportsSpeechRecognition ? (
           <button
             className={`ml-2 rounded-full p-4 hover:bg-red-400
@@ -82,12 +83,18 @@ const Navbar = ({ searchTerm, setSearchTerm , searchButton , setSearchButton}) =
         ) : null}
 
         {/* User Profile */}
-        <div className="flex gap-5 ">
-          {/* <UserProfilePhoto user={user} /> */}
+        <div className="flex items-center gap-5">
+          <Link
+            to={`user/${user?.uid}`}
+            className="mx-3 flex h-12 w-12 items-center justify-center rounded-full"
+            // onClick={handleCloseSidebar}
+          >
+            <img src={user?.photoURL} className="rounded-lg" alt="user" />
+          </Link>
           {/* Creating new pin */}
           <Link
             to="/create-pin"
-            className="flex h-12 w-12 items-center justify-center rounded-lg bg-black text-white md:h-12 md:w-14"
+            className="flex items-center justify-center rounded-lg bg-black text-white md:h-12 md:w-14"
           >
             <IoMdAdd />
           </Link>

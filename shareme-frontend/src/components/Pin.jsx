@@ -5,8 +5,7 @@ import { MdDownloadForOffline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toast, useToast } from "@chakra-ui/react";
 import { Typography } from "@mui/material";
 import { client, urlFor } from "../client";
 import { fetchUser } from "../utils/fetchUser";
@@ -17,28 +16,20 @@ const Pin = ({ pin }) => {
   // console.log(category);
   // console.log(title);
   const [savingPost, setSavingPost] = useState(false);
-
+  const [deleted, setDeleted] = useState(false);
   const [postHovered, setPostHovered] = useState(false); // If post is hovered
 
   const navigate = useNavigate(); // Navigate to a new page
-  const showSavedToast = () => {
-    toast.success('Post will be saved soon!.', {
-        position: toast.POSITION.BOTTOM_CENTER
-    });
-  };
-  const showDeletedToast = () => {
-    toast.success('Pin Deleted ', {
-        position: toast.POSITION.BOTTOM_CENTER
-    });
-  };
+  const toast = useToast(); // Toast
   // Fetch user data
   const user = fetchUser();
 
   // Delete pin of the own user only (not others)
   const deletePin = (id) => {
     client.delete(id).then(() => {
-      window.location.reload();
       setSavingPost(false);
+      setDeleted(true);
+      // window.location.reload();
     });
   };
 
@@ -71,25 +62,24 @@ const Pin = ({ pin }) => {
         .then(() => {
           window.location.reload();
           setSavingPost(false);
-         showSavedToast()
         });
     }
   };
   // console.log(user);
 
   return (
-    <div className="m-2 py-3">
+    <div className={`m-2 py-3 ${deleted ? "hidden" : null}`}>
       <div
         onMouseEnter={() => setPostHovered(true)} // If post is hovered
         onMouseLeave={() => setPostHovered(false)}
         onClick={() => navigate(`/pin-detail/${_id}`)} // Navigate to a new page
-        className=" relative cursor-zoom-in w-auto hover:shadow-lg rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
+        className=" relative w-auto cursor-zoom-in overflow-hidden rounded-lg transition-all duration-500 ease-in-out hover:shadow-lg"
       >
         {/* Pin image */}
         {image && (
           <div className="flex flex-col items-center">
             <img
-              className="rounded-xl w-full "
+              className="w-full rounded-xl "
               src={urlFor(image).width(250).url()}
               alt="user-post"
             />
@@ -98,7 +88,7 @@ const Pin = ({ pin }) => {
         {/* When post is hovered */}
         {postHovered && (
           <div
-            className="absolute top-0 w-full h-full flex flex-col justify-between p-1 pr-2 pt-2 pb-2 z-50 cursor-pointer"
+            className="absolute top-0 z-50 flex h-full w-full cursor-pointer flex-col justify-between p-1 pr-2 pt-2 pb-2"
             style={{ height: "100%" }}
           >
             <div className="flex items-center justify-between">
@@ -110,16 +100,16 @@ const Pin = ({ pin }) => {
                   onClick={(e) => {
                     e.stopPropagation(); // Stop the event from bubbling up the DOM tree
                   }}
-                  className="bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white p-2 text-xl opacity-75 outline-none hover:opacity-100 hover:shadow-md"
                 >
-                  <MdDownloadForOffline />
+                  <MdDownloadForOffline color="black" />
                 </a>
               </div>
               {/* Already saved posts */}
               {alreadySaved?.length !== 0 ? (
                 <button
                   type="button"
-                  className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
+                  className="rounded-3xl bg-red-500 px-5 py-1 text-base font-bold text-white opacity-70 outline-none hover:opacity-100 hover:shadow-md"
                 >
                   Saved
                 </button>
@@ -127,24 +117,29 @@ const Pin = ({ pin }) => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    
                     savePin(_id);
-                    showSavedToast()
+                    toast({
+                      title: "Post will be saved soon!.",
+                      description: "Adding one entry of saved posts!.",
+                      status: "success",
+                      duration: 9000,
+                      isClosable: true,
+                    });
                   }}
                   type="button"
-                  className="bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
+                  className="rounded-3xl bg-red-500 px-5 py-1 text-base font-bold text-white opacity-70 outline-none hover:opacity-100 hover:shadow-md"
                 >
                   {pin?.save?.length} {savingPost ? "Saving" : "Save"}
                 </button>
               )}
             </div>
             {/* Destination url */}
-            <div className=" flex justify-between items-center gap-2 w-full">
+            <div className=" flex w-full items-center justify-between gap-2">
               {destination?.slice(8).length > 0 ? (
                 <a
                   href={destination}
                   target="_blank"
-                  className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
+                  className="flex items-center gap-2 rounded-full bg-white p-2 pl-4 pr-4 font-bold text-black opacity-70 hover:opacity-100 hover:shadow-md"
                   rel="noreferrer"
                 >
                   <BsFillArrowUpRightCircleFill />
@@ -159,11 +154,12 @@ const Pin = ({ pin }) => {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    showDeletedToast();
+                    deletePin(_id);
+                    <Toast status="success" description="Pin deleted" />;
                   }}
-                  className="bg-white p-2 rounded-full w-8 h-8 flex items-center justify-center text-dark opacity-75 hover:opacity-100 outline-none"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-white p-2 text-white opacity-75 outline-none hover:opacity-100"
                 >
-                  <AiTwotoneDelete />
+                  <AiTwotoneDelete color="black" />
                 </button>
               )}
             </div>
@@ -177,18 +173,17 @@ const Pin = ({ pin }) => {
         {/* Show the user who posted it */}
         <Link
           to={`/user/${postedBy?._id}`}
-          className="flex gap-2 items-center "
+          className="flex items-center gap-2 "
         >
           <img
-            className="w-8 h-8 rounded-full object-cover"
+            className="h-8 w-8 rounded-full object-cover"
             src={postedBy?.image}
             alt="user"
           />
-          <p className="capitalize font-thin text-sm">{postedBy?.userName}</p>
+          <p className="text-sm font-thin capitalize">{postedBy?.userName}</p>
           <hr />
         </Link>
       </div>
-      <ToastContainer />
     </div>
   );
 };

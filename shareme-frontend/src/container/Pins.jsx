@@ -1,19 +1,34 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import { lazy, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Contact, CreatePin, Feed, Navbar, PinDetails, Search } from "../components";
 
-import {
-  CreatePin,
-  Feed,
-  Navbar,
-  PinDetails,
-  Search,
-  Sidebar,
-} from "../components";
-import Contact from "../components/Contact";
-import { Icon } from "../components/Icon";
-import QRCodeGenerator from "../components/QRCode";
-import SocialMediaButtons from "../pages/SocialMediaButtons";
+
+// const Feed = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.Feed };
+//   })
+// );
+
+// const Contact = lazy(() => import("../pages/Contact"));
+
+// const CreatePin = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.CreatePin };
+//   })
+// );
+
+// const PinDetails = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.PinDetails };
+//   })
+// );
+
+// const Search = lazy(() =>
+//   import("../components").then((module) => {
+//     return { default: module.Search };
+//   })
+// );
 
 const Pins = ({ user }) => {
   const [searchTerm, setSearchTerm] = useState(""); //Getting search term
@@ -33,7 +48,6 @@ const Pins = ({ user }) => {
       </div>
       <div className="h-full">
         <Routes>
-          {/* <Route path="/test" element={<Navbar/>} /> */}
           <Route path="/" element={<Feed />} /> {/* Home feed */}
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route path="/contact" element={<Contact />} />
