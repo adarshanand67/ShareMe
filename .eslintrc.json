@@ -1,0 +1,104 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "airbnb", "prettier"],
+	"overrides": [],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"root": true,
+	"rules": {
+		"indent": "off",
+		"quotes": "off",
+		"semi": "off",
+		"import/prefer-default-export": "off",
+		"no-unsafe-optional-chaining": "off",
+		"import/no-unresolved": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-uses-react": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"no-shadow": "off",
+		"no-console": "off",
+		"react/prop-types": "off",
+		"prettier/prettier": "off",
+		"react/function-component-definition": [
+			"warn",
+			{ "namedComponents": "function-declaration" }
+		],
+		"no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+		"no-use-before-define": [
+			"warn",
+			{
+				"functions": false,
+				"variables": false,
+				"classes": false,
+				"allowNamedExports": true
+			}
+		],
+		"global-require": "error",
+		"no-underscore-dangle": [
+			"error",
+			{
+				"allowAfterThis": true,
+				"allowAfterSuper": true,
+				"allowAfterThisConstructor": true,
+				"allowInObjectDestructuring": false
+			}
+		],
+		"import/order": [
+			"error",
+			{
+				"pathGroups": [
+					{
+						"pattern": "react",
+						"group": "builtin",
+						"position": "before"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["react"]
+			}
+		],
+		"react/button-has-type": [
+			"error",
+			{
+				"button": true,
+				"submit": true,
+				"reset": true
+			}
+		],
+		"import/no-extraneous-dependencies": [
+			"error",
+			{
+				"devDependencies": false,
+				"optionalDependencies": false,
+				"peerDependencies": false
+			}
+		],
+		"no-else-return": ["error", { "allowElseIf": false }],
+		"react/require-default-props": [
+			"error",
+			{
+				"forbidDefaultForRequired": true,
+				"classes": "defaultProps",
+				"functions": "defaultProps",
+				"ignoreFunctionalComponents": true
+			}
+		],
+
+		"react/forbid-prop-types": [
+			"error",
+			{
+				"forbid": ["any", "array", "object"],
+				"checkContextTypes": true,
+				"checkChildContextTypes": true
+			}
+		],
+		"no-undef": "error",
+		"arrow-body-style": "warn",
+		"no-mixed-spaces-and-tabs": "error"
+	}
+}
