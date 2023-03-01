@@ -29,6 +29,7 @@
 		"*.{js,jsx,css,md,html,json}": "prettier --write"
 	},
 	"dependencies": {
+		"eslint-config-react-app": "^7.0.1",
 		"react": "^18.2.0"
 	}
 }

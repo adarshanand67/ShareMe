@@ -9,8 +9,7 @@
 	"parserOptions": {
 		"ecmaVersion": "latest"
 	},
-	// "root": true,
-	// "plugins": ["react"],
+	"root": true,
 	"rules": {
 		"indent": "off",
 		"quotes": "off",
