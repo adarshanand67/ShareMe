@@ -7,6 +7,7 @@ import { client } from "../client";
 import Confettis from "../components/Confettis";
 import Spinner from "../components/Spinner";
 import { categories } from "../utils/data";
+import { useToast } from "@chakra-ui/react";
 
 const CreatePin = ({ user }) => {
   const [loading, setLoading] = useState(false);
