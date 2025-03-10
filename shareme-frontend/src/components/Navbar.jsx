@@ -17,7 +17,7 @@ import { fetchUser } from "../utils/fetchUser";
 const MicActiveStyles = "bg-red-500 text-white";
 const MicInactiveStyles = "bg-gray-300 text-gray-500";
 
-const Navbar = ({ searchTerm, setSearchTerm }) => {
+const Navbar = ({ searchTerm, setSearchTerm , searchButton , setSearchButton}) => {
   const navigate = useNavigate();
   const user = fetchUser();
   // console.log(user);
@@ -38,7 +38,10 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
       <div className="mt-5 flex w-full gap-2 p-2 md:gap-5  outline-none">
         <div className="flex w-full items-center justify-start rounded-full border-none bg-gray-300 px-5 outline-none focus-within:shadow-sm">
           {/* Searchbar */}
-          <IoMdSearch fontSize={21} className="ml-1" />
+          <button
+            onClick={(e) => {setSearchButton(!searchButton)}}>
+            <IoMdSearch fontSize={21} className="ml-1" />
+          </button>
           <input
             type="text"
             onChange={(e) => setSearchTerm(e.target.value)}
