@@ -36,9 +36,9 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
   if (user) {
     return (
       <div className="mt-5 flex w-full gap-2 p-2 md:gap-5  outline-none">
-        <div className="flex w-full items-center justify-start rounded-full border-none bg-gray-300 px-5 outline-none focus-within:shadow-sm">
+        <div className="flex w-full items-center justify-start rounded-full border border-gray-200 bg-white px-5 py-2 shadow-sm transition-all duration-200 hover:shadow-md focus-within:border-red-500 focus-within:shadow-md">
           {/* Searchbar */}
-          <IoMdSearch fontSize={21} className="ml-1" />
+          <IoMdSearch fontSize={21} className="ml-1 text-gray-400" />
           <input
             type="text"
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -49,12 +49,11 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
               setSearchTerm("");
               navigate("/");
             }}
-            // remove border and outline
-            className="w-full bg-gray-300 p-2 outline-none border-none"
+            className="w-full bg-transparent p-2 outline-none text-gray-800 placeholder-gray-400"
           />
           {/* Close button */}
           <button
-            className="ml-2 rounded-full bg-gray-300 p-2 text-gray-500"
+            className="ml-2 rounded-full p-2 text-gray-400 hover:text-red-500 transition-colors"
             onClick={() => setSearchTerm("")}
           >
             <IoMdClose fontSize={21} />
